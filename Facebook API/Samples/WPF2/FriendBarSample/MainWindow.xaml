@@ -1,0 +1,39 @@
+﻿<Window 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:FriendBarSample="clr-namespace:FriendBarSample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Class="FriendBarSample.MainWindow"
+    Title="Facebook FriendBar Sample" Height="300" Width="800" x:Name="FriendWindow" mc:Ignorable="d" Background="{StaticResource Background_ChromeDefault}">
+    
+    <StackPanel>
+
+        <Grid x:Name="FilmStripBlurEffectArea">
+        	<FriendBarSample:FilmStripControl IsEffectsEnabled="True"
+             	ItemsSource="{Binding ElementName=FriendWindow, Path=Friends}"
+                Style="{StaticResource FriendsBarListBoxStyle}"                  
+                ItemContainerStyle="{DynamicResource FriendsBarListBoxItemStyle}"
+                ItemsPanel="{StaticResource FilmStripPanel}"
+                ItemWidth="74"
+                ItemHeight="74"
+                ScrollViewer.CanContentScroll="True"
+                ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                Focusable="False" Background="Transparent"
+                x:Name="FilmStrip" Height="150"/>
+        </Grid>
+        <TextBlock TextWrapping="Wrap" FontFamily="Calibri" FontSize="12" HorizontalAlignment="Center" Margin="0 10" MaxWidth="250">
+            Use the arrows on either side of the bar to browse your friends. Hover the mouse over a friend's picture to check their status.
+        </TextBlock>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label>Select a friend: </Label>
+            <ComboBox ItemsSource="{Binding ElementName=FriendWindow, Path=Friends, Mode=OneWay}" Width="150" MaxWidth="300" SelectedIndex="{Binding ElementName=FilmStrip, Path=SelectedIndex}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+    </StackPanel>
+</Window>

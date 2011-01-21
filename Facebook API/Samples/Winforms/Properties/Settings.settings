@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FacebookTest.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="api_key" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">e77f1c7e6b1fa2d4d8495622bac2881a</Value>
+    </Setting>
+    <Setting Name="secret" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">6871d1a0ce2c9b9f4778e2ae1c192dbd</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

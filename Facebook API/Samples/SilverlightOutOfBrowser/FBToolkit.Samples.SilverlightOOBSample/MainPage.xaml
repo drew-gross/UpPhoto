@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="FBToolkit.Samples.SilverlightOOBSample.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480" Width="640" Height="480">
+  <Grid x:Name="LayoutRoot" Background="AliceBlue">
+           
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">            
+            <Button x:Name="Install" Click="Install_Click" Height="30" Width="100" Content="Install App" HorizontalAlignment="Right"></Button>
+            <Button x:Name="Login" Click="Login_Click" Height="30" Width="50" Content="Login" HorizontalAlignment="Right"></Button>
+            <HyperlinkButton x:Name="OOBLogin" Height="30" Width="100" BorderThickness="0" TargetName="_blank" NavigateUri="http://localhost:61274/FriendsListSampleTestPage.aspx" Content="Login" Visibility="Collapsed" HorizontalAlignment="Right"></HyperlinkButton>
+        </StackPanel>
+        
+        <ListBox x:Name="Friends" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinHeight="100">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="20" Height="20" Source="{Binding Path=Picture}"></Image>
+                        <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <ListBox x:Name="FriendsAlbums" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinHeight="100">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="20" Height="20" Source="{Binding CoverPhoto.Source}"></Image>
+                        <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Grid>
+</UserControl>

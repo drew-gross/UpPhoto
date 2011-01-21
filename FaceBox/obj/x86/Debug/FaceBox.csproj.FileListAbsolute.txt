@@ -1,0 +1,5 @@
+C:\Users\Drew Gross\Documents\Projects\Facebook Hackathon\FaceBox\bin\Debug\FaceBox.exe
+C:\Users\Drew Gross\Documents\Projects\Facebook Hackathon\FaceBox\bin\Debug\FaceBox.pdb
+C:\Users\Drew Gross\Documents\Projects\Facebook Hackathon\FaceBox\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Drew Gross\Documents\Projects\Facebook Hackathon\FaceBox\obj\x86\Debug\FaceBox.exe
+C:\Users\Drew Gross\Documents\Projects\Facebook Hackathon\FaceBox\obj\x86\Debug\FaceBox.pdb

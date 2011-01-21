@@ -1,0 +1,188 @@
+﻿<UserControl x:Class="FBToolkit.Sample.Silverlight.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:basics="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls" 
+    Width="600" Height="400">
+    <Grid x:Name="LayoutRoot" Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <basics:TabControl x:Name="tabContainer" Grid.Row="1">
+            <basics:TabItem Header="Login" x:Name="LoginTab" >
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2">
+                        <Button x:Name="LoginButton" Content="Session Login" Click="Login_Click" HorizontalAlignment="Center" Margin="2"></Button>
+                        <Button x:Name="CreateToken" Content="Create Token" Click="CreateToken_Click" HorizontalAlignment="Center" Margin="2"></Button>
+                        <Button x:Name="Browser" Content="Go to FaceBook" Click="Browser_Click" HorizontalAlignment="Center" Margin="2"></Button>
+                        <Button x:Name="GetSession" Content="Create Session" Click="GetSession_Click" HorizontalAlignment="Center" Margin="2"></Button>
+                    </StackPanel>                
+            </basics:TabItem>
+            <basics:TabItem Header="Profile">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock x:Name="ProfileName" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"></TextBlock>
+                    <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Top">
+                        <Image x:Name="ProfilePhoto" Height="200" Width="200"></Image>
+                        <TextBlock x:Name="ProfileStatus" TextWrapping="Wrap"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
+                        <TextBlock x:Name="Profile" TextWrapping="Wrap" Margin="5"></TextBlock>
+                    </StackPanel>
+                    <Button x:Name="ProfileButton" Grid.Row="2" Grid.ColumnSpan="2" Content="Get Profile" Click="ProfileButton_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Button>
+                </Grid>
+            </basics:TabItem>
+            <basics:TabItem Header="Friends">
+                <StackPanel Orientation="Vertical">
+                    <ListBox x:Name="FriendsId" Height="130" Margin="5"></ListBox>
+                    <Button Width="100" Content="Get Friends Id" Click="FriendsButton_Click" VerticalAlignment="Bottom"></Button>
+                    <ListBox x:Name="Friends" Height="130" Margin="5">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="20" Height="20" Source="{Binding Path=pic}"></Image>
+                                    <TextBlock Text="{Binding Path=name}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button Width="120" Content="Get Friends Details" Click="FriendsDetailsButton_Click" VerticalAlignment="Bottom"></Button>
+                </StackPanel>
+            </basics:TabItem>
+            <basics:TabItem Header="Status">
+                <StackPanel Orientation="Vertical">
+                    <TextBox x:Name="StatusText" Height="50" TextWrapping="Wrap" Margin="5"></TextBox>
+                    <Button Content="Set Status" Width="100" Click="SetStatusButton_Click"></Button>
+                    <ListBox x:Name="StatusList" DisplayMemberPath="message" Height="150"></ListBox>
+                    <Button Content="Get Status" Width="100" Click="GetStatusButton_Click"></Button>
+                </StackPanel>
+            </basics:TabItem>
+            <basics:TabItem Header="Photos">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ListBox x:Name="AlbumList" MinHeight="130" Margin="5">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=name}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <ListBox x:Name="PhotoList" MinHeight="130" Margin="5" Grid.Row="1">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" x:Name="ThumbnailContainer" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="100" Height="100" Source="{Binding Path=src}"></Image>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+                        <Button Content="GetAlbums" Click="GetAlbums_Click" Width="70" Margin="5"></Button>
+                        <Button Content="GetPhotos" Click="GetPhotos_Click" Width="70" Margin="5"></Button>
+                        <Button x:Name="UploadButton" Content="Upload Photo" Click="UploadButton_Click" Width="90" Margin="5"></Button>
+                    </StackPanel>
+                </Grid>
+            </basics:TabItem>
+            <basics:TabItem Header="Events" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <ListBox x:Name="EventsList">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=name}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <ListBox x:Name="EventsMembersList" Grid.Column="2">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
+                        <Button Content="Get Events" Click="GetEvents_Click" Margin="2"></Button>
+                        <Button Content="GetMembers" Click="GetMembers_Click" Margin="2"></Button>
+                        <Button Content="Create Event" Click="CreateEvent_Click" Margin="2"></Button>
+                    </StackPanel>
+                </Grid>
+            </basics:TabItem>
+            <basics:TabItem Header="Extended Permissions">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Top" Background="Gray">
+                        <RadioButton x:Name="Status_update" GroupName="Group1" Content="Status Update" VerticalAlignment="Top" Margin="5" IsChecked="true"></RadioButton>
+                        <RadioButton x:Name="Create_Event" GroupName="Group1" Content="Create Event" VerticalAlignment="Top" Margin="5"></RadioButton>
+                        <RadioButton x:Name="photo_upload" GroupName="Group1" Content="Photo Upload" VerticalAlignment="Top" Margin="5"></RadioButton>
+                        <RadioButton x:Name="publish_stream" GroupName="Group1" Content="Publish Stream" VerticalAlignment="Top" Margin="5"></RadioButton>
+                        <RadioButton x:Name="export_stream" GroupName="Group1" Content="Export Stream" VerticalAlignment="Top" Margin="5"></RadioButton>
+                        <RadioButton x:Name="read_stream" GroupName="Group1" Content="Read Stream" VerticalAlignment="Top" Margin="5"></RadioButton>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                        <Button Width="160" Content="Get Extended Permission" Click="GetExtendedPermission_Click" Margin="5"></Button>
+                        <Button Width="160" Content="Check Extended Permission" Click="CheckExtendedPermission_Click" Margin="5"></Button>
+                    </StackPanel>
+
+                </Grid>
+            </basics:TabItem>
+
+            <basics:TabItem Header="Stream" Visibility="Collapsed">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <ListBox x:Name="StreamList" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                             ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{StaticResource StreamListBoxStyle}" />
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <Button  Width="100" Content="Get Stream" Click="GetStream_Click" />
+                        <Button Width="100" Content="Publish Stream" Click="PublishStream_Click"></Button>
+                        <Button Width="100" Content="Get Filters" Click="GetFilters_Click"></Button>
+                    </StackPanel>
+                </Grid>
+            </basics:TabItem>
+
+
+        </basics:TabControl>
+
+    </Grid>
+</UserControl>

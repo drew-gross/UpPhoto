@@ -1,0 +1,29 @@
+﻿body
+{
+    background: #FFFFFF;
+    font-family: Segoe;
+}
+.LeftPanelContainer
+{
+    vertical-align:top;
+    text-align:left;
+}
+.RightPanelContainer
+{
+    vertical-align:top;
+    text-align:left;
+}
+.TopMarginSpacer
+{
+    margin: 10px 0 0 0;
+}
+.ExistingEventResponseList
+{
+    margin: 20px 0 0 0;
+}
+.ExistingEventResponseCell
+{
+    margin: 2px;
+    text-align:center;
+    font-size:11px;
+}

@@ -1,0 +1,646 @@
+﻿<ResourceDictionary   
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+    xmlns:FriendBarSample="clr-namespace:FriendBarSample">
+    <!-- Brushes for the arrow buttons -->
+    <LinearGradientBrush x:Key="ArrowButtonBorderBrush"
+                         EndPoint="0.5,1"
+                         StartPoint="0.5,0">
+        <GradientStop Color="#FFFFFFFF"
+                      Offset="0" />
+        <GradientStop Color="#FF999999"
+                      Offset="0.984" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="ArrowButtonBackgroundBrush"
+                     Color="#FF4A4E57" />
+        <LinearGradientBrush x:Key="BubbleButtonColorBackgroundBrush"
+                         EndPoint="0.5,3.06151588455594E-17"
+                         StartPoint="0.5,1">
+        <GradientStop Color="#FFAAD4FF"
+                      Offset="0" />
+        <GradientStop Color="#FF62A7EF"
+                      Offset="1" />
+    </LinearGradientBrush>
+
+ 
+
+    <!--Style for the Border around large thumbnail buttons-->
+    <Style x:Key="LargeThumbnailBorderStyle" TargetType="{x:Type Border}">
+        <Setter Property="Width" Value="97" />
+        <Setter Property="Height" Value="97" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Margin" Value="49,0,20,0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+    </Style>
+
+
+    <!--Style for the Border around small thumbnail buttons-->
+    <Style TargetType="{x:Type Border}" x:Key="ThumbnailBorderStyle" BasedOn="{StaticResource LargeThumbnailBorderStyle}">
+        <Setter Property="Width" Value="50" />
+        <Setter Property="Height" Value="50" />
+        <Setter Property="CornerRadius" Value="6" />
+    </Style>
+    
+    <DataTemplate x:Key="ItemTemplate">
+        <Button x:Name="ItemButton" VerticalAlignment="Top" Margin="5" ClipToBounds="False"
+                Cursor="Hand" FocusVisualStyle="{x:Null}">
+            <Button.ToolTip>
+                <ToolTip Placement="Bottom" MaxWidth="150">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Path=Name}" FontWeight="Bold" TextWrapping="Wrap"/>
+                        <StackPanel x:Name="statusmsg">
+                            <TextBlock TextWrapping="Wrap" Text="{Binding Path=Status.message}"/>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <Binding StringFormat="at {0}" Path="Status.Time"/>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                     
+                </ToolTip>
+            </Button.ToolTip>
+
+                    
+            <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderThickness="4"  x:Name="ButtonBorder" RenderTransformOrigin="0.5,0.5" CornerRadius="6"  ClipToBounds="False">               
+                        <Border.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                </TransformGroup>
+                            </Border.LayoutTransform>
+                           
+                        <Border.BorderBrush>
+                        <LinearGradientBrush StartPoint="0.5,0.0" EndPoint="0.5,1.0">
+                                <GradientStop Color="AliceBlue" Offset="0.0"/>
+                                <GradientStop Color="Navy" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <ContentPresenter Focusable="False" />
+                    </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            <Grid>
+                
+                <FriendBarSample:LargeImageThumbnailControl
+                    x:Name="Thumbnail"
+                    FacebookImage="{Binding Path=Image}"
+                     Clip="M0,6 C0,2.6862915 2.6862915,0 6,0 L87,0 C90.313708,0 93,2.6862915 93,6 L93,87 C93,90.313708 90.313708,93 87,93 L6,93 C2.6862915,93 0,90.313708 0,87 z" />
+
+
+                <Path Fill="#33FFFFFF" Stretch="Fill" Margin="0,0,0,22.563"
+                                  Data="M0,6 C0,2.6862915 2.6862915,0 6,0 L87,0 C90.313708,0 93,2.6862915 93,6 L93,25.29 C93,25.29 0,47.04 0,47.04 z"/>
+            </Grid>
+
+        </Button>
+        <DataTemplate.Triggers>
+            
+            <DataTrigger Binding="{Binding Path=Status.message}" Value="{x:Null}">
+                <Setter TargetName="statusmsg" Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Status.message}" Value="">
+                <Setter TargetName="statusmsg" Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+    <Style x:Key="FriendsBarListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="ContentTemplate" Value="{DynamicResource ItemTemplate}" />
+        <Setter Property="ClipToBounds" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border x:Name="ButtonBorder" RenderTransformOrigin=".5, .5" BorderThickness="0">
+                        <Border.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                            </TransformGroup>
+                        </Border.RenderTransform>
+                        <ContentPresenter Focusable="False" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True">
+                            <Setter Property="Panel.ZIndex" Value="1"/>
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames
+                        BeginTime="00:00:00"
+                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
+                        Storyboard.TargetName="ButtonBorder">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" KeySpline="0,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.0400000" Value="1.50" KeySpline="0.125,0,0.875,1" />
+                                            <SplineDoubleKeyFrame
+                          KeyTime="00:00:00.0700000"
+                          Value="1.4" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+                                                                 Storyboard.TargetName="ButtonBorder">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00"
+                                                            Value="1"
+                                                            KeySpline="0,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.0400000"
+                                                            Value="1.5"
+                                                            KeySpline="0.125,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.0700000"
+                                                            Value="1.4" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
+                                                                 Storyboard.TargetName="ButtonBorder">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1500000"
+                                                            Value="1"
+                                                            KeySpline="0,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.2200000"
+                                                            Value="1.025"
+                                                            KeySpline="0,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="ButtonBorder">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1500000" Value="1" KeySpline="0,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.2200000" Value="1.025" KeySpline="0,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+    <ControlTemplate x:Key="ScrollbarButtonTemplate" TargetType="{x:Type RepeatButton}">
+        <Grid>
+            <Path x:Name="Arrow"
+                  Fill="{DynamicResource ArrowButtonBackgroundBrush}"
+                  Stroke="{DynamicResource ArrowButtonBorderBrush}"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Center"
+                  Width="22"
+                  Height="14"
+                  Data="M11.4999847412109,12.8989802002909C11.4999847412109,12.8989802002909,1.99993896484352,1.99997448921238,1.99993896484352,1.99997448921238C1.99993896484352,1.99997448921238,20.9999542236326,1.99997448921238,20.9999542236326,1.99997448921238C20.9999542236326,1.99997448921238,11.4999847412109,12.8989802002909,11.4999847412109,12.8989802002909z"
+                  RenderTransformOrigin="0.5,0.5"
+                  Margin="5,0,0,0"
+                  Cursor="Hand">
+                <Path.RenderTransform>
+                    <RotateTransform Angle="90" />
+                </Path.RenderTransform>
+            </Path>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter TargetName="Arrow"
+                        Property="Fill"
+                        Value="{DynamicResource ArrowButtonBorderBrush}" />
+            </Trigger>
+            <Trigger Property="IsPressed"
+                     Value="True">
+                <Setter TargetName="Arrow"
+                        Property="Stroke"
+                        Value="{DynamicResource ArrowButtonBackgroundBrush}" />
+                <Setter TargetName="Arrow"
+                        Property="Fill"
+                        Value="{DynamicResource ArrowButtonBackgroundBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled"
+                     Value="False">
+                <Setter TargetName="Arrow"
+                        Property="Opacity"
+                        Value="0.4" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="ScrollBarStyle"
+           TargetType="{x:Type ScrollBar}">
+        <Setter Property="Stylus.IsPressAndHoldEnabled"
+                Value="false" />
+        <Setter Property="Stylus.IsFlicksEnabled"
+                Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                    <Grid />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Orientation"
+                     Value="Horizontal">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ScrollBar}">
+                            <Grid x:Name="Bg"
+                                  SnapsToDevicePixels="true">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <RepeatButton x:Name="repeatButton"
+                                              Template="{DynamicResource ScrollbarButtonTemplate}"
+                                              IsEnabled="{TemplateBinding IsMouseOver}"
+                                              Command="{x:Static ScrollBar.LineLeftCommand}" />
+                                <RepeatButton x:Name="repeatButton1"
+                                              Template="{DynamicResource ScrollbarButtonTemplate}"
+                                              IsEnabled="{TemplateBinding IsMouseOver}"
+                                              RenderTransformOrigin="0.5,0.5"
+                                              Command="{x:Static ScrollBar.LineRightCommand}"
+                                              Grid.Column="2">
+                                    <RepeatButton.RenderTransform>
+                                        <ScaleTransform ScaleX="-1"
+                                                        ScaleY="1" />
+                                    </RepeatButton.RenderTransform>
+                                </RepeatButton>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled"
+                                         Value="false">
+                                    <Setter Property="Opacity"
+                                            TargetName="repeatButton"
+                                            Value="0.4" />
+                                    <Setter Property="Opacity"
+                                            TargetName="repeatButton1"
+                                            Value="0.4" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <ControlTemplate x:Key="FriendsBarScrollViewerTemplate" TargetType="{x:Type ScrollViewer}">
+        <Grid x:Name="Grid" Background="{TemplateBinding Background}">
+            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
+                                    Margin="50,0,50,0"
+                                    VerticalAlignment="Stretch"
+                                    Content="{TemplateBinding Content}"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    CanContentScroll="{TemplateBinding CanContentScroll}"
+                                    CanHorizontallyScroll="False"
+                                    CanVerticallyScroll="False" />
+            <ScrollBar x:Name="PART_HorizontalScrollBar"
+                       Cursor="Arrow"
+                       Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+                       AutomationProperties.AutomationId="HorizontalScrollBar"
+                       Maximum="{TemplateBinding ScrollableWidth}"
+                       Minimum="0"
+                       Value="{Binding Path=HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                       Orientation="Horizontal"
+                       ViewportSize="{TemplateBinding ViewportWidth}"
+                       Height="{Binding Path=ActualHeight, ElementName=Grid, Mode=Default}"
+                       Style="{DynamicResource ScrollBarStyle}" />
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="FriendsBarListBoxStyle"
+           TargetType="ListBox">
+
+        <Style.Resources>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                             Color="Transparent" />
+            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}"
+                             Color="Transparent" />
+        </Style.Resources>
+
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+                Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+                Value="Auto" />
+        <Setter Property="ScrollViewer.CanContentScroll"
+                Value="true" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <Border x:Name="Bd"
+                            SnapsToDevicePixels="true"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="0,0,0,0">
+                        <ScrollViewer Padding="{TemplateBinding Padding}"
+                                          Template="{DynamicResource FriendsBarScrollViewerTemplate}"
+                                          Focusable="false">
+                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+
+
+
+
+
+
+
+    <!-- Style for buttons (thumbnails) in the film strip -->
+    <Style x:Key="FilmStripThumbnailButton"
+           TargetType="{x:Type Button}">
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}" />
+        <Setter Property="Focusable"
+                Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="ButtonBorder"
+                            RenderTransformOrigin="0.5,0.5"
+                            CornerRadius="3"
+                           
+                            BorderThickness="0">
+                        <Border.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="1"
+                                                ScaleY="1" />
+                            </TransformGroup>
+                        </Border.RenderTransform>
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}"
+                                           Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
+                                                                       Storyboard.TargetName="ButtonBorder">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00"
+                                                                  Value="1"
+                                                                  KeySpline="0,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.0400000"
+                                                                  Value="1.25"
+                                                                  KeySpline="0.125,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.0700000"
+                                                                  Value="1.15" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+                                                                       Storyboard.TargetName="ButtonBorder">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00"
+                                                                  Value="1"
+                                                                  KeySpline="0,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.0400000"
+                                                                  Value="1.25"
+                                                                  KeySpline="0.125,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.0700000"
+                                                                  Value="1.15" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiDataTrigger.EnterActions>
+                            <MultiDataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
+                                                                       Storyboard.TargetName="ButtonBorder">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1500000"
+                                                                  Value="1"
+                                                                  KeySpline="0,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.2200000"
+                                                                  Value="1.025"
+                                                                  KeySpline="0,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.3000000"
+                                                                  Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+                                                                       Storyboard.TargetName="ButtonBorder">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1500000"
+                                                                  Value="1"
+                                                                  KeySpline="0,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.2200000"
+                                                                  Value="1.025"
+                                                                  KeySpline="0,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.3000000"
+                                                                  Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiDataTrigger.ExitActions>
+                            <MultiDataTrigger.Setters>
+                                <Setter Property="Background"
+                                        TargetName="ButtonBorder"
+                                        Value="{DynamicResource Background_AnimatedItem}" />
+                                <Setter Property="BorderBrush"
+                                        TargetName="ButtonBorder"
+                                        Value="{DynamicResource Border_AnimatedItem}" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"
+                                     Value="True">
+                            <Setter Property="Background"
+                                    TargetName="ButtonBorder"
+                                    Value="{DynamicResource Background_AnimatedItem}" />
+                            <Setter Property="BorderBrush"
+                                    TargetName="ButtonBorder"
+                                    Value="{DynamicResource Border_AnimatedItem}" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    
+    <!-- ItemsPanel used to animate the currently selected photo into view -->
+    <ItemsPanelTemplate x:Key="FilmStripPanel">
+        <FriendBarSample:FilmStripPanel ItemHeight="{Binding RelativeSource={RelativeSource AncestorType={x:Type FriendBarSample:FilmStripControl}}, Path=ItemHeight}"
+                                       ItemWidth="{Binding RelativeSource={RelativeSource AncestorType={x:Type FriendBarSample:FilmStripControl}}, Path=ItemWidth}"
+                                       Width="200" Height="75"    />
+    </ItemsPanelTemplate>
+
+    <!-- Animations for the photos in the film strip -->
+    <Style x:Key="FilmStripItemStyle"
+           TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Focusable"
+                Value="False" />
+        <Setter Property="SnapsToDevicePixels"
+                Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid Background="Transparent"
+                          HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                          VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                          SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}">
+                        <ContentPresenter Margin="0,2,0,0"
+                                          x:Name="Presenter"
+                                          RenderTransformOrigin="0.5,0.5"
+                                          Content="{TemplateBinding ContentControl.Content}"
+                                          ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}">
+                            <ContentPresenter.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="1"
+                                                    ScaleY="1" />
+                                </TransformGroup>
+                            </ContentPresenter.RenderTransform>
+                        </ContentPresenter>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}"
+                                     Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
+                                                                       Storyboard.TargetName="Presenter">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00"
+                                                                  Value="0.5"
+                                                                  KeySpline="0,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1000000"
+                                                                  Value="1.15"
+                                                                  KeySpline="0.125,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1500000"
+                                                                  Value="1.0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+                                                                       Storyboard.TargetName="Presenter">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00"
+                                                                  Value="0.5"
+                                                                  KeySpline="0,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1000000"
+                                                                  Value="1.15"
+                                                                  KeySpline="0.125,0,0.875,1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1500000"
+                                                                  Value="1.0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="1"
+                                                         Duration="00:00:00.1000000"
+                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+                                                         Storyboard.TargetName="Presenter" />
+                                        <DoubleAnimation To="1"
+                                                         Duration="00:00:00.1000000"
+                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
+                                                         Storyboard.TargetName="Presenter" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <!--
+            Ensure the ListBoxItem is at the top of the ZIndex on MouseOver or else it will overlap with adjacent ListBoxItems
+            when it is zoomed-in during selection. 
+            -->
+            <Trigger Property="IsMouseOver"
+                     Value="true">
+                <Setter Property="Panel.ZIndex"
+                        Value="1" />
+            </Trigger>
+        </Style.Triggers>
+        
+        
+    </Style>
+
+    <!--Background for the FriendBar control-->
+    <LinearGradientBrush x:Key="Background_ChromeDefault" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#FF18B2E8" Offset="0"/>
+        <GradientStop Color="#FF7DF5D9" Offset="1"/>
+        <GradientStop Color="#FF18B2E8" Offset="0.5"/>
+    </LinearGradientBrush>
+
+
+    <!--Template LargeImageThumbnailControl which displays photos in a button-->
+    <Style TargetType="{x:Type FriendBarSample:LargeImageThumbnailControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type FriendBarSample:LargeImageThumbnailControl}">
+                    <Viewbox Stretch="UniformToFill"
+                                 DataContext="{Binding Path=., RelativeSource={RelativeSource TemplatedParent}}"
+                                 Height="{TemplateBinding Height}"
+                                 Width="{TemplateBinding Width}">
+                        <Viewbox.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                            </TransformGroup>
+                        </Viewbox.RenderTransform>
+                        <Grid>
+                            <Image Name="PlaceholderImage" />
+                            <Image Source="{Binding Path=ImageSource}" x:Name="ThumbnailTransform" />
+     
+                        </Grid>
+                    </Viewbox>
+                    <ControlTemplate.Triggers>
+                        <!--<DataTrigger Binding="{Binding ElementName=ThumbnailTransform, Path=Source}" Value="{x:Null}">-->
+                        <DataTrigger Binding="{Binding Path=ImageSource, RelativeSource={RelativeSource Self}}" Value="{x:Null}">
+                            <Setter TargetName="PlaceholderImage" Property="Source" Value="pack://application:,,,/placeholderprofilephoto-square.png"/>
+                            <Setter TargetName="PlaceholderImage" Property="Visibility" Value="Visible"/>                       
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=ImageSource, RelativeSource={RelativeSource Self}}"
+                             Value="{x:Null}">
+       
+            
+                <DataTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="00:00:00.15"
+                                                 AccelerationRatio="0.4" DecelerationRatio="0.2" />
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.5" KeySpline="0,0,0.875,1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1.25" KeySpline="0.125,0,0.875,1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1500000" Value="1.0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.5" KeySpline="0,0,0.875,1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1.25" KeySpline="0.125,0,0.875,1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1500000" Value="1.0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.ExitActions>
+            </DataTrigger>
+         
+        </Style.Triggers>
+    </Style>
+
+
+
+
+
+</ResourceDictionary>
