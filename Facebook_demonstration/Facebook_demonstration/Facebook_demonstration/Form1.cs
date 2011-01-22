@@ -22,13 +22,6 @@ namespace Facebook_demonstration
         public Form1()
         {
             InitializeComponent();
-            //fbService.ApplicationKey = "120183071389019";
-            //List<Enums.ExtendedPermissions> perms = new List<Enums.ExtendedPermissions>
-            //{
-            //    Enums.ExtendedPermissions.photo_upload,
-            //    Enums.ExtendedPermissions.offline_access
-            //};
-            //fbService.ConnectToFacebook(perms);
         }
 
         #region Button Handlers
@@ -99,9 +92,19 @@ namespace Facebook_demonstration
 
         private void FaceboxWatcher_Created(object sender, FileSystemEventArgs e)
         {
-            MessageBox.Show("Adding " + e.FullPath + " to Test Album");
-            FacebookInterfaces.PublishPhotos("Test Album", e.FullPath);
-            MessageBox.Show("Finished adding file");
+            MessageBox.Show(e.FullPath + " created!");
+            if (PathIsPicture(e.FullPath))
+            {
+                string album = GetAlbumFromPath(e.FullPath);
+                try
+                {
+                    FacebookInterfaces.PublishPhotos(album, e.FullPath);
+                }
+                catch (System.UnauthorizedAccessException)
+                {
+                    //could not access e.fullPath (user possibly created a folder)
+                }
+            }
         }
 
         private void FaceboxWatcher_Deleted(object sender, FileSystemEventArgs e)
@@ -112,6 +115,29 @@ namespace Facebook_demonstration
         private void FaceboxWatcher_Renamed(object sender, RenamedEventArgs e)
         {
             MessageBox.Show(e.FullPath + " renamed!");
+        }
+
+        private string GetAlbumFromPath( string path )
+        {
+            string[] folders = path.Split('\\');
+            //returns second last item (C:\Facebox\albumname\picture.jpg
+            //becomes {"C:", "Facebox", "albumname", "picture.jpg"}
+            return folders[folders.Length - 2];
+        }
+
+        private bool PathIsPicture( string path )
+        {
+            string[] folders = path.Split('\\');
+            string file = folders[folders.Length - 1];
+            string extension = file.Split('.')[file.Split('.').Length - 1];
+            if (extension == "jpg" || extension == "bmp")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
