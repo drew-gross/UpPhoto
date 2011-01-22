@@ -22,13 +22,13 @@ namespace Facebook_demonstration
         public Form1()
         {
             InitializeComponent();
-            fbService.ApplicationKey = "120183071389019";
-            List<Enums.ExtendedPermissions> perms = new List<Enums.ExtendedPermissions>
-            {
-                Enums.ExtendedPermissions.photo_upload,
-                Enums.ExtendedPermissions.offline_access
-            };
-            fbService.ConnectToFacebook(perms);
+            //fbService.ApplicationKey = "120183071389019";
+            //List<Enums.ExtendedPermissions> perms = new List<Enums.ExtendedPermissions>
+            //{
+            //    Enums.ExtendedPermissions.photo_upload,
+            //    Enums.ExtendedPermissions.offline_access
+            //};
+            //fbService.ConnectToFacebook(perms);
         }
 
         #region Button Handlers

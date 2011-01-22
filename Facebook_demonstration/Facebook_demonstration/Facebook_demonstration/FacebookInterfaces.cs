@@ -22,6 +22,14 @@ namespace Facebook_demonstration
 
         public static bool PublishPhotos(String AlbumName, String FileName)
         {
+
+            fbService.ApplicationKey = "120183071389019";
+            List<Enums.ExtendedPermissions> perms = new List<Enums.ExtendedPermissions>
+            {
+                Enums.ExtendedPermissions.photo_upload,
+                Enums.ExtendedPermissions.offline_access
+            };
+            fbService.ConnectToFacebook(perms);
             try
             {
                 IList<album> albums = fbService.Photos.GetAlbums();
