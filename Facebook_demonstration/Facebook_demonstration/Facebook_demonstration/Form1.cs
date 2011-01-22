@@ -101,6 +101,7 @@ namespace Facebook_demonstration
         {
             MessageBox.Show("Adding " + e.FullPath + " to Test Album");
             FacebookInterfaces.PublishPhotos("Test Album", e.FullPath);
+            MessageBox.Show("Finished adding file");
         }
 
         private void FaceboxWatcher_Deleted(object sender, FileSystemEventArgs e)
@@ -112,6 +113,5 @@ namespace Facebook_demonstration
         {
             MessageBox.Show(e.FullPath + " renamed!");
         }
-
     }
 }
