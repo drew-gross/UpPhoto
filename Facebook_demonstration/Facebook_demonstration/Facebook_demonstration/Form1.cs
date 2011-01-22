@@ -88,7 +88,29 @@ namespace Facebook_demonstration
         //private void PhotoTagger(string photoPid)
         //{
             
+
         //}
         #endregion
+
+        private void FaceboxWatcher_Changed(object sender, FileSystemEventArgs e)
+        {
+            MessageBox.Show(e.FullPath + " changed!");
+        }
+
+        private void FaceboxWatcher_Created(object sender, FileSystemEventArgs e)
+        {
+            MessageBox.Show(e.FullPath + " created!");
+        }
+
+        private void FaceboxWatcher_Deleted(object sender, FileSystemEventArgs e)
+        {
+            MessageBox.Show(e.FullPath + " deleted!");
+        }
+
+        private void FaceboxWatcher_Renamed(object sender, RenamedEventArgs e)
+        {
+            MessageBox.Show(e.FullPath + " renamed!");
+        }
+
     }
 }
