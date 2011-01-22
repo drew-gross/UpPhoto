@@ -20,6 +20,10 @@ namespace FaceBox
         protected override void OnStart(string[] args)
         {
             EventLog.WriteEntry("OnStart!");
+
+            //MonitorFolder testFolder = new MonitorFolder();
+            //testFolder.Initiate();
+
         }
 
         protected override void OnStop()
