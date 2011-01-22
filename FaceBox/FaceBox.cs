@@ -21,8 +21,10 @@ namespace FaceBox
         {
             EventLog.WriteEntry("OnStart!");
 
-            //MonitorFolder testFolder = new MonitorFolder();
-            //testFolder.Initiate();
+           
+            EventLog.WriteEntry("test1");
+            MonitorFolder.Initiate();
+            EventLog.WriteEntry("test2");
 
         }
 
