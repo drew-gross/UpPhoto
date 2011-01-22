@@ -3,25 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.ServiceProcess;
+using System.Diagnostics;
 
 namespace FaceBox
 {
     public class MonitorFolder
     {
-        public FileSystemWatcher watcher;
+        public static FileSystemWatcher watcher;
 
-        string pathToFolder = @"/c/TestFolder";
+        static string pathToFolder = @"C:\TestFolder";
 
-        public void Initiate()
+        public static void Initiate()
         {
+            Console.WriteLine("yo1");
+
+
             watcher = new FileSystemWatcher { Path = pathToFolder, IncludeSubdirectories = true};
+            Console.WriteLine("yo2");
             watcher.Created += new FileSystemEventHandler(WatcherCreated);
         }
 
-        void WatcherCreated(object source, FileSystemEventArgs e)
+        public static void WatcherCreated(object source, FileSystemEventArgs e)
         {
-            Console.WriteLine("works");
-            Console.Read();
+            StreamWriter fout = new StreamWriter("output.txt");
+            
+            fout.WriteLine("works");
+      
         }
 
 

@@ -30,7 +30,6 @@ namespace FaceBox
 
             FaceBoxWatcher.Changed += new FileSystemEventHandler(OnChanged);
             FaceBoxWatcher.Error += new ErrorEventHandler(OnError);
-
             FaceBoxWatcher.EnableRaisingEvents = true;
         }
 
