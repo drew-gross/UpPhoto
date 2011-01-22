@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FaceBox
 {
-    static class Program
+    static class Program//: MonitorFolder
     {
         /// <summary>
         /// The main entry point for the application.
@@ -15,10 +15,13 @@ namespace FaceBox
         {
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 
-			{ 
-				new FaceBox() 
-			};
+            { 
+                new FaceBox() 
+            };
             ServiceBase.Run(ServicesToRun);
+
+            
+
         }
     }
 }
