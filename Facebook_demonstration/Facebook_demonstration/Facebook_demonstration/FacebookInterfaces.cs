@@ -36,14 +36,18 @@ namespace Facebook_demonstration
             foreach (album album in albums)
             {
 
-                string albumFolder = Path.Combine(FaceboxPath, album.name);
+                string albumFolder = Path.Combine(FaceboxPath, album.name) + @"\";
                 Directory.CreateDirectory(albumFolder);
                 var photos = fbService.Photos.Get(null, album.aid, null);
 
+                int photoCounter = 0;
+
                 foreach (photo photo in photos)
                 {
-                    var imageData = photo.picture_big;
-                    imageData.Save(albumFolder, System.Drawing.Imaging.ImageFormat.Bmp);
+                    photoCounter++;
+                    string fullFilePath = albumFolder + photoCounter.ToString() + ".bmp";
+                    System.Drawing.Bitmap imageData = new System.Drawing.Bitmap(photo.picture_big);
+                    imageData.Save(fullFilePath);
                 }
             }
         }
