@@ -8,6 +8,7 @@ using Facebook.Utility;
 using Facebook.Winforms.Components;
 using FacebookController;
 using SHDocVw;
+using System.Diagnostics;
 
 namespace Facebook_demonstration
 {
@@ -243,5 +244,10 @@ namespace Facebook_demonstration
             wb.Navigate("http://www.facebook.com/addfriend.php?id=" + uidToAddTextBox.Text, ref o, ref o, ref o, ref o);
         }
         #endregion
+
+        private void FaceboxWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
+        {
+            MessageBox.Show("hooray!" + e.FullPath);
+        }
     }
 }

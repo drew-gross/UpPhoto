@@ -40,6 +40,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.FaceboxWatcher = new System.IO.FileSystemWatcher();
+            ((System.ComponentModel.ISupportInitialize)(this.FaceboxWatcher)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -146,6 +148,14 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "Message :";
             // 
+            // FaceboxWatcher
+            // 
+            this.FaceboxWatcher.EnableRaisingEvents = true;
+            this.FaceboxWatcher.IncludeSubdirectories = true;
+            this.FaceboxWatcher.Path = "C:\\";
+            this.FaceboxWatcher.SynchronizingObject = this;
+            this.FaceboxWatcher.Changed += new System.IO.FileSystemEventHandler(this.FaceboxWatcher_Changed);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -165,6 +175,7 @@
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.FaceboxWatcher)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,6 +195,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        public System.IO.FileSystemWatcher FaceboxWatcher;
     }
 }
 
