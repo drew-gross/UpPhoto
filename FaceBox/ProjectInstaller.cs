@@ -15,5 +15,10 @@ namespace FaceBox
         {
             InitializeComponent();
         }
+
+        private void serviceInstaller1_AfterInstall(object sender, InstallEventArgs e)
+        {
+
+        }
     }
 }

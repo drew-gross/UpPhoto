@@ -3,3 +3,6 @@ C:\Users\Drew Gross\Documents\Projects\Facebook Hackathon\FaceBox\bin\Debug\Face
 C:\Users\Drew Gross\Documents\Projects\Facebook Hackathon\FaceBox\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Drew Gross\Documents\Projects\Facebook Hackathon\FaceBox\obj\x86\Debug\FaceBox.exe
 C:\Users\Drew Gross\Documents\Projects\Facebook Hackathon\FaceBox\obj\x86\Debug\FaceBox.pdb
+C:\Users\Drew Gross\Documents\Projects\Facebook Hackathon\FaceBox\obj\x86\Debug\FaceBox.ProjectInstaller.resources
+C:\Users\Drew Gross\Documents\Projects\Facebook Hackathon\FaceBox\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Drew Gross\Documents\Projects\Facebook Hackathon\FaceBox\obj\x86\Debug\GenerateResource.write.1.tlog

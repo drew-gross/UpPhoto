@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceBox", "FaceBox.csproj", "{B6B6474F-9C99-4571-8B30-D3907FB15E4D}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FaceBoxServiceSetup", "..\FaceBoxServiceSetup\FaceBoxServiceSetup.vdproj", "{6506B325-2F81-4D7D-97F8-BBAF716C997E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,8 @@ Global
 		{B6B6474F-9C99-4571-8B30-D3907FB15E4D}.Debug|x86.Build.0 = Debug|x86
 		{B6B6474F-9C99-4571-8B30-D3907FB15E4D}.Release|x86.ActiveCfg = Release|x86
 		{B6B6474F-9C99-4571-8B30-D3907FB15E4D}.Release|x86.Build.0 = Release|x86
+		{6506B325-2F81-4D7D-97F8-BBAF716C997E}.Debug|x86.ActiveCfg = Debug
+		{6506B325-2F81-4D7D-97F8-BBAF716C997E}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,6 +14,7 @@ namespace FaceBox
         public Service1()
         {
             InitializeComponent();
+            EventLog.WriteEntry("Hello world!");
         }
 
         protected override void OnStart(string[] args)
