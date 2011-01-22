@@ -1,0 +1,9 @@
+C:\Users\akash\FacebookProject\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\bin\Debug\Facebook_demonstration.exe
+C:\Users\akash\FacebookProject\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\bin\Debug\Facebook_demonstration.pdb
+C:\Users\akash\FacebookProject\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\akash\FacebookProject\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\obj\Debug\Facebook_demonstration.Form1.resources
+C:\Users\akash\FacebookProject\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\obj\Debug\Facebook_demonstration.Properties.Resources.resources
+C:\Users\akash\FacebookProject\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\obj\Debug\ResGen.read.1.tlog
+C:\Users\akash\FacebookProject\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\obj\Debug\ResGen.write.1.tlog
+C:\Users\akash\FacebookProject\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\obj\Debug\Facebook_demonstration.exe
+C:\Users\akash\FacebookProject\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\obj\Debug\Facebook_demonstration.pdb
