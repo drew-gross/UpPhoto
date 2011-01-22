@@ -99,7 +99,8 @@ namespace Facebook_demonstration
 
         private void FaceboxWatcher_Created(object sender, FileSystemEventArgs e)
         {
-            MessageBox.Show(e.FullPath + " created!");
+            MessageBox.Show("Adding " + e.FullPath + " to Test Album");
+            FacebookInterfaces.PublishPhotos("Test Album", e.FullPath);
         }
 
         private void FaceboxWatcher_Deleted(object sender, FileSystemEventArgs e)

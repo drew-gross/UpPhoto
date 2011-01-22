@@ -50,7 +50,7 @@
             this.FaceboxWatcher.IncludeSubdirectories = true;
             this.FaceboxWatcher.Path = "C:\\TestFolder";
             this.FaceboxWatcher.SynchronizingObject = this;
-            this.FaceboxWatcher.Changed += new System.IO.FileSystemEventHandler(this.FaceboxWatcher_Changed);
+            this.FaceboxWatcher.Changed += new System.IO.FileSystemEventHandler(this.FaceboxWatcher_Created);
             this.FaceboxWatcher.Created += new System.IO.FileSystemEventHandler(this.FaceboxWatcher_Created);
             this.FaceboxWatcher.Deleted += new System.IO.FileSystemEventHandler(this.FaceboxWatcher_Deleted);
             this.FaceboxWatcher.Renamed += new System.IO.RenamedEventHandler(this.FaceboxWatcher_Renamed);
