@@ -1,6 +1,6 @@
 ﻿namespace FaceBox
 {
-    partial class Service1
+    partial class FaceBox
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.ServiceName = "Service1";
+            // 
+            // FaceBox
+            // 
+            this.ServiceName = "FaceBox";
+
         }
 
         #endregion

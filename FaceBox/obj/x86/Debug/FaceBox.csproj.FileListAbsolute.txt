@@ -6,3 +6,4 @@ C:\Users\Drew Gross\Documents\Projects\Facebook Hackathon\FaceBox\obj\x86\Debug\
 C:\Users\Drew Gross\Documents\Projects\Facebook Hackathon\FaceBox\obj\x86\Debug\FaceBox.ProjectInstaller.resources
 C:\Users\Drew Gross\Documents\Projects\Facebook Hackathon\FaceBox\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\Drew Gross\Documents\Projects\Facebook Hackathon\FaceBox\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Drew Gross\Documents\Projects\Facebook Hackathon\FaceBox\obj\x86\Debug\FaceBox.FaceBox.resources

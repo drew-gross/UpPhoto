@@ -9,20 +9,22 @@ using System.Text;
 
 namespace FaceBox
 {
-    public partial class Service1 : ServiceBase
+    public partial class FaceBox : ServiceBase
     {
-        public Service1()
+        public FaceBox()
         {
             InitializeComponent();
-            EventLog.WriteEntry("Hello world!");
+            EventLog.WriteEntry("Constructor!");
         }
 
         protected override void OnStart(string[] args)
         {
+            EventLog.WriteEntry("OnStart!");
         }
 
         protected override void OnStop()
         {
+            EventLog.WriteEntry("OnStop!");
         }
     }
 }
