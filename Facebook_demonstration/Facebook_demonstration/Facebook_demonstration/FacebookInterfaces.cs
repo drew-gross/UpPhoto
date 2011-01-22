@@ -20,7 +20,7 @@ namespace Facebook_demonstration
 
         }
 
-        public static bool PublishPhotos(String AlbumName, String FileName)
+        public static void PublishPhotos(String AlbumName, String FileName)
         {
 
             fbService.ApplicationKey = "120183071389019";
@@ -30,33 +30,25 @@ namespace Facebook_demonstration
                 Enums.ExtendedPermissions.offline_access
             };
             fbService.ConnectToFacebook(perms);
-            try
+            IList<album> albums = fbService.Photos.GetAlbums();
+
+            string albumAid = "";
+            foreach (album album in albums)
             {
-                IList<album> albums = fbService.Photos.GetAlbums();
-
-                string albumAid = "";
-                foreach (album album in albums)
+                if (album.name == AlbumName)
                 {
-                    if (album.name == AlbumName)
-                    {
-                        albumAid = album.aid;
-                        break;
-                    }
+                    albumAid = album.aid;
+                    break;
                 }
-
-                if (albumAid == "")
-                {
-                    albumAid = fbService.Photos.CreateAlbum(AlbumName, null, "Album description").aid;
-                }
-
-                //fbService.Photos.UploadAsync(albumAid, "Uploaded from Facebox", Photo, Enums.FileType.png, UploadCallback, null);
-                fbService.Photos.Upload(albumAid, "Uploaded from Facebox", new FileInfo(FileName));
-                return true;
             }
-            catch (Exception)
+
+            if (albumAid == "")
             {
-                return false;
+                albumAid = fbService.Photos.CreateAlbum(AlbumName, null, "Album description").aid;
             }
+
+            //fbService.Photos.UploadAsync(albumAid, "Uploaded from Facebox", Photo, Enums.FileType.png, UploadCallback, null);
+            fbService.Photos.Upload(albumAid, "Uploaded from Facebox", new FileInfo(FileName));
         }
 
         private static void CreateAlbumCallback(album album, object state, FacebookException e)
@@ -69,7 +61,7 @@ namespace Facebook_demonstration
 
         }
 
-        private static  void PhotoTagger(string photoPid)
+        private static void PhotoTagger(string photoPid)
         {
 
         }
