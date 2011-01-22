@@ -93,9 +93,9 @@ namespace Facebook_demonstration
         private void FaceboxWatcher_Created(object sender, FileSystemEventArgs e)
         {
             MessageBox.Show(e.FullPath + " created!");
-            if (PathIsPicture(e.FullPath))
+            if (Path.GetExtension(e.FullPath) == ".jpg")
             {
-                string album = GetAlbumFromPath(e.FullPath);
+                string album = Path.GetFileName(Path.GetDirectoryName(e.FullPath));
                 try
                 {
                     FacebookInterfaces.PublishPhotos(album, e.FullPath);
@@ -110,10 +110,10 @@ namespace Facebook_demonstration
         private void FaceboxWatcher_Deleted(object sender, FileSystemEventArgs e)
         {
             MessageBox.Show(e.FullPath + " deleted!");
-            if (PathIsPicture(e.FullPath))
+            if (Path.GetExtension(e.FullPath) == ".jpg")
             {
-                
-                FacebookInterfaces.DeletePhotos(GetAlbumFromPath(e.FullPath), e.FullPath);
+                string album = Path.GetFileName(Path.GetDirectoryName(e.FullPath));
+                FacebookInterfaces.DeletePhotos(album, e.FullPath);
             }
         }
 
@@ -128,21 +128,6 @@ namespace Facebook_demonstration
             //returns second last item (C:\Facebox\albumname\picture.jpg
             //becomes {"C:", "Facebox", "albumname", "picture.jpg"}
             return folders[folders.Length - 2];
-        }
-
-        private bool PathIsPicture(string path)
-        {
-            string[] folders = path.Split('\\');
-            string file = folders[folders.Length - 1];
-            string extension = file.Split('.')[file.Split('.').Length - 1];
-            if (extension == "jpg" || extension == "bmp")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
     }
 }

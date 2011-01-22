@@ -33,7 +33,7 @@ namespace Facebook_demonstration
 
             foreach (album album in albums)
             {
-               //create folders and etc to d/l photos
+
             }
         }
 
@@ -41,13 +41,10 @@ namespace Facebook_demonstration
         {
             //this may need to change dramatically to account for things like multiple
             //albums with the same name
-            
-
         }
 
         public static void PublishPhotos(String AlbumName, String FileName)
         {
-
             fbService.ApplicationKey = "120183071389019";
             List<Enums.ExtendedPermissions> perms = new List<Enums.ExtendedPermissions>
             {
