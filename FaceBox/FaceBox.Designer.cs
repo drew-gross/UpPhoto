@@ -28,26 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.FaceBoxWatcher = new System.IO.FileSystemWatcher();
-            ((System.ComponentModel.ISupportInitialize)(this.FaceBoxWatcher)).BeginInit();
-            // 
-            // FaceBoxWatcher
-            // 
-            this.FaceBoxWatcher.EnableRaisingEvents = true;
-            this.FaceBoxWatcher.IncludeSubdirectories = true;
-            this.FaceBoxWatcher.Path = "C:\\Users\\Drew Gross\\Documents\\Projects\\Facebook Hackathon\\TestFaceBox";
-            this.FaceBoxWatcher.Changed += new System.IO.FileSystemEventHandler(this.FaceBoxWatcher_Changed);
             // 
             // FaceBox
             // 
             this.ServiceName = "FaceBox";
-            ((System.ComponentModel.ISupportInitialize)(this.FaceBoxWatcher)).EndInit();
 
         }
 
         #endregion
 
-        private System.IO.FileSystemWatcher FaceBoxWatcher;
 
     }
 }

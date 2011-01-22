@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
+using System.IO;
+using System.Security.Permissions;
 
 namespace FaceBox
 {
@@ -19,15 +21,17 @@ namespace FaceBox
 
         protected override void OnStart(string[] args)
         {
-<<<<<<< HEAD
-            EventLog.WriteEntry("OnStart!");           
-=======
             EventLog.WriteEntry("OnStart!");
+            FileSystemWatcher FaceBoxWatcher = new FileSystemWatcher(@"C:\TestFolder", @"");
+            FaceBoxWatcher.NotifyFilter = NotifyFilters.LastAccess |
+                                          NotifyFilters.LastWrite |
+                                          NotifyFilters.FileName |
+                                          NotifyFilters.DirectoryName;
 
-            //MonitorFolder testFolder = new MonitorFolder();
-            //testFolder.Initiate();
+            FaceBoxWatcher.Changed += new FileSystemEventHandler(OnChanged);
+            FaceBoxWatcher.Error += new ErrorEventHandler(OnError);
 
->>>>>>> 27133f7deb5f7124fa0b4212b91f13689f7a61f7
+            FaceBoxWatcher.EnableRaisingEvents = true;
         }
 
         protected override void OnStop()
@@ -35,9 +39,16 @@ namespace FaceBox
             EventLog.WriteEntry("OnStop!");
         }
 
-        private void FaceBoxWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
-        {s
-            System.Console.WriteLine(e.ChangeType + ": " + e.FullPath);
+        private void OnChanged(object source, FileSystemEventArgs e)
+        {
+            // Specify what is done when a file is changed, created, or deleted.
+            EventLog.WriteEntry("File: " + e.FullPath + " " + e.ChangeType);
+        }
+
+        //  This method is called when the FileSystemWatcher detects an error.
+        private void OnError(object source, ErrorEventArgs e)
+        {
+            EventLog.WriteEntry("OnError!");
         }
     }
 }
