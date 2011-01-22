@@ -110,6 +110,11 @@ namespace Facebook_demonstration
         private void FaceboxWatcher_Deleted(object sender, FileSystemEventArgs e)
         {
             MessageBox.Show(e.FullPath + " deleted!");
+            if (PathIsPicture(e.FullPath))
+            {
+                
+                FacebookInterfaces.DeletePhotos(GetAlbumFromPath(e.FullPath), e.FullPath);
+            }
         }
 
         private void FaceboxWatcher_Renamed(object sender, RenamedEventArgs e)
@@ -125,7 +130,7 @@ namespace Facebook_demonstration
             return folders[folders.Length - 2];
         }
 
-        private bool PathIsPicture( string path )
+        private bool PathIsPicture(string path)
         {
             string[] folders = path.Split('\\');
             string file = folders[folders.Length - 1];

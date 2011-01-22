@@ -37,6 +37,14 @@ namespace Facebook_demonstration
             }
         }
 
+        public static void DeletePhotos(String AlbumName, String FileName)
+        {
+            //this may need to change dramatically to account for things like multiple
+            //albums with the same name
+            
+
+        }
+
         public static void PublishPhotos(String AlbumName, String FileName)
         {
 
