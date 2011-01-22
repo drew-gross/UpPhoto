@@ -247,7 +247,12 @@ namespace Facebook_demonstration
 
         private void FaceboxWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
         {
-            MessageBox.Show("hooray!" + e.FullPath);
+            MessageBox.Show(e.FullPath + " changed!");
+        }
+
+        private void FaceboxWatcher_Created(object sender, System.IO.FileSystemEventArgs e)
+        {
+            MessageBox.Show(e.FullPath + " created!");
         }
     }
 }

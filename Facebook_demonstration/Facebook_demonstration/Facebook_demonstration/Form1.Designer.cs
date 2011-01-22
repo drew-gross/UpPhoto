@@ -155,6 +155,7 @@
             this.FaceboxWatcher.Path = "C:\\TestFolder";
             this.FaceboxWatcher.SynchronizingObject = this;
             this.FaceboxWatcher.Changed += new System.IO.FileSystemEventHandler(this.FaceboxWatcher_Changed);
+            this.FaceboxWatcher.Created += new System.IO.FileSystemEventHandler(this.FaceboxWatcher_Created);
             // 
             // Form1
             // 
