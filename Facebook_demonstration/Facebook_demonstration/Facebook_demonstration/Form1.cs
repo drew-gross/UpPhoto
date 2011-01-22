@@ -22,6 +22,10 @@ namespace Facebook_demonstration
         public Form1()
         {
             InitializeComponent();
+
+            FaceboxWatcher.EnableRaisingEvents = false;
+            FacebookInterfaces.SyncPhotos();
+            FaceboxWatcher.EnableRaisingEvents = true;
         }
 
         #region Button Handlers
@@ -96,14 +100,7 @@ namespace Facebook_demonstration
             if (Path.GetExtension(e.FullPath) == ".jpg")
             {
                 string album = Path.GetFileName(Path.GetDirectoryName(e.FullPath));
-                try
-                {
-                    FacebookInterfaces.PublishPhotos(album, e.FullPath);
-                }
-                catch (System.UnauthorizedAccessException)
-                {
-                    //could not access e.fullPath (user possibly created a folder)
-                }
+                FacebookInterfaces.PublishPhotos(album, e.FullPath);
             }
         }
 

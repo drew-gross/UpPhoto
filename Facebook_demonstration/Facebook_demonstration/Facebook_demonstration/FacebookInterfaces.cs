@@ -15,6 +15,8 @@ namespace Facebook_demonstration
     {
         static readonly FacebookService fbService = new FacebookService();
 
+        const string FaceboxPath = @"C:\Facebox";
+
         static void PublishAsyncCompleted(string result, Object state, FacebookException e)
         {
 
@@ -34,6 +36,14 @@ namespace Facebook_demonstration
             foreach (album album in albums)
             {
 
+                string albumFolder = Path.Combine(FaceboxPath, album.name);
+                Directory.CreateDirectory(albumFolder);
+                var photos = fbService.Photos.Get(null, album.aid, null);
+
+                foreach (photo photo in photos)
+                {
+                    var imageData = photo.picture_big;
+                }
             }
         }
 
