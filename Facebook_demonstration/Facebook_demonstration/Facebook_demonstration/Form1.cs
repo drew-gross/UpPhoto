@@ -9,6 +9,7 @@ using Facebook.Utility;
 using Facebook.Winforms.Components;
 using FacebookController;
 using SHDocVw;
+using System.Diagnostics;
 
 namespace Facebook_demonstration
 {
@@ -89,5 +90,10 @@ namespace Facebook_demonstration
             
         }
         #endregion
+
+        private void FaceboxWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
+        {
+            MessageBox.Show("hooray!" + e.FullPath);
+        }
     }
 }
