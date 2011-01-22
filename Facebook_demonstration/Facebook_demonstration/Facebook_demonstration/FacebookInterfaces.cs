@@ -20,6 +20,23 @@ namespace Facebook_demonstration
 
         }
 
+        public static void SyncPhotos()
+        {
+            fbService.ApplicationKey = "120183071389019";
+            List<Enums.ExtendedPermissions> perms = new List<Enums.ExtendedPermissions>
+            {
+                Enums.ExtendedPermissions.offline_access,
+                Enums.ExtendedPermissions.user_photos
+            };
+            fbService.ConnectToFacebook(perms);
+            IList<album> albums = fbService.Photos.GetAlbums();
+
+            foreach (album album in albums)
+            {
+               //create folders and etc to d/l photos
+            }
+        }
+
         public static void PublishPhotos(String AlbumName, String FileName)
         {
 
@@ -27,7 +44,8 @@ namespace Facebook_demonstration
             List<Enums.ExtendedPermissions> perms = new List<Enums.ExtendedPermissions>
             {
                 Enums.ExtendedPermissions.photo_upload,
-                Enums.ExtendedPermissions.offline_access
+                Enums.ExtendedPermissions.offline_access,
+                Enums.ExtendedPermissions.user_photos
             };
             fbService.ConnectToFacebook(perms);
             IList<album> albums = fbService.Photos.GetAlbums();
@@ -47,7 +65,6 @@ namespace Facebook_demonstration
                 albumAid = fbService.Photos.CreateAlbum(AlbumName, null, "Album description").aid;
             }
 
-            //fbService.Photos.UploadAsync(albumAid, "Uploaded from Facebox", Photo, Enums.FileType.png, UploadCallback, null);
             fbService.Photos.Upload(albumAid, "Uploaded from Facebox", new FileInfo(FileName));
         }
 

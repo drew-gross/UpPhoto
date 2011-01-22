@@ -48,7 +48,7 @@
             // 
             this.FaceboxWatcher.EnableRaisingEvents = true;
             this.FaceboxWatcher.IncludeSubdirectories = true;
-            this.FaceboxWatcher.Path = "C:\\TestFolder";
+            this.FaceboxWatcher.Path = "C:\\FaceBox";
             this.FaceboxWatcher.SynchronizingObject = this;
             this.FaceboxWatcher.Changed += new System.IO.FileSystemEventHandler(this.FaceboxWatcher_Created);
             this.FaceboxWatcher.Created += new System.IO.FileSystemEventHandler(this.FaceboxWatcher_Created);
