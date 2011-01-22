@@ -43,6 +43,7 @@ namespace Facebook_demonstration
                 foreach (photo photo in photos)
                 {
                     var imageData = photo.picture_big;
+                    imageData.Save(albumFolder, System.Drawing.Imaging.ImageFormat.Bmp);
                 }
             }
         }

@@ -97,7 +97,8 @@ namespace Facebook_demonstration
         private void FaceboxWatcher_Created(object sender, FileSystemEventArgs e)
         {
             MessageBox.Show(e.FullPath + " created!");
-            if (Path.GetExtension(e.FullPath) == ".jpg")
+            if (Path.GetExtension(e.FullPath) == ".jpg" ||
+                Path.GetExtension(e.FullPath) == ".JPG")
             {
                 string album = Path.GetFileName(Path.GetDirectoryName(e.FullPath));
                 FacebookInterfaces.PublishPhotos(album, e.FullPath);
