@@ -22,16 +22,13 @@ namespace FacebookApplication
 
         public void AddFolderToTrack(string path)
         {
-            FileSystemWatcher watcher = new FileSystemWatcher
-            {
-                EnableRaisingEvents = true,
-                Filter = "*.*",
-                IncludeSubdirectories = true,
-                NotifyFilter = NotifyFilters.FileName |
+            FileSystemWatcher watcher = new FileSystemWatcher(path);
+            watcher.EnableRaisingEvents = true;
+            watcher.Filter = "*.*";
+            watcher.IncludeSubdirectories = true;
+            watcher.NotifyFilter = NotifyFilters.FileName |
                 NotifyFilters.DirectoryName |
-                NotifyFilters.LastAccess,
-                Path = path,
-            };
+                NotifyFilters.LastAccess;
 
             watcher.Changed += new FileSystemEventHandler(handler.FaceboxWatcher_Changed);
             //watcher.Renamed += new FileSystemEventHandler(handler.FaceboxWatcher_Renamed);
@@ -66,10 +63,7 @@ namespace FacebookApplication
             DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                foreach (string path in Directory.GetFiles(dialog.SelectedPath))
-                {
-                    AddFolderToTrack(path);
-                }
+                AddFolderToTrack(Directory.GetCurrentDirectory());
             }
 
         }
