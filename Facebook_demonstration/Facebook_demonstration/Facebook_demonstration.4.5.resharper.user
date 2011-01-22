@@ -1,0 +1,103 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:ScreenShotFormatter.cs" caret="388" fromTop="0" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="1203" fromTop="25" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="2705" fromTop="22" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="4081" fromTop="24" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="3527" fromTop="7" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="3765" fromTop="14" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="4120" fromTop="11" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="7752" fromTop="29" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="7285" fromTop="30" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="48" fromTop="1" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="930" fromTop="23" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="3083" fromTop="20" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="5155" fromTop="15" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="5022" fromTop="21" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="4398" fromTop="5" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="4658" fromTop="13" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="5913" fromTop="15" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="6458" fromTop="8" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="6946" fromTop="20" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="7252" fromTop="19" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="5367" fromTop="0" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="5130" fromTop="0" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="4261" fromTop="16" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="3254" fromTop="22" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="3254" fromTop="11" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="7285" fromTop="16" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="1441" fromTop="9" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="1245" fromTop="4" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="7730" fromTop="17" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="1809" fromTop="32" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="346" fromTop="2" />
+      <File id="E605AC8F-F302-449D-9E5F-6D604366F07A/f:Form1.cs" caret="610" fromTop="11" />
+    </RecentEdits>
+  </RecentFiles>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerMSTest>
+    <UseTestRunConfigFromMetadataFile>False</UseTestRunConfigFromMetadataFile>
+  </UnitTestRunnerMSTest>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="new" priority="5" />
+      <Item value="FacebookService" priority="2" />
+      <Item value="fbService" priority="3" />
+      <Item value="List" priority="2" />
+      <Item value="List&lt;ExtendedPermissions&gt;" priority="0" />
+      <Item value="perms" priority="1" />
+      <Item value="Enums" priority="0" />
+      <Item value="friendWallTextBox" priority="0" />
+      <Item value="uidTextBox" priority="0" />
+      <Item value="PublishToAFriendWall" priority="0" />
+      <Item value="myWallTextBox" priority="0" />
+      <Item value="Point" priority="3" />
+      <Item value="origin" priority="1" />
+      <Item value="size" priority="1" />
+      <Item value="ScreenShotFormatter" priority="0" />
+      <Item value="long" priority="0" />
+      <Item value="private" priority="0" />
+      <Item value="List&lt;long&gt;" priority="0" />
+      <Item value="List&lt;Point&gt;" priority="0" />
+      <Item value="friendsUids" priority="2" />
+      <Item value="friendsPositions" priority="2" />
+      <Item value="AddNewFriend" priority="0" />
+      <Item value="uidToAddTextBox" priority="0" />
+      <Item value="PublishPhotos" priority="0" />
+      <Item value="PublishToMyWall" priority="0" />
+      <Item value="#endregion" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Facebook.Winforms.Components.FacebookService">
+      <Item value="ConnectToFacebook" priority="2" />
+      <Item value="ApplicationKey" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Facebook.Schema.Enums">
+      <Item value="ExtendedPermissions" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Facebook.Schema.Enums+ExtendedPermissions">
+      <Item value="none" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.TextBox">
+      <Item value="Text" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Drawing.Point">
+      <Item value="X" priority="1" />
+      <Item value="Y" priority="1" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+</Configuration>
