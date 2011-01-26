@@ -46,8 +46,15 @@ namespace Facebook_demonstration
                 {
                     photoCounter++;
                     string fullFilePath = albumFolder + photoCounter.ToString() + ".bmp";
-                    System.Drawing.Bitmap imageData = new System.Drawing.Bitmap(photo.picture_big);
-                    imageData.Save(fullFilePath);
+                    try
+                    {
+                        System.Drawing.Bitmap imageData = new System.Drawing.Bitmap(photo.picture_big);
+                        imageData.Save(fullFilePath);
+                    }
+                    catch (System.Net.WebException)
+                    {
+                        //just leave it for now
+                    }
                 }
             }
         }

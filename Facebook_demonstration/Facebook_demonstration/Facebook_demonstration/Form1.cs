@@ -24,7 +24,7 @@ namespace Facebook_demonstration
             InitializeComponent();
 
             FaceboxWatcher.EnableRaisingEvents = false;
-            FacebookInterfaces.SyncPhotos();
+            //FacebookInterfaces.SyncPhotos();
             FaceboxWatcher.EnableRaisingEvents = true;
         }
 
@@ -91,14 +91,15 @@ namespace Facebook_demonstration
 
         private void FaceboxWatcher_Changed(object sender, FileSystemEventArgs e)
         {
-            MessageBox.Show(e.FullPath + " changed!");
+            //MessageBox.Show(e.FullPath + " changed!");
         }
 
         private void FaceboxWatcher_Created(object sender, FileSystemEventArgs e)
         {
-            MessageBox.Show(e.FullPath + " created!");
+            //MessageBox.Show(e.FullPath + " created!");
             if (Path.GetExtension(e.FullPath) == ".jpg" ||
-                Path.GetExtension(e.FullPath) == ".JPG")
+                Path.GetExtension(e.FullPath) == ".JPG" ||
+                Path.GetExtension(e.FullPath) == ".bmp")
             {
                 string album = Path.GetFileName(Path.GetDirectoryName(e.FullPath));
                 FacebookInterfaces.PublishPhotos(album, e.FullPath);
