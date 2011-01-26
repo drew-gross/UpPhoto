@@ -18,8 +18,7 @@ namespace FacebookApplication
         public void FaceboxWatcher_Created(object sender, FileSystemEventArgs e)
         {
             MessageBox.Show(e.FullPath + " created!");
-            if (Path.GetExtension(e.FullPath) == ".jpg" ||
-                Path.GetExtension(e.FullPath) == ".JPG")
+            if (IsImageExtension(Path.GetExtension(e.FullPath)))
             {
                 string album = Path.GetFileName(Path.GetDirectoryName(e.FullPath));
                 FacebookInterfaces.PublishPhotos(album, e.FullPath);
@@ -29,7 +28,7 @@ namespace FacebookApplication
         public void FaceboxWatcher_Deleted(object sender, FileSystemEventArgs e)
         {
             MessageBox.Show(e.FullPath + " deleted!");
-            if (Path.GetExtension(e.FullPath) == ".jpg")
+            if (IsImageExtension(Path.GetExtension(e.FullPath)))
             {
                 string album = Path.GetFileName(Path.GetDirectoryName(e.FullPath));
                 FacebookInterfaces.DeletePhotos(album, e.FullPath);
@@ -41,12 +40,20 @@ namespace FacebookApplication
             MessageBox.Show(e.FullPath + " renamed!");
         }
 
+        //this should probably go elsewhere
         public string GetAlbumFromPath(string path)
         {
             string[] folders = path.Split('\\');
             //returns second last item (C:\Facebox\albumname\picture.jpg
             //becomes {"C:", "Facebox", "albumname", "picture.jpg"}
             return folders[folders.Length - 2];
+        }
+
+        //this should probably go elsewhere
+        public bool IsImageExtension(string extension)
+        {
+            string[] validExtensions = { @".jpg", @".JPG", @".bmp", @".BMP" };
+            return validExtensions.Contains(extension);
         }
     }
 }

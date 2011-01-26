@@ -36,8 +36,8 @@ namespace FacebookApplication
             watcher.Filter = "*.*";
             watcher.IncludeSubdirectories = true;
             watcher.NotifyFilter = NotifyFilters.FileName |
-                NotifyFilters.DirectoryName |
-                NotifyFilters.LastAccess;
+                                   NotifyFilters.DirectoryName |
+                                   NotifyFilters.LastAccess;
 
             watcher.SynchronizingObject = this;
 
@@ -77,7 +77,6 @@ namespace FacebookApplication
             {
                 AddFolderToTrack(dialog.SelectedPath);
             }
-
         }
 
         private void ExitItem_Click(object sender, EventArgs e)
