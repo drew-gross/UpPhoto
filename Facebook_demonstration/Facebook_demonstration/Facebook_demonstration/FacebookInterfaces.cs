@@ -63,6 +63,7 @@ namespace Facebook_demonstration
         {
             //this may need to change dramatically to account for things like multiple
             //albums with the same name
+            throw new NotImplementedException();
         }
 
         public static void PublishPhotos(String AlbumName, String FileName)

@@ -11,14 +11,6 @@
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
 
         #region Windows Form Designer generated code
 
@@ -48,6 +40,7 @@
             this.ExitItem});
             this.UpPhotoTrayMenu.Name = "UpPhotoTrayMenu";
             this.UpPhotoTrayMenu.Size = new System.Drawing.Size(164, 114);
+            this.UpPhotoTrayMenu.Opening += new System.ComponentModel.CancelEventHandler(this.UpPhotoTrayMenu_Opening);
             // 
             // ChangeAccountItem
             // 
@@ -101,12 +94,12 @@
 
         #endregion
 
-        private System.Windows.Forms.ContextMenuStrip UpPhotoTrayMenu;
         private System.Windows.Forms.NotifyIcon UpPhotoIcon;
         private System.Windows.Forms.ToolStripMenuItem ChangeAccountItem;
         private System.Windows.Forms.ToolStripMenuItem LogoutItem;
         private System.Windows.Forms.ToolStripMenuItem WatchFolderItem;
         private System.Windows.Forms.ToolStripMenuItem ExitItem;
+        private System.Windows.Forms.ContextMenuStrip UpPhotoTrayMenu;
     }
 }
 

@@ -12,12 +12,12 @@ namespace FacebookApplication
     {
         public void FaceboxWatcher_Changed(object sender, FileSystemEventArgs e)
         {
-            //MessageBox.Show(e.FullPath + " changed!");
+            MessageBox.Show(e.FullPath + " changed!");
         }
 
         public void FaceboxWatcher_Created(object sender, FileSystemEventArgs e)
         {
-            //MessageBox.Show(e.FullPath + " created!");
+            MessageBox.Show(e.FullPath + " created!");
             if (Path.GetExtension(e.FullPath) == ".jpg" ||
                 Path.GetExtension(e.FullPath) == ".JPG")
             {
@@ -28,7 +28,7 @@ namespace FacebookApplication
 
         public void FaceboxWatcher_Deleted(object sender, FileSystemEventArgs e)
         {
-            //MessageBox.Show(e.FullPath + " deleted!");
+            MessageBox.Show(e.FullPath + " deleted!");
             if (Path.GetExtension(e.FullPath) == ".jpg")
             {
                 string album = Path.GetFileName(Path.GetDirectoryName(e.FullPath));
@@ -38,7 +38,7 @@ namespace FacebookApplication
 
         public void FaceboxWatcher_Renamed(object sender, RenamedEventArgs e)
         {
-            //MessageBox.Show(e.FullPath + " renamed!");
+            MessageBox.Show(e.FullPath + " renamed!");
         }
 
         public string GetAlbumFromPath(string path)

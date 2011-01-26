@@ -20,6 +20,15 @@ namespace FacebookApplication
             InitializeComponent();
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
         public void AddFolderToTrack(string path)
         {
             FileSystemWatcher watcher = new FileSystemWatcher(path);
@@ -52,11 +61,12 @@ namespace FacebookApplication
         private void ChangeAccountItem_Click(object sender, EventArgs e)
         {
             // Logout, then show prompt again.
+            throw new NotImplementedException();
         }
 
         private void LogoutItem_Click(object sender, EventArgs e)
         {
-            // TODO: Implement logging out.
+            throw new NotImplementedException();
         }
 
         private void WatchFolderItem_Click(object sender, EventArgs e)
@@ -73,6 +83,11 @@ namespace FacebookApplication
         private void ExitItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void UpPhotoTrayMenu_Opening(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }
