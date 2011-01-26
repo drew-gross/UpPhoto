@@ -28,6 +28,7 @@
             this.WatchFolderItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UpPhotoIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UpPhotoTrayMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,10 +59,11 @@
             // 
             // WatchFolderItem
             // 
+            this.WatchFolderItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem});
             this.WatchFolderItem.Name = "WatchFolderItem";
             this.WatchFolderItem.Size = new System.Drawing.Size(163, 22);
             this.WatchFolderItem.Text = "Watch Folders";
-            this.WatchFolderItem.Click += new System.EventHandler(this.WatchFolderItem_Click);
             // 
             // ExitItem
             // 
@@ -78,6 +80,13 @@
             this.UpPhotoIcon.Text = "UpPhoto";
             this.UpPhotoIcon.Visible = true;
             // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.AddWatchedFolderItem_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -87,6 +96,7 @@
             this.ShowInTaskbar = false;
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.UpPhotoTrayMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -100,6 +110,7 @@
         private System.Windows.Forms.ToolStripMenuItem WatchFolderItem;
         private System.Windows.Forms.ToolStripMenuItem ExitItem;
         private System.Windows.Forms.ContextMenuStrip UpPhotoTrayMenu;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
     }
 }
 

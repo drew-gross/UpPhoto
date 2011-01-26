@@ -47,6 +47,7 @@ namespace FacebookApplication
             watcher.Deleted += new FileSystemEventHandler(handler.FaceboxWatcher_Deleted);
             
             watchList.Add(watcher);
+            WatchFolderItem.DropDownItems.Add(path);
         }
 
         public List<string> trackedFolders()
@@ -69,16 +70,6 @@ namespace FacebookApplication
             throw new NotImplementedException();
         }
 
-        private void WatchFolderItem_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            DialogResult result = dialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                AddFolderToTrack(dialog.SelectedPath);
-            }
-        }
-
         private void ExitItem_Click(object sender, EventArgs e)
         {
             Close();
@@ -87,6 +78,21 @@ namespace FacebookApplication
         private void UpPhotoTrayMenu_Opening(object sender, CancelEventArgs e)
         {
 
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddWatchedFolderItem_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                AddFolderToTrack(dialog.SelectedPath);
+            }
         }
     }
 }
