@@ -30,6 +30,8 @@ namespace FacebookApplication
                 NotifyFilters.DirectoryName |
                 NotifyFilters.LastAccess;
 
+            watcher.SynchronizingObject = this;
+
             watcher.Changed += new FileSystemEventHandler(handler.FaceboxWatcher_Changed);
             //watcher.Renamed += new FileSystemEventHandler(handler.FaceboxWatcher_Renamed);
             watcher.Created += new FileSystemEventHandler(handler.FaceboxWatcher_Created);
@@ -63,9 +65,14 @@ namespace FacebookApplication
             DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                AddFolderToTrack(Directory.GetCurrentDirectory());
+                AddFolderToTrack(dialog.SelectedPath);
             }
 
+        }
+
+        private void ExitItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -75,6 +75,7 @@
             this.ExitItem.Name = "ExitItem";
             this.ExitItem.Size = new System.Drawing.Size(163, 22);
             this.ExitItem.Text = "Exit";
+            this.ExitItem.Click += new System.EventHandler(this.ExitItem_Click);
             // 
             // UpPhotoIcon
             // 
