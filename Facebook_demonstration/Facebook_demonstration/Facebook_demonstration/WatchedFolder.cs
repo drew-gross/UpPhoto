@@ -27,5 +27,10 @@ namespace Facebook_demonstration
             watcher.Created += new FileSystemEventHandler(handler.FaceboxWatcher_Created);
             watcher.Deleted += new FileSystemEventHandler(handler.FaceboxWatcher_Deleted);
         }
+
+        public string Path()
+        {
+            return watcher.Path;
+        }
     }
 }

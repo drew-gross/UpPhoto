@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using Facebook_demonstration;
 
 namespace FacebookApplication
 {
     public partial class MainWindow : Form
     {
-        private List<FileSystemWatcher> watchList = new List<FileSystemWatcher>();
+        private List<WatchedFolder> watchList = new List<WatchedFolder>();
         private UpdateHandler handler = new UpdateHandler();
 
         public MainWindow()
@@ -31,20 +32,7 @@ namespace FacebookApplication
 
         public void AddFolderToTrack(string path)
         {
-            FileSystemWatcher watcher = new FileSystemWatcher(path);
-            watcher.EnableRaisingEvents = true;
-            watcher.Filter = "*.*";
-            watcher.IncludeSubdirectories = true;
-            watcher.NotifyFilter = NotifyFilters.FileName |
-                                   NotifyFilters.DirectoryName |
-                                   NotifyFilters.LastAccess;
-
-            watcher.SynchronizingObject = this;
-
-            watcher.Changed += new FileSystemEventHandler(handler.FaceboxWatcher_Changed);
-            //watcher.Renamed += new FileSystemEventHandler(handler.FaceboxWatcher_Renamed);
-            watcher.Created += new FileSystemEventHandler(handler.FaceboxWatcher_Created);
-            watcher.Deleted += new FileSystemEventHandler(handler.FaceboxWatcher_Deleted);
+            WatchedFolder watcher = new WatchedFolder(path);
             
             watchList.Add(watcher);
             WatchFolderItem.DropDownItems.Add(path);
@@ -53,8 +41,8 @@ namespace FacebookApplication
         public List<string> trackedFolders()
         {
             List<string> ret = new List<string>();
-            foreach(FileSystemWatcher watcher in watchList){
-                ret.Add(watcher.Path);
+            foreach(WatchedFolder watcher in watchList){
+                ret.Add(watcher.Path());
             }
             return ret;
         }
