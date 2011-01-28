@@ -26,9 +26,9 @@
             this.ChangeAccountItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LogoutItem = new System.Windows.Forms.ToolStripMenuItem();
             this.WatchFolderItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddWatchedFolderItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UpPhotoIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UpPhotoTrayMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,10 +60,17 @@
             // WatchFolderItem
             // 
             this.WatchFolderItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem});
+            this.AddWatchedFolderItem});
             this.WatchFolderItem.Name = "WatchFolderItem";
             this.WatchFolderItem.Size = new System.Drawing.Size(163, 22);
             this.WatchFolderItem.Text = "Watch Folders";
+            // 
+            // AddWatchedFolderItem
+            // 
+            this.AddWatchedFolderItem.Name = "AddWatchedFolderItem";
+            this.AddWatchedFolderItem.Size = new System.Drawing.Size(152, 22);
+            this.AddWatchedFolderItem.Text = "Add";
+            this.AddWatchedFolderItem.Click += new System.EventHandler(this.AddWatchedFolderItem_Click);
             // 
             // ExitItem
             // 
@@ -79,13 +86,6 @@
             this.UpPhotoIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("UpPhotoIcon.Icon")));
             this.UpPhotoIcon.Text = "UpPhoto";
             this.UpPhotoIcon.Visible = true;
-            // 
-            // addToolStripMenuItem
-            // 
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.addToolStripMenuItem.Text = "Add";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.AddWatchedFolderItem_Click);
             // 
             // MainWindow
             // 
@@ -110,7 +110,7 @@
         private System.Windows.Forms.ToolStripMenuItem WatchFolderItem;
         private System.Windows.Forms.ToolStripMenuItem ExitItem;
         private System.Windows.Forms.ContextMenuStrip UpPhotoTrayMenu;
-        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AddWatchedFolderItem;
     }
 }
 
