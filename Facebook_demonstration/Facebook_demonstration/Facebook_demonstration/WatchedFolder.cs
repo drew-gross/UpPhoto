@@ -7,7 +7,7 @@ using FacebookApplication;
 
 namespace Facebook_demonstration
 {
-    class WatchedFolder
+    public class WatchedFolder
     {
         FileSystemWatcher watcher;
         UpdateHandler handler = new UpdateHandler();

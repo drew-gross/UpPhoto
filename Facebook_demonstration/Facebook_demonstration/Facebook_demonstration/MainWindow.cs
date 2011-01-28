@@ -30,12 +30,17 @@ namespace FacebookApplication
             base.Dispose(disposing);
         }
 
-        public void AddFolderToTrack(string path)
+        public void WatchFolder(string path)
         {
             WatchedFolder watcher = new WatchedFolder(path, this);
             
             watchList.Add(watcher);
             WatchFolderItem.DropDownItems.Add(path);
+        }
+
+        public void UnwatchFolder(WatchedFolder folder)
+        {
+            watchList.Remove(folder);
         }
 
         public List<string> trackedFolders()
@@ -79,7 +84,7 @@ namespace FacebookApplication
             DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                AddFolderToTrack(dialog.SelectedPath);
+                WatchFolder(dialog.SelectedPath);
             }
         }
     }
