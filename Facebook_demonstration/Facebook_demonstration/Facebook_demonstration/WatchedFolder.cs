@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Windows.Forms;
 using FacebookApplication;
 
 namespace Facebook_demonstration
@@ -12,6 +13,8 @@ namespace Facebook_demonstration
         FileSystemWatcher watcher;
         UpdateHandler handler = new UpdateHandler();
         MainWindow parent;
+
+        ToolStripMenuItem removeFolderItem;
 
         public WatchedFolder(string path, MainWindow parentWindow)
         {
