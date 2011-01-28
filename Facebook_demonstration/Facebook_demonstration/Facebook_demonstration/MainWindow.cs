@@ -32,7 +32,7 @@ namespace FacebookApplication
 
         public void AddFolderToTrack(string path)
         {
-            WatchedFolder watcher = new WatchedFolder(path);
+            WatchedFolder watcher = new WatchedFolder(path, this);
             
             watchList.Add(watcher);
             WatchFolderItem.DropDownItems.Add(path);

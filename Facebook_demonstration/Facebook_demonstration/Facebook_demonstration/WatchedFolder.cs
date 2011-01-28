@@ -11,9 +11,12 @@ namespace Facebook_demonstration
     {
         FileSystemWatcher watcher;
         UpdateHandler handler = new UpdateHandler();
+        MainWindow parent;
 
-        public WatchedFolder(string path)
+        public WatchedFolder(string path, MainWindow parentWindow)
         {
+            parent = parentWindow;
+
             watcher = new FileSystemWatcher(path);
             watcher.EnableRaisingEvents = true;
             watcher.Filter = "*.*";
@@ -21,6 +24,8 @@ namespace Facebook_demonstration
             watcher.NotifyFilter = NotifyFilters.FileName |
                                    NotifyFilters.DirectoryName |
                                    NotifyFilters.LastAccess;
+
+            watcher.SynchronizingObject = parent;
 
             watcher.Changed += new FileSystemEventHandler(handler.FaceboxWatcher_Changed);
             //watcher.Renamed += new FileSystemEventHandler(handler.FaceboxWatcher_Renamed);
