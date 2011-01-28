@@ -14,7 +14,7 @@ namespace Facebook_demonstration
         UpdateHandler handler = new UpdateHandler();
         MainWindow parent;
 
-        ToolStripMenuItem removeFolderItem;
+        public ToolStripMenuItem menuItem;
 
         public WatchedFolder(string path, MainWindow parentWindow)
         {
@@ -34,6 +34,17 @@ namespace Facebook_demonstration
             //watcher.Renamed += new FileSystemEventHandler(handler.FaceboxWatcher_Renamed);
             watcher.Created += new FileSystemEventHandler(handler.FaceboxWatcher_Created);
             watcher.Deleted += new FileSystemEventHandler(handler.FaceboxWatcher_Deleted);
+
+            menuItem = new ToolStripMenuItem(path);
+
+            ToolStripMenuItem UnwatchItem = new ToolStripMenuItem("Unwatch");
+            UnwatchItem.Click += new EventHandler(this.UnwatchItem_click);
+            menuItem.DropDownItems.Add(UnwatchItem);
+        }
+
+        public void UnwatchItem_click(Object sender, EventArgs e)
+        {
+            parent.UnwatchFolder(this);
         }
 
         public string Path()
