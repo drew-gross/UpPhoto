@@ -35,11 +35,13 @@ namespace FacebookApplication
             WatchedFolder watcher = new WatchedFolder(path, this);
             
             watchList.Add(watcher);
-            WatchFolderItem.DropDownItems.Add(path);
+            WatchFolderItem.DropDownItems.Add(watcher.menuItem);
+            
         }
 
         public void UnwatchFolder(WatchedFolder folder)
         {
+            WatchFolderItem.DropDownItems.Remove(folder.menuItem);
             watchList.Remove(folder);
         }
 

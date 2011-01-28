@@ -45,6 +45,7 @@ namespace Facebook_demonstration
         public void UnwatchItem_click(Object sender, EventArgs e)
         {
             parent.UnwatchFolder(this);
+            watcher.Dispose();
         }
 
         public string Path()
