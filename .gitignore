@@ -5,3 +5,4 @@
 *.tlog
 *.cache
 *.csproj.user
+*.tmp
