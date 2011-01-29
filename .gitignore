@@ -4,3 +4,4 @@
 *.manifest
 *.tlog
 *.cache
+*.csproj.user
