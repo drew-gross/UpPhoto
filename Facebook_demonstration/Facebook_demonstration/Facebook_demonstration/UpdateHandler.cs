@@ -10,6 +10,8 @@ namespace FacebookApplication
 {
     class UpdateHandler
     {
+        static Queue<PhotoToUpload> photosQueue; //not thread safe
+
         public void FaceboxWatcher_Changed(object sender, FileSystemEventArgs e)
         {
             MessageBox.Show(e.FullPath + " changed!");
@@ -21,7 +23,7 @@ namespace FacebookApplication
             if (IsImageExtension(Path.GetExtension(e.FullPath)))
             {
                 string album = Path.GetFileName(Path.GetDirectoryName(e.FullPath));
-                FacebookInterfaces.PublishPhotos(album, e.FullPath);
+                photosQueue.Enqueue(new PhotoToUpload(album, e.FullPath));
             }
         }
 
