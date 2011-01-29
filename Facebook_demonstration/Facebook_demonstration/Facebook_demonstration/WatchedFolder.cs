@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
+using System.Diagnostics;
 using FacebookApplication;
 
 namespace Facebook_demonstration
@@ -38,14 +39,23 @@ namespace Facebook_demonstration
             menuItem = new ToolStripMenuItem(path);
 
             ToolStripMenuItem UnwatchItem = new ToolStripMenuItem("Unwatch");
-            UnwatchItem.Click += new EventHandler(this.UnwatchItem_click);
+            UnwatchItem.Click += new EventHandler(this.UnwatchItem_Click);
             menuItem.DropDownItems.Add(UnwatchItem);
+
+            ToolStripMenuItem ViewItem = new ToolStripMenuItem("View");
+            ViewItem.Click += new EventHandler(this.ViewItem_Click);
+            menuItem.DropDownItems.Add(ViewItem);
         }
 
-        public void UnwatchItem_click(Object sender, EventArgs e)
+        public void UnwatchItem_Click(Object sender, EventArgs e)
         {
             parent.UnwatchFolder(this);
             watcher.Dispose();
+        }
+        
+        public void ViewItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(watcher.Path);
         }
 
         public string Path()
