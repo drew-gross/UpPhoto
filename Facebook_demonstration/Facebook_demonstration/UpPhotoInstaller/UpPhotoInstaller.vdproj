@@ -381,7 +381,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UpPhoto"
         "ProductCode" = "8:{DC5E2E3C-4E33-4A80-97C7-F2DA275669FA}"
-        "PackageCode" = "8:{1641C1B5-D32E-4DAF-A04C-6727ACC25908}"
+        "PackageCode" = "8:{2ED9A675-AFE2-4F2C-9255-AEE922943BDA}"
         "UpgradeCode" = "8:{28D927A4-BC10-4B2B-A334-7BEBD7A93206}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -501,6 +501,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_51BFBA16D13840C99A966D4FB26306B8"
+            {
+            "Name" = "8:UpPhoto"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_8796DABF16D94E1F8D45D2DE8B7B7D57"
+            "Folder" = "8:_81208B3E09544C3082ED3AB5D67BB6E3"
+            "WorkingFolder" = "8:_3745AC92768E4E59B2020F9C817B1E21"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_609E803C2B4E462EAFECC594260DDC3D"
             {
             "Name" = "8:Start UpPhoto"
@@ -919,7 +933,7 @@
             "SourcePath" = "8:..\\Facebook_demonstration\\obj\\Debug\\Facebook_demonstration.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_81208B3E09544C3082ED3AB5D67BB6E3"
+            "Folder" = "8:_3745AC92768E4E59B2020F9C817B1E21"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
