@@ -306,7 +306,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UpPhoto"
         "ProductCode" = "8:{DC5E2E3C-4E33-4A80-97C7-F2DA275669FA}"
-        "PackageCode" = "8:{33905DCA-D7ED-4B5A-88CB-17FB242BD15C}"
+        "PackageCode" = "8:{8CADD9D3-3E64-4234-9502-FB4C38839C77}"
         "UpgradeCode" = "8:{28D927A4-BC10-4B2B-A334-7BEBD7A93206}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -426,6 +426,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_609E803C2B4E462EAFECC594260DDC3D"
+            {
+            "Name" = "8:Start UpPhoto"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_8796DABF16D94E1F8D45D2DE8B7B7D57"
+            "Folder" = "8:_6C2032FA5F75406D9FDC064294A96785"
+            "WorkingFolder" = "8:_3745AC92768E4E59B2020F9C817B1E21"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
