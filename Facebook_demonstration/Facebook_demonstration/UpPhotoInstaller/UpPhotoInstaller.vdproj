@@ -21,24 +21,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2CDF20C77E7850A7F7D3CC219CBFB43A"
-        "OwnerKey" = "8:_8796DABF16D94E1F8D45D2DE8B7B7D57"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2CDF20C77E7850A7F7D3CC219CBFB43A"
-        "OwnerKey" = "8:_6A383B7EEE8D1E9996FCBC3562F32F12"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_6A383B7EEE8D1E9996FCBC3562F32F12"
-        "OwnerKey" = "8:_8796DABF16D94E1F8D45D2DE8B7B7D57"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_8796DABF16D94E1F8D45D2DE8B7B7D57"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -47,6 +29,24 @@
         {
         "MsmKey" = "8:_9872624E06E4A4139549E4B130500B2D"
         "OwnerKey" = "8:_8796DABF16D94E1F8D45D2DE8B7B7D57"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B9B27EBF1FE163FA9C8D5FF41822F2AF"
+        "OwnerKey" = "8:_8796DABF16D94E1F8D45D2DE8B7B7D57"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FBF59A7CB84B08756840BB0ED1AEE0D3"
+        "OwnerKey" = "8:_8796DABF16D94E1F8D45D2DE8B7B7D57"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FBF59A7CB84B08756840BB0ED1AEE0D3"
+        "OwnerKey" = "8:_B9B27EBF1FE163FA9C8D5FF41822F2AF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -64,13 +64,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6A383B7EEE8D1E9996FCBC3562F32F12"
+        "OwnerKey" = "8:_B9B27EBF1FE163FA9C8D5FF41822F2AF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2CDF20C77E7850A7F7D3CC219CBFB43A"
+        "OwnerKey" = "8:_FBF59A7CB84B08756840BB0ED1AEE0D3"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -135,6 +135,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -185,20 +198,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2CDF20C77E7850A7F7D3CC219CBFB43A"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9872624E06E4A4139549E4B130500B2D"
             {
             "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Facebook, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyIsInGAC" = "11:TRUE"
+            "AssemblyAsmDisplayName" = "8:Interop.SHDocVw, Version=1.1.0.0, Culture=neutral, PublicKeyToken=90ba9c70f846762e, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_2CDF20C77E7850A7F7D3CC219CBFB43A"
+                    "_9872624E06E4A4139549E4B130500B2D"
                     {
-                    "Name" = "8:facebook.dll"
+                    "Name" = "8:Interop.SHDocVw.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:facebook.dll"
+            "SourcePath" = "8:Interop.SHDocVw.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3745AC92768E4E59B2020F9C817B1E21"
@@ -216,14 +229,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6A383B7EEE8D1E9996FCBC3562F32F12"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B9B27EBF1FE163FA9C8D5FF41822F2AF"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Facebook.Winforms, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_6A383B7EEE8D1E9996FCBC3562F32F12"
+                    "_B9B27EBF1FE163FA9C8D5FF41822F2AF"
                     {
                     "Name" = "8:Facebook.Winforms.dll"
                     "Attributes" = "3:512"
@@ -247,20 +260,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9872624E06E4A4139549E4B130500B2D"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FBF59A7CB84B08756840BB0ED1AEE0D3"
             {
             "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:TRUE"
-            "AssemblyAsmDisplayName" = "8:Interop.SHDocVw, Version=1.1.0.0, Culture=neutral, PublicKeyToken=90ba9c70f846762e, processorArchitecture=MSIL"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Facebook, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_9872624E06E4A4139549E4B130500B2D"
+                    "_FBF59A7CB84B08756840BB0ED1AEE0D3"
                     {
-                    "Name" = "8:Interop.SHDocVw.dll"
+                    "Name" = "8:facebook.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Interop.SHDocVw.dll"
+            "SourcePath" = "8:facebook.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3745AC92768E4E59B2020F9C817B1E21"
@@ -294,6 +307,28 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_636FE3F407894875927BE5CA9CA8A28F"
+                    {
+                    "Name" = "8:Facebook"
+                    "AlwaysCreate" = "11:TRUE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_6D128BA6253044789ABC8D76E3F98F06"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_97558560E7044F8597E1163870846003"
+                            {
+                            "Name" = "8:Photos"
+                            "AlwaysCreate" = "11:TRUE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_4B67372E1E1441519AA93C5B6BD698E1"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_6C2032FA5F75406D9FDC064294A96785"
@@ -346,7 +381,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UpPhoto"
         "ProductCode" = "8:{DC5E2E3C-4E33-4A80-97C7-F2DA275669FA}"
-        "PackageCode" = "8:{E40264C9-942B-4A01-94B8-1A9F46F8D2EE}"
+        "PackageCode" = "8:{1641C1B5-D32E-4DAF-A04C-6727ACC25908}"
         "UpgradeCode" = "8:{28D927A4-BC10-4B2B-A334-7BEBD7A93206}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
