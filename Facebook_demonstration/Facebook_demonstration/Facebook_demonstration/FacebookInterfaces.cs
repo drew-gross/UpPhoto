@@ -66,7 +66,7 @@ namespace Facebook_demonstration
             throw new NotImplementedException();
         }
 
-        public static void PublishPhotos(String AlbumName, String FileName)
+        public static void PublishPhotos(PhotoToUpload photo)
         {
             fbService.ApplicationKey = "120183071389019";
             List<Enums.ExtendedPermissions> perms = new List<Enums.ExtendedPermissions>
@@ -81,7 +81,7 @@ namespace Facebook_demonstration
             string albumAid = "";
             foreach (album album in albums)
             {
-                if (album.name == AlbumName)
+                if (album.name == photo.albumName)
                 {
                     albumAid = album.aid;
                     break;
@@ -90,10 +90,10 @@ namespace Facebook_demonstration
 
             if (albumAid == "")
             {
-                albumAid = fbService.Photos.CreateAlbum(AlbumName, null, "Album description").aid;
+                albumAid = fbService.Photos.CreateAlbum(photo.albumName, null, "Uploaded from UpPhoto").aid;
             }
 
-            fbService.Photos.Upload(albumAid, "Uploaded from Facebox", new FileInfo(FileName));
+            fbService.Photos.Upload(albumAid, "Uploaded from UpPhoto", new FileInfo(photo.photoPath));
         }
 
         private static void CreateAlbumCallback(album album, object state, FacebookException e)

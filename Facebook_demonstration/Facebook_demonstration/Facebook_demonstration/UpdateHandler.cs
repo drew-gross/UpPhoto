@@ -14,28 +14,33 @@ namespace FacebookApplication
     {
         static Queue<PhotoToUpload> photosQueue = new Queue<PhotoToUpload>(); //not thread safe
 
-        static Thread uploadThread = new Thread(UpdateHandler.UploadPhotos);
+        static Thread uploadThread;
+
+        static UpdateHandler() {
+            uploadThread = new Thread(UpdateHandler.UploadPhotos);
+            uploadThread.SetApartmentState(ApartmentState.STA);
+            uploadThread.Start();
+        }
 
         //Only to be used by the uploadThread. Do not call directly.
         static private void UploadPhotos()
         {
             while (true)
             {
-                if (photosQueue.Count != 0)
+                if (photosQueue.Count > 0)
                 {
                     PhotoToUpload curPhoto = photosQueue.Dequeue();
+                    FacebookInterfaces.PublishPhotos(curPhoto);
                 }
             }
         }
 
         public void FaceboxWatcher_Changed(object sender, FileSystemEventArgs e)
         {
-            MessageBox.Show(e.FullPath + " changed!");
         }
 
         public void FaceboxWatcher_Created(object sender, FileSystemEventArgs e)
         {
-            MessageBox.Show(e.FullPath + " created!");
             if (IsImageExtension(Path.GetExtension(e.FullPath)))
             {
                 string album = Path.GetFileName(Path.GetDirectoryName(e.FullPath));
@@ -45,7 +50,6 @@ namespace FacebookApplication
 
         public void FaceboxWatcher_Deleted(object sender, FileSystemEventArgs e)
         {
-            MessageBox.Show(e.FullPath + " deleted!");
             if (IsImageExtension(Path.GetExtension(e.FullPath)))
             {
                 string album = Path.GetFileName(Path.GetDirectoryName(e.FullPath));
@@ -55,7 +59,6 @@ namespace FacebookApplication
 
         public void FaceboxWatcher_Renamed(object sender, RenamedEventArgs e)
         {
-            MessageBox.Show(e.FullPath + " renamed!");
         }
 
         //this should probably go elsewhere
