@@ -25,3 +25,12 @@ C:\Users\Christophe\FacebookProject\Facebook_demonstration\Facebook_demonstratio
 C:\Users\Christophe\FacebookProject\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\obj\Debug\Facebook_demonstration.exe
 C:\Users\Christophe\FacebookProject\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\obj\Debug\Facebook_demonstration.pdb
 C:\Users\Drew Gross\Documents\Projects\Facebook Hackathon\FacebookProject\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\obj\Debug\FacebookApplication.MainWindow.resources
+C:\Users\Drew Gross\Documents\Projects\UpPhoto\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\obj\Debug\Facebook_demonstration.exe
+C:\Users\Drew Gross\Documents\Projects\UpPhoto\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\obj\Debug\Facebook_demonstration.pdb
+C:\Users\Drew Gross\Documents\Projects\UpPhoto\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Drew Gross\Documents\Projects\UpPhoto\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\obj\Debug\FacebookApplication.MainWindow.resources
+C:\Users\Drew Gross\Documents\Projects\UpPhoto\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\obj\Debug\Facebook_demonstration.Properties.Resources.resources
+C:\Users\Drew Gross\Documents\Projects\UpPhoto\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\obj\Debug\ResGen.read.1.tlog
+C:\Users\Drew Gross\Documents\Projects\UpPhoto\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\obj\Debug\ResGen.write.1.tlog
+C:\Users\Drew Gross\Documents\Projects\UpPhoto\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\bin\Debug\Facebook_demonstration.exe
+C:\Users\Drew Gross\Documents\Projects\UpPhoto\Facebook_demonstration\Facebook_demonstration\Facebook_demonstration\bin\Debug\Facebook_demonstration.pdb

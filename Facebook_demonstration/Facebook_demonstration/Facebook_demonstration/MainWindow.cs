@@ -67,6 +67,7 @@ namespace FacebookApplication
 
         private void ExitItem_Click(object sender, EventArgs e)
         {
+            UpdateHandler.StopUpdating();
             Close();
         }
 

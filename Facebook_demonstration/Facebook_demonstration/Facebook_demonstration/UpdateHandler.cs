@@ -15,6 +15,8 @@ namespace FacebookApplication
         static Queue<PhotoToUpload> photosQueue = new Queue<PhotoToUpload>(); //not thread safe
 
         static Thread uploadThread;
+        static bool continueUploadThread = true;
+        const int uploadCheckTime = 500; //this is the time in milliseconds between checking if there are photos to be uploaded.
 
         static UpdateHandler() {
             uploadThread = new Thread(UpdateHandler.UploadPhotos);
@@ -22,12 +24,18 @@ namespace FacebookApplication
             uploadThread.Start();
         }
 
+        public static void StopUpdating()
+        {
+            continueUploadThread = false;
+        }
+
         //Only to be used by the uploadThread. Do not call directly.
         static private void UploadPhotos()
         {
-            while (true)
+            while (continueUploadThread)
             {
-                if (photosQueue.Count > 0)
+                Thread.Sleep(uploadCheckTime);
+                while (photosQueue.Count > 0)
                 {
                     PhotoToUpload curPhoto = photosQueue.Dequeue();
                     FacebookInterfaces.PublishPhotos(curPhoto);
