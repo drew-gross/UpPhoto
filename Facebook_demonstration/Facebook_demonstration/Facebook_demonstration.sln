@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facebook_demonstration", "Facebook_demonstration\Facebook_demonstration.csproj", "{E605AC8F-F302-449D-9E5F-6D604366F07A}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "UpPhotoInstaller", "UpPhotoInstaller\UpPhotoInstaller.vdproj", "{EC03527B-21B6-4D29-A156-5F9E56ABC457}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,12 +23,6 @@ Global
 		{E605AC8F-F302-449D-9E5F-6D604366F07A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E605AC8F-F302-449D-9E5F-6D604366F07A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E605AC8F-F302-449D-9E5F-6D604366F07A}.Release|x86.ActiveCfg = Release|Any CPU
-		{EC03527B-21B6-4D29-A156-5F9E56ABC457}.Debug|Any CPU.ActiveCfg = Debug
-		{EC03527B-21B6-4D29-A156-5F9E56ABC457}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{EC03527B-21B6-4D29-A156-5F9E56ABC457}.Debug|x86.ActiveCfg = Debug
-		{EC03527B-21B6-4D29-A156-5F9E56ABC457}.Release|Any CPU.ActiveCfg = Release
-		{EC03527B-21B6-4D29-A156-5F9E56ABC457}.Release|Mixed Platforms.ActiveCfg = Release
-		{EC03527B-21B6-4D29-A156-5F9E56ABC457}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
