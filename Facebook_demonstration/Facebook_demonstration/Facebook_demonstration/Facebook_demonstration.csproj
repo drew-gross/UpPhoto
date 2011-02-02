@@ -91,6 +91,7 @@
     <Compile Include="PhotoToUpload.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SavedData.cs" />
     <Compile Include="UpdateHandler.cs" />
     <Compile Include="WatchedFolder.cs" />
     <EmbeddedResource Include="MainWindow.resx">
