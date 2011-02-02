@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using Facebook_demonstration;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace FacebookApplication
 {
@@ -68,7 +69,17 @@ namespace FacebookApplication
         private void ExitItem_Click(object sender, EventArgs e)
         {
             UpdateHandler.StopUpdating();
+            SaveData();
             Close();
+        }
+
+        private void SaveData()
+        {
+            SavedData data = new SavedData(watchList);
+            Stream dataStream = File.Open("UpPhotoData.upd", FileMode.Create);
+            BinaryFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(dataStream, data);
+            dataStream.Close();
         }
 
         private void UpPhotoTrayMenu_Opening(object sender, CancelEventArgs e)
