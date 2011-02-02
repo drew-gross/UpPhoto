@@ -17,9 +17,12 @@ namespace FacebookApplication
         private List<WatchedFolder> watchList = new List<WatchedFolder>();
         private UpdateHandler handler = new UpdateHandler();
 
+        static String SavedDataPath = "UpPhotoData.upd";
+
         public MainWindow()
         {
             InitializeComponent();
+            LoadData();
         }
 
         protected override void Dispose(bool disposing)
@@ -31,13 +34,19 @@ namespace FacebookApplication
             base.Dispose(disposing);
         }
 
-        public void WatchFolder(string path)
+        public void WatchFolder(String path)
         {
             WatchedFolder watcher = new WatchedFolder(path, this);
-            
             watchList.Add(watcher);
             WatchFolderItem.DropDownItems.Add(watcher.menuItem);
-            
+        }
+
+        public void WatchFolders(List<String> paths)
+        {
+            foreach (String path in paths)
+            {
+                WatchFolder(path);
+            }
         }
 
         public void UnwatchFolder(WatchedFolder folder)
@@ -46,7 +55,7 @@ namespace FacebookApplication
             watchList.Remove(folder);
         }
 
-        public List<string> trackedFolders()
+        public List<String> WatchedFolderPaths()
         {
             List<string> ret = new List<string>();
             foreach(WatchedFolder watcher in watchList){
@@ -75,11 +84,19 @@ namespace FacebookApplication
 
         private void SaveData()
         {
-            SavedData data = new SavedData(watchList);
-            Stream dataStream = File.Open("UpPhotoData.upd", FileMode.Create);
+            SavedData data = new SavedData(WatchedFolderPaths());
+            Stream dataStream = File.Open(SavedDataPath, FileMode.Create);
             BinaryFormatter formatter = new BinaryFormatter();
             formatter.Serialize(dataStream, data);
             dataStream.Close();
+        }
+
+        private void LoadData()
+        {
+            Stream dataStream = File.Open(SavedDataPath, FileMode.Open);
+            BinaryFormatter formatter = new BinaryFormatter();
+            SavedData data = (SavedData)formatter.Deserialize(dataStream);
+            WatchFolders(data.SavedWatchedFolders());
         }
 
         private void UpPhotoTrayMenu_Opening(object sender, CancelEventArgs e)

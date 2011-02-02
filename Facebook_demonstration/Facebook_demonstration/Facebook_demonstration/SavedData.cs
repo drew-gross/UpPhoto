@@ -9,21 +9,26 @@ namespace Facebook_demonstration
     [Serializable()]
     class SavedData : ISerializable
     {
-        List<WatchedFolder> WatchList;
+        List<String> WatchedFolders;
 
-        public SavedData(List<WatchedFolder> newWatchList)
+        public SavedData(List<String> newWatchList)
         {
-            WatchList = newWatchList;
+            WatchedFolders = newWatchList;
         }
 
         public SavedData(SerializationInfo info, StreamingContext ctxt)
         {
-            WatchList = (List<WatchedFolder>)info.GetValue("WatchList", typeof(List<WatchedFolder>));
+            WatchedFolders = (List<String>)info.GetValue("WatchList", typeof(List<String>));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
-            info.AddValue("WatchList", WatchList);
+            info.AddValue("WatchList", WatchedFolders);
+        }
+
+        public List<String> SavedWatchedFolders()
+        {
+            return WatchedFolders;
         }
     }
 }

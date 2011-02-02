@@ -10,7 +10,7 @@ using System.Runtime.Serialization;
 
 namespace Facebook_demonstration
 {
-    public class WatchedFolder : ISerializable
+    public class WatchedFolder
     {
         FileSystemWatcher watcher;
         UpdateHandler handler = new UpdateHandler();
@@ -46,16 +46,6 @@ namespace Facebook_demonstration
             ToolStripMenuItem ViewItem = new ToolStripMenuItem("View");
             ViewItem.Click += new EventHandler(this.ViewItem_Click);
             menuItem.DropDownItems.Add(ViewItem);
-        }
-
-        public WatchedFolder(SerializationInfo info, StreamingContext ctxt)
-        {
-            String path = (string)info.GetValue("Path", typeof(String));
-        }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
-        {
-            info.AddValue("Path", Path());
         }
 
         public void UnwatchItem_Click(Object sender, EventArgs e)
