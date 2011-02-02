@@ -7,3 +7,4 @@
 *.csproj.user
 *.tmp
 *FileListAbsolute.txt
+*/Facebook/Photos/*
