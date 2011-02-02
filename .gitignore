@@ -6,3 +6,4 @@
 *.cache
 *.csproj.user
 *.tmp
+*FileListAbsolute.txt
