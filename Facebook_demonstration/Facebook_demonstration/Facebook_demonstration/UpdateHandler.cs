@@ -6,6 +6,11 @@ using System.Text;
 using System.IO;
 using System.Windows.Forms;
 using Facebook_demonstration;
+using Facebook.Rest;
+using Facebook.Schema;
+using Facebook.Utility;
+using Facebook.Winforms.Components;
+using FacebookController;
 using System.Threading;
 
 namespace FacebookApplication
@@ -38,7 +43,7 @@ namespace FacebookApplication
                 while (photosQueue.Count > 0)
                 {
                     PhotoToUpload curPhoto = photosQueue.Dequeue();
-                    FacebookInterfaces.PublishPhotos(curPhoto);
+                    photo UploadedPhoto = FacebookInterfaces.PublishPhotos(curPhoto);
                 }
             }
         }

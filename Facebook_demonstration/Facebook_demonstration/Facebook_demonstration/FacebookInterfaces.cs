@@ -66,7 +66,7 @@ namespace Facebook_demonstration
             throw new NotImplementedException();
         }
 
-        public static void PublishPhotos(PhotoToUpload photo)
+        public static photo PublishPhotos(PhotoToUpload photo)
         {
             fbService.ApplicationKey = "120183071389019";
             List<Enums.ExtendedPermissions> perms = new List<Enums.ExtendedPermissions>
@@ -93,7 +93,8 @@ namespace Facebook_demonstration
                 albumAid = fbService.Photos.CreateAlbum(photo.albumName, null, "Uploaded from UpPhoto").aid;
             }
 
-            fbService.Photos.Upload(albumAid, "Uploaded from UpPhoto", new FileInfo(photo.photoPath));
+            photo newPhoto = fbService.Photos.Upload(albumAid, "Uploaded from UpPhoto", new FileInfo(photo.photoPath));
+            return newPhoto;
         }
 
         private static void CreateAlbumCallback(album album, object state, FacebookException e)
