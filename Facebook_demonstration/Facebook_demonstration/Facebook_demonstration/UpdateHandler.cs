@@ -38,6 +38,7 @@ namespace FacebookApplication
                 while (photosQueue.Count > 0)
                 {
                     PhotoToUpload curPhoto = photosQueue.Dequeue();
+                    FacebookInterfaces.ConnectToFacebook();
                     FacebookInterfaces.PublishPhotos(curPhoto);
                 }
             }
