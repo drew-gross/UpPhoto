@@ -15,7 +15,7 @@ namespace FacebookApplication
     public partial class MainWindow : Form
     {
         private static List<WatchedFolder> watchList = new List<WatchedFolder>();
-        private static PIDtoPathMap AllPhotos = new PIDtoPathMap();
+        private static PIDtoPathMap AllPhotos; //initialized in LoadData;
 
         const String SavedDataPath = "UpPhotoData.upd";
 
@@ -85,7 +85,7 @@ namespace FacebookApplication
 
         private void SaveData()
         {
-            SavedData data = new SavedData(WatchedFolderPaths());
+            SavedData data = new SavedData(WatchedFolderPaths(), AllPhotos);
             Stream dataStream = File.Open(SavedDataPath, FileMode.Create);
             BinaryFormatter formatter = new BinaryFormatter();
             formatter.Serialize(dataStream, data);
@@ -100,10 +100,11 @@ namespace FacebookApplication
                 BinaryFormatter formatter = new BinaryFormatter();
                 SavedData data = (SavedData)formatter.Deserialize(dataStream);
                 WatchFolders(data.SavedWatchedFolders());
+                AllPhotos = data.SavedPIDtoPhotoMap();
             }
             catch (System.IO.FileNotFoundException)
             {
-                //Do nothing, no data needs to be loaded (yet)
+                AllPhotos = new PIDtoPathMap();
             }
         }
 

@@ -14,9 +14,10 @@ namespace Facebook_demonstration
         List<String> WatchedFolders;
         PIDtoPathMap AllPhotos;
 
-        public SavedData(List<String> newWatchList)
+        public SavedData(List<String> newWatchList, PIDtoPathMap newAllPhotos)
         {
             WatchedFolders = newWatchList;
+            AllPhotos = newAllPhotos; 
         }
 
         public SavedData(SerializationInfo info, StreamingContext ctxt)
@@ -34,6 +35,11 @@ namespace Facebook_demonstration
         public List<String> SavedWatchedFolders()
         {
             return WatchedFolders;
+        }
+
+        public PIDtoPathMap SavedPIDtoPhotoMap()
+        {
+            return AllPhotos;
         }
     }
 }
