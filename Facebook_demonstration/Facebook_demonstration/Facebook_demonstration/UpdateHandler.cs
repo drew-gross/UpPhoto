@@ -22,11 +22,17 @@ namespace FacebookApplication
         static Thread uploadThread;
         static bool continueUploadThread = true;
         const int uploadCheckTime = 500; //this is the time in milliseconds between checking if there are photos to be uploaded.
+        MainWindow parent;
 
         static UpdateHandler() {
             uploadThread = new Thread(UpdateHandler.UploadPhotos);
             uploadThread.SetApartmentState(ApartmentState.STA);
             uploadThread.Start();
+        }
+
+        public UpdateHandler(MainWindow newParent)
+        {
+            parent = newParent;
         }
 
         public static void StopUpdating()
@@ -45,6 +51,7 @@ namespace FacebookApplication
                     PhotoToUpload curPhoto = photosQueue.Dequeue();
                     FacebookInterfaces.ConnectToFacebook();
                     photo UploadedPhoto = FacebookInterfaces.UploadPhoto(curPhoto);
+                    MainWindow.AddUploadedPhoto(new FacebookPhoto(UploadedPhoto, curPhoto.photoPath));
                 }
             }
         }

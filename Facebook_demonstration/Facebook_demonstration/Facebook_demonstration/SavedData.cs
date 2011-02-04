@@ -6,13 +6,13 @@ using System.Runtime.Serialization;
 
 namespace Facebook_demonstration
 {
-    class PhotoAIDtoPhotoPathMap : Dictionary<String, String> { }
+    class PIDtoPathMap : Dictionary<String, String> { }
 
     [Serializable()]
     class SavedData : ISerializable
     {
         List<String> WatchedFolders;
-        PhotoAIDtoPhotoPathMap AllPhotos;
+        PIDtoPathMap AllPhotos;
 
         public SavedData(List<String> newWatchList)
         {
@@ -22,7 +22,7 @@ namespace Facebook_demonstration
         public SavedData(SerializationInfo info, StreamingContext ctxt)
         {
             WatchedFolders = (List<String>)info.GetValue("WatchList", typeof(List<String>));
-            AllPhotos = (PhotoAIDtoPhotoPathMap)info.GetValue("AllPhotos", typeof(PhotoAIDtoPhotoPathMap));
+            AllPhotos = (PIDtoPathMap)info.GetValue("AllPhotos", typeof(PIDtoPathMap));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)

@@ -14,10 +14,10 @@ namespace FacebookApplication
 {
     public partial class MainWindow : Form
     {
-        private List<WatchedFolder> watchList = new List<WatchedFolder>();
-        private UpdateHandler handler = new UpdateHandler();
+        private static List<WatchedFolder> watchList = new List<WatchedFolder>();
+        private static PIDtoPathMap AllPhotos = new PIDtoPathMap();
 
-        static String SavedDataPath = "UpPhotoData.upd";
+        const String SavedDataPath = "UpPhotoData.upd";
 
         public MainWindow()
         {
@@ -125,6 +125,11 @@ namespace FacebookApplication
             {
                 WatchFolder(dialog.SelectedPath);
             }
+        }
+
+        static public void AddUploadedPhoto(FacebookPhoto UploadedPhoto)
+        {
+            AllPhotos[UploadedPhoto.pid] = UploadedPhoto.path;
         }
     }
 }

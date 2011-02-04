@@ -13,24 +13,25 @@ using FacebookController;
 namespace Facebook_demonstration
 {
     [Serializable()]
-    class FacebookPhoto : ISerializable
+    public class FacebookPhoto : ISerializable
     {
-        String photoAID;
-        String photoPath;
+        public String pid;
+        public String path;
 
-        public FacebookPhoto(photo newPhoto)
+        public FacebookPhoto(photo newPid, String newPath)
         {
-            photoAID = newPhoto.aid;
+            pid = newPid.aid;
+            path = newPath;
         }
 
         public FacebookPhoto(SerializationInfo info, StreamingContext ctxt)
         {
-            photoAID = (String)info.GetValue("photoAID", typeof(String));
+            pid = (String)info.GetValue("photoAID", typeof(String));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
-            info.AddValue("photoAID", photoAID);
+            info.AddValue("photoAID", pid);
         }
     }
 }

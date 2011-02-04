@@ -12,15 +12,16 @@ namespace Facebook_demonstration
 {
     public class WatchedFolder
     {
-        FileSystemWatcher watcher;
-        UpdateHandler handler = new UpdateHandler();
         MainWindow parent;
+        UpdateHandler handler;
+        FileSystemWatcher watcher;
 
         public ToolStripMenuItem menuItem;
 
-        public WatchedFolder(string path, MainWindow parentWindow)
+        public WatchedFolder(string path, MainWindow newParent)
         {
-            parent = parentWindow;
+            parent = newParent;
+            handler = new UpdateHandler(parent);
 
             watcher = new FileSystemWatcher(path);
             watcher.EnableRaisingEvents = true;
