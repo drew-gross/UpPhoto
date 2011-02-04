@@ -19,6 +19,11 @@ namespace Facebook_demonstration
         const String UpPhotoCaption = @"Uploaded from UpPhoto";
         const String DownloadedPhotoExtension = @".png";
 
+        static FacebookInterfaces()
+        {
+            ConnectToFacebook();
+        }
+
         static void PublishAsyncCompleted(string result, Object state, FacebookException e)
         {
 
@@ -34,36 +39,6 @@ namespace Facebook_demonstration
                 Enums.ExtendedPermissions.user_photos
             };
             fbService.ConnectToFacebook(perms);
-        }
-
-        public static void SyncPhotos()
-        {
-            IList<album> albums = fbService.Photos.GetAlbums();
-
-            foreach (album album in albums)
-            {
-
-                string albumFolder = Path.Combine(UpPhotoPath, album.name) + @"\";
-                Directory.CreateDirectory(albumFolder);
-                IList<photo> photos = fbService.Photos.Get(null, album.aid, null);
-
-                int photoCounter = 0;
-
-                foreach (photo photo in photos)
-                {
-                    photoCounter++;
-                    string fullFilePath = albumFolder + photoCounter.ToString() + DownloadedPhotoExtension;
-                    try
-                    {
-                        System.Drawing.Bitmap imageData = new System.Drawing.Bitmap(photo.picture_big);
-                        imageData.Save(fullFilePath);
-                    }
-                    catch (System.Net.WebException)
-                    {
-                        //just leave it for now
-                    }
-                }
-            }
         }
 
         public static void DeletePhotos(String AlbumName, String FileName)

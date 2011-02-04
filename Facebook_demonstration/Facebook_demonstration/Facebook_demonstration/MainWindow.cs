@@ -24,6 +24,7 @@ namespace FacebookApplication
         {
             InitializeComponent();
             LoadData();
+            //UpdateHandler.SnycPhotos();
         }
 
         protected override void Dispose(bool disposing)
@@ -134,12 +135,12 @@ namespace FacebookApplication
             AllPhotos[UploadedPhoto.pid] = UploadedPhoto.path;
         }
 
-        public bool HasPhoto(String pid)
+        static public bool HasPhoto(String pid)
         {
             return AllPhotos.ContainsKey(pid);
         }
 
-        public String UpPhotoPath()
+        static public String UpPhotoPath()
         {
             return DefaultFolderPath;
         }

@@ -25,7 +25,7 @@ namespace FacebookApplication
         static Thread downloadThread;
         static bool continueDownloadThread = true;
 
-        const String DownloadedPhotoExtension = @".png";
+        const String DownloadedPhotoExtension = @".bmp";
         const int uploadCheckTime = 500; //this is the time in milliseconds between checking if there are photos to be uploaded.
         MainWindow parent;
 
@@ -76,22 +76,23 @@ namespace FacebookApplication
             }
         }
 
-        public void SnycPhotos()
+        static public void SnycPhotos()
         {
             List<String> allPIDs = FacebookInterfaces.AllFacebookPhotos();
             foreach (String pid in allPIDs)
             {
-                if (!parent.HasPhoto(pid))
+                if (!MainWindow.HasPhoto(pid))
                 {
                     photo DownloadedPhoto = FacebookInterfaces.DownloadPhoto(pid);
                     int PhotoCounter = 1;
-                    String path = parent.UpPhotoPath() + FacebookInterfaces.AlbumName(DownloadedPhoto.aid) + @"\" + @"photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
+                    String path = MainWindow.UpPhotoPath() + FacebookInterfaces.AlbumName(DownloadedPhoto.aid) + @"\" + @"photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
                     while (File.Exists(path))
                     {
                         PhotoCounter++;
-                        path = parent.UpPhotoPath() + FacebookInterfaces.AlbumName(DownloadedPhoto.aid) + @"\" + @"Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
+                        path = MainWindow.UpPhotoPath() + FacebookInterfaces.AlbumName(DownloadedPhoto.aid) + @"\" + @"Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
                     }
-                    DownloadedPhoto.picture_big.Save(path);
+                    System.Drawing.Bitmap imageData = new System.Drawing.Bitmap(DownloadedPhoto.picture_big);
+                    imageData.Save(path);
                     MainWindow.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
                 }
             }
