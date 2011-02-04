@@ -27,11 +27,13 @@ namespace Facebook_demonstration
         public FacebookPhoto(SerializationInfo info, StreamingContext ctxt)
         {
             pid = (String)info.GetValue("photoAID", typeof(String));
+            pid = (String)info.GetValue("path", typeof(String));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             info.AddValue("photoAID", pid);
+            info.AddValue("path", path);
         }
     }
 }

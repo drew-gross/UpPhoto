@@ -79,6 +79,7 @@ namespace Facebook_demonstration
         
         public static List<String> AllFacebookPhotos()
         {
+            //need to handle WebException
             IList<album> albums = fbService.Photos.GetAlbums();
             List<String> pidlist = new List<String>();
             foreach (album album in albums)

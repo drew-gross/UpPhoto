@@ -91,7 +91,7 @@ namespace FacebookApplication
                         PhotoCounter++;
                         path = MainWindow.UpPhotoPath() + FacebookInterfaces.AlbumName(DownloadedPhoto.aid) + @"\" + @"Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
                     }
-                    System.Drawing.Bitmap imageData = new System.Drawing.Bitmap(DownloadedPhoto.picture_big);
+                    System.Drawing.Bitmap imageData = new System.Drawing.Bitmap((System.Drawing.Bitmap)DownloadedPhoto.picture_big.Clone());
                     imageData.Save(path);
                     MainWindow.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
                 }

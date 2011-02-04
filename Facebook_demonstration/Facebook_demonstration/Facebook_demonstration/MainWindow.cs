@@ -18,13 +18,12 @@ namespace FacebookApplication
         private static Dictionary<String, String> AllPhotos; //initialized in LoadData;
 
         const String SavedDataPath = @"UpPhotoData.upd";
-        const String DefaultFolderPath = @"./"; //eventually this will contain the location of the main UpPhoto folder. For now, its just the place the executable is running from.
 
         public MainWindow()
         {
             InitializeComponent();
             LoadData();
-            //UpdateHandler.SnycPhotos();
+            UpdateHandler.SnycPhotos();
         }
 
         protected override void Dispose(bool disposing)
@@ -142,7 +141,7 @@ namespace FacebookApplication
 
         static public String UpPhotoPath()
         {
-            return DefaultFolderPath;
+            return Application.ExecutablePath + @"\Facebook\Photos\";
         }
     }
 }
