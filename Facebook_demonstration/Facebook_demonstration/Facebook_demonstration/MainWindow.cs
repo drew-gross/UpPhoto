@@ -58,7 +58,8 @@ namespace FacebookApplication
         public List<String> WatchedFolderPaths()
         {
             List<string> ret = new List<string>();
-            foreach(WatchedFolder watcher in watchList){
+            foreach (WatchedFolder watcher in watchList)
+            {
                 ret.Add(watcher.Path());
             }
             return ret;
@@ -93,10 +94,17 @@ namespace FacebookApplication
 
         private void LoadData()
         {
-            Stream dataStream = File.Open(SavedDataPath, FileMode.Open);
-            BinaryFormatter formatter = new BinaryFormatter();
-            SavedData data = (SavedData)formatter.Deserialize(dataStream);
-            WatchFolders(data.SavedWatchedFolders());
+            try
+            {
+                Stream dataStream = File.Open(SavedDataPath, FileMode.Open);
+                BinaryFormatter formatter = new BinaryFormatter();
+                SavedData data = (SavedData)formatter.Deserialize(dataStream);
+                WatchFolders(data.SavedWatchedFolders());
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                //Do nothing, no data needs to be loaded (yet)
+            }
         }
 
         private void UpPhotoTrayMenu_Opening(object sender, CancelEventArgs e)
