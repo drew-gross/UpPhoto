@@ -58,6 +58,9 @@ namespace FacebookApplication
 
         public void FaceboxWatcher_Changed(object sender, FileSystemEventArgs e)
         {
+            //lets deal with changed photos the same way we deal with new photos. we add them to fb, but dont delete the original photo.
+            FaceboxWatcher_Created(sender, e);
+
         }
 
         public void FaceboxWatcher_Created(object sender, FileSystemEventArgs e)
@@ -94,7 +97,7 @@ namespace FacebookApplication
         //this should probably go elsewhere
         public bool IsImageExtension(string extension)
         {
-            string[] validExtensions = { @".jpg", @".JPG", @".bmp", @".BMP" };
+            string[] validExtensions = { @".jpg", @".JPG", @".jpeg", @".JPEG", @".bmp", @".BMP", @".png", @".PNG", @".tiff", @".TIFF", @".raw", @".RAW" };
             return validExtensions.Contains(extension);
         }
     }
