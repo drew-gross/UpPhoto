@@ -20,15 +20,23 @@ namespace FacebookApplication
         static Queue<PhotoToUpload> photosQueue = new Queue<PhotoToUpload>(); //not thread safe
 
         static Thread uploadThread;
-        static Thread downloadThread;
         static bool continueUploadThread = true;
+
+        static Thread downloadThread;
+        static bool continueDownloadThread = true;
+
         const int uploadCheckTime = 500; //this is the time in milliseconds between checking if there are photos to be uploaded.
         MainWindow parent;
 
-        static UpdateHandler() {
+        static UpdateHandler()
+        {
             uploadThread = new Thread(UpdateHandler.UploadPhotos);
             uploadThread.SetApartmentState(ApartmentState.STA);
             uploadThread.Start();
+
+            downloadThread = new Thread(UpdateHandler.DownloadPhotos);
+            downloadThread.SetApartmentState(ApartmentState.STA);
+            downloadThread.Start();
         }
 
         public UpdateHandler(MainWindow newParent)
@@ -54,6 +62,15 @@ namespace FacebookApplication
                     photo UploadedPhoto = FacebookInterfaces.UploadPhoto(curPhoto);
                     MainWindow.AddUploadedPhoto(new FacebookPhoto(UploadedPhoto, curPhoto.photoPath));
                 }
+            }
+        }
+
+        //Only to be used by the downloadThread. Do not call directly.
+        static private void DownloadPhotos()
+        {
+            while (continueDownloadThread)
+            {
+
             }
         }
 
