@@ -20,6 +20,7 @@ namespace FacebookApplication
         static Queue<PhotoToUpload> photosQueue = new Queue<PhotoToUpload>(); //not thread safe
 
         static Thread uploadThread;
+        static Thread downloadThread;
         static bool continueUploadThread = true;
         const int uploadCheckTime = 500; //this is the time in milliseconds between checking if there are photos to be uploaded.
         MainWindow parent;
