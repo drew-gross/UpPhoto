@@ -22,15 +22,20 @@ namespace Facebook_demonstration
 
         }
 
-        public static void SyncPhotos()
+        public static void ConnectToFacebook()
         {
             fbService.ApplicationKey = "120183071389019";
             List<Enums.ExtendedPermissions> perms = new List<Enums.ExtendedPermissions>
             {
+                Enums.ExtendedPermissions.photo_upload,
                 Enums.ExtendedPermissions.offline_access,
                 Enums.ExtendedPermissions.user_photos
             };
             fbService.ConnectToFacebook(perms);
+        }
+
+        public static void SyncPhotos()
+        {
             IList<album> albums = fbService.Photos.GetAlbums();
 
             foreach (album album in albums)
@@ -68,14 +73,6 @@ namespace Facebook_demonstration
 
         public static photo PublishPhotos(PhotoToUpload photo)
         {
-            fbService.ApplicationKey = "120183071389019";
-            List<Enums.ExtendedPermissions> perms = new List<Enums.ExtendedPermissions>
-            {
-                Enums.ExtendedPermissions.photo_upload,
-                Enums.ExtendedPermissions.offline_access,
-                Enums.ExtendedPermissions.user_photos
-            };
-            fbService.ConnectToFacebook(perms);
             IList<album> albums = fbService.Photos.GetAlbums();
 
             string albumAid = "";
