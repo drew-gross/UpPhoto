@@ -15,7 +15,9 @@ namespace Facebook_demonstration
     {
         static readonly FacebookService fbService = new FacebookService();
 
-        const string FaceboxPath = @"C:\Facebox";
+        const String UpPhotoPath = @"C:\Facebox";
+        const String UpPhotoCaption = @"Uploaded from UpPhoto";
+        const String DownloadedPhotoExtension = @".png";
 
         static void PublishAsyncCompleted(string result, Object state, FacebookException e)
         {
@@ -41,7 +43,7 @@ namespace Facebook_demonstration
             foreach (album album in albums)
             {
 
-                string albumFolder = Path.Combine(FaceboxPath, album.name) + @"\";
+                string albumFolder = Path.Combine(UpPhotoPath, album.name) + @"\";
                 Directory.CreateDirectory(albumFolder);
                 var photos = fbService.Photos.Get(null, album.aid, null);
 
@@ -50,7 +52,7 @@ namespace Facebook_demonstration
                 foreach (photo photo in photos)
                 {
                     photoCounter++;
-                    string fullFilePath = albumFolder + photoCounter.ToString() + ".bmp";
+                    string fullFilePath = albumFolder + photoCounter.ToString() + DownloadedPhotoExtension;
                     try
                     {
                         System.Drawing.Bitmap imageData = new System.Drawing.Bitmap(photo.picture_big);
@@ -71,11 +73,11 @@ namespace Facebook_demonstration
             throw new NotImplementedException();
         }
 
-        public static photo PublishPhotos(PhotoToUpload photo)
+        public static photo UploadPhoto(PhotoToUpload photo)
         {
             IList<album> albums = fbService.Photos.GetAlbums();
 
-            string albumAid = "";
+            string albumAid = String.Empty;
             foreach (album album in albums)
             {
                 if (album.name == photo.albumName)
@@ -85,13 +87,19 @@ namespace Facebook_demonstration
                 }
             }
 
-            if (albumAid == "")
+            if (albumAid == String.Empty)
             {
-                albumAid = fbService.Photos.CreateAlbum(photo.albumName, null, "Uploaded from UpPhoto").aid;
+                albumAid = fbService.Photos.CreateAlbum(photo.albumName, null, UpPhotoCaption).aid;
             }
 
-            photo newPhoto = fbService.Photos.Upload(albumAid, "Uploaded from UpPhoto", new FileInfo(photo.photoPath));
+            photo newPhoto = fbService.Photos.Upload(albumAid, UpPhotoCaption, new FileInfo(photo.photoPath));
             return newPhoto;
+        }
+
+        public static photo DownloadPhoto(String PhotoAID)
+        {
+            //note: must do stuff if the photo doesn't exist.
+            return fbService.Photos.Get(null, null, new List<String> {PhotoAID})[0];
         }
 
         private static void CreateAlbumCallback(album album, object state, FacebookException e)
