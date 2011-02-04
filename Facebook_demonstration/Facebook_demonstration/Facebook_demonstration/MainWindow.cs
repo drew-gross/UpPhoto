@@ -17,7 +17,8 @@ namespace FacebookApplication
         private static List<WatchedFolder> watchList = new List<WatchedFolder>();
         private static Dictionary<String, String> AllPhotos; //initialized in LoadData;
 
-        const String SavedDataPath = "UpPhotoData.upd";
+        const String SavedDataPath = @"UpPhotoData.upd";
+        const String DefaultFolderPath = @"./"; //eventually this will contain the location of the main UpPhoto folder. For now, its just the place the executable is running from.
 
         public MainWindow()
         {
@@ -78,7 +79,7 @@ namespace FacebookApplication
 
         private void ExitItem_Click(object sender, EventArgs e)
         {
-            UpdateHandler.StopUpdating();
+            UpdateHandler.StopThreads();
             SaveData();
             Close();
         }
@@ -131,6 +132,16 @@ namespace FacebookApplication
         static public void AddUploadedPhoto(FacebookPhoto UploadedPhoto)
         {
             AllPhotos[UploadedPhoto.pid] = UploadedPhoto.path;
+        }
+
+        public bool HasPhoto(String pid)
+        {
+            return AllPhotos.ContainsKey(pid);
+        }
+
+        public String UpPhotoPath()
+        {
+            return DefaultFolderPath;
         }
     }
 }

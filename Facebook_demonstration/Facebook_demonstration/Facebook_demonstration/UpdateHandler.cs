@@ -25,6 +25,7 @@ namespace FacebookApplication
         static Thread downloadThread;
         static bool continueDownloadThread = true;
 
+        const String DownloadedPhotoExtension = @".png";
         const int uploadCheckTime = 500; //this is the time in milliseconds between checking if there are photos to be uploaded.
         MainWindow parent;
 
@@ -44,9 +45,10 @@ namespace FacebookApplication
             parent = newParent;
         }
 
-        public static void StopUpdating()
+        public static void StopThreads()
         {
             continueUploadThread = false;
+            continueDownloadThread = false;
         }
 
         //Only to be used by the uploadThread. Do not call directly.
@@ -71,6 +73,27 @@ namespace FacebookApplication
             while (continueDownloadThread)
             {
 
+            }
+        }
+
+        public void SnycPhotos()
+        {
+            List<String> allPIDs = FacebookInterfaces.AllFacebookPhotos();
+            foreach (String pid in allPIDs)
+            {
+                if (!parent.HasPhoto(pid))
+                {
+                    photo DownloadedPhoto = FacebookInterfaces.DownloadPhoto(pid);
+                    int PhotoCounter = 1;
+                    String path = parent.UpPhotoPath() + FacebookInterfaces.AlbumName(DownloadedPhoto.aid) + @"\" + @"photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
+                    while (File.Exists(path))
+                    {
+                        PhotoCounter++;
+                        path = parent.UpPhotoPath() + FacebookInterfaces.AlbumName(DownloadedPhoto.aid) + @"\" + @"Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
+                    }
+                    DownloadedPhoto.picture_big.Save(path);
+                    MainWindow.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
+                }
             }
         }
 

@@ -45,7 +45,7 @@ namespace Facebook_demonstration
 
                 string albumFolder = Path.Combine(UpPhotoPath, album.name) + @"\";
                 Directory.CreateDirectory(albumFolder);
-                var photos = fbService.Photos.Get(null, album.aid, null);
+                IList<photo> photos = fbService.Photos.Get(null, album.aid, null);
 
                 int photoCounter = 0;
 
@@ -96,10 +96,30 @@ namespace Facebook_demonstration
             return newPhoto;
         }
 
-        public static photo DownloadPhoto(String PhotoAID)
+        public static photo DownloadPhoto(String pid)
         {
             //note: must do stuff if the photo doesn't exist.
-            return fbService.Photos.Get(null, null, new List<String> {PhotoAID})[0];
+            return fbService.Photos.Get(null, null, new List<String> { pid })[0];
+        }
+        
+        public static List<String> AllFacebookPhotos()
+        {
+            IList<album> albums = fbService.Photos.GetAlbums();
+            List<String> pidlist = new List<String>();
+            foreach (album album in albums)
+            {
+                IList<photo> photos = fbService.Photos.Get(null, album.aid, null);
+                foreach (photo photo in photos)
+                {
+                    pidlist.Add(photo.pid);
+                }
+            }
+            return pidlist;
+        }
+
+        public static String AlbumName(String aid)
+        {
+            return fbService.Photos.GetAlbums(0, new List<String> { aid })[0].name;
         }
 
         private static void CreateAlbumCallback(album album, object state, FacebookException e)
