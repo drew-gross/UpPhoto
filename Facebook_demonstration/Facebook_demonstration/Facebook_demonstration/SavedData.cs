@@ -6,15 +6,13 @@ using System.Runtime.Serialization;
 
 namespace Facebook_demonstration
 {
-    class PIDtoPathMap : Dictionary<String, String> { }
-
     [Serializable()]
     class SavedData : ISerializable
     {
         List<String> WatchedFolders;
-        PIDtoPathMap AllPhotos;
+        Dictionary<String, String> AllPhotos;
 
-        public SavedData(List<String> newWatchList, PIDtoPathMap newAllPhotos)
+        public SavedData(List<String> newWatchList, Dictionary<String, String> newAllPhotos)
         {
             WatchedFolders = newWatchList;
             AllPhotos = newAllPhotos; 
@@ -23,7 +21,7 @@ namespace Facebook_demonstration
         public SavedData(SerializationInfo info, StreamingContext ctxt)
         {
             WatchedFolders = (List<String>)info.GetValue("WatchList", typeof(List<String>));
-            AllPhotos = (PIDtoPathMap)info.GetValue("AllPhotos", typeof(PIDtoPathMap));
+            AllPhotos = (Dictionary<String, String>)info.GetValue("AllPhotos", typeof(Dictionary<String, String>));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -37,7 +35,7 @@ namespace Facebook_demonstration
             return WatchedFolders;
         }
 
-        public PIDtoPathMap SavedPIDtoPhotoMap()
+        public Dictionary<String, String> SavedPIDtoPhotoMap()
         {
             return AllPhotos;
         }

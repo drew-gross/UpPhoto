@@ -15,7 +15,7 @@ namespace FacebookApplication
     public partial class MainWindow : Form
     {
         private static List<WatchedFolder> watchList = new List<WatchedFolder>();
-        private static PIDtoPathMap AllPhotos; //initialized in LoadData;
+        private static Dictionary<String, String> AllPhotos; //initialized in LoadData;
 
         const String SavedDataPath = "UpPhotoData.upd";
 
@@ -104,7 +104,7 @@ namespace FacebookApplication
             }
             catch (System.IO.FileNotFoundException)
             {
-                AllPhotos = new PIDtoPathMap();
+                AllPhotos = new Dictionary<String, String>();
             }
         }
 
