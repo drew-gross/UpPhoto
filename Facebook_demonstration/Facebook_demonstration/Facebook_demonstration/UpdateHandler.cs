@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
+using System.Drawing.Imaging;
 using Facebook_demonstration;
 using Facebook.Rest;
 using Facebook.Schema;
@@ -25,7 +26,7 @@ namespace FacebookApplication
         static Thread downloadThread;
         static bool continueDownloadThread = true;
 
-        const String DownloadedPhotoExtension = @".bmp";
+        const String DownloadedPhotoExtension = @".png";
         const int uploadCheckTime = 500; //this is the time in milliseconds between checking if there are photos to be uploaded.
         MainWindow parent;
 
@@ -91,8 +92,9 @@ namespace FacebookApplication
                         PhotoCounter++;
                         path = MainWindow.UpPhotoPath() + FacebookInterfaces.AlbumName(DownloadedPhoto.aid) + @"\" + @"Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
                     }
+                    Directory.CreateDirectory(StringUtils.GetFullFolderPathFromPath(path));
                     System.Drawing.Bitmap imageData = new System.Drawing.Bitmap((System.Drawing.Bitmap)DownloadedPhoto.picture_big.Clone());
-                    imageData.Save(path);
+                    imageData.Save(path, System.Drawing.Imaging.ImageFormat.Png);
                     MainWindow.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
                 }
             }
@@ -107,7 +109,7 @@ namespace FacebookApplication
 
         public void FaceboxWatcher_Created(object sender, FileSystemEventArgs e)
         {
-            if (IsImageExtension(Path.GetExtension(e.FullPath)))
+            if (StringUtils.IsImageExtension(Path.GetExtension(e.FullPath)))
             {
                 string album = Path.GetFileName(Path.GetDirectoryName(e.FullPath));
                 photosQueue.Enqueue(new PhotoToUpload(album, e.FullPath));
@@ -116,7 +118,7 @@ namespace FacebookApplication
 
         public void FaceboxWatcher_Deleted(object sender, FileSystemEventArgs e)
         {
-            if (IsImageExtension(Path.GetExtension(e.FullPath)))
+            if (StringUtils.IsImageExtension(Path.GetExtension(e.FullPath)))
             {
                 string album = Path.GetFileName(Path.GetDirectoryName(e.FullPath));
                 FacebookInterfaces.DeletePhotos(album, e.FullPath);
@@ -125,22 +127,6 @@ namespace FacebookApplication
 
         public void FaceboxWatcher_Renamed(object sender, RenamedEventArgs e)
         {
-        }
-
-        //this should probably go elsewhere
-        public string GetAlbumFromPath(string path)
-        {
-            string[] folders = path.Split('\\');
-            //returns second last item (C:\Facebox\albumname\picture.jpg
-            //becomes {"C:", "Facebox", "albumname", "picture.jpg"}
-            return folders[folders.Length - 2];
-        }
-
-        //this should probably go elsewhere
-        public bool IsImageExtension(string extension)
-        {
-            string[] validExtensions = { @".jpg", @".JPG", @".jpeg", @".JPEG", @".bmp", @".BMP", @".png", @".PNG", @".tiff", @".TIFF", @".raw", @".RAW" };
-            return validExtensions.Contains(extension);
         }
     }
 }

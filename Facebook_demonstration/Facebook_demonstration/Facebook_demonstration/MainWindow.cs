@@ -141,7 +141,9 @@ namespace FacebookApplication
 
         static public String UpPhotoPath()
         {
-            return Application.ExecutablePath + @"\Facebook\Photos\";
+            String result = Application.ExecutablePath;
+            result = StringUtils.GetFullFolderPathFromPath(result);
+            return result + @"\Facebook\Photos\";
         }
     }
 }
