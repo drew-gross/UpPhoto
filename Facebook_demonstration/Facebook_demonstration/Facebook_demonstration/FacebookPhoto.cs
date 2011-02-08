@@ -20,7 +20,7 @@ namespace Facebook_demonstration
 
         public FacebookPhoto(photo newPid, String newPath)
         {
-            pid = newPid.aid;
+            pid = newPid.pid;
             path = newPath;
         }
 

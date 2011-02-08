@@ -131,7 +131,7 @@ namespace FacebookApplication
 
         static public void AddUploadedPhoto(FacebookPhoto UploadedPhoto)
         {
-            AllPhotos[UploadedPhoto.pid] = UploadedPhoto.path;
+            AllPhotos.Add(UploadedPhoto.pid, UploadedPhoto.path);
         }
 
         static public bool HasPhoto(String pid)
