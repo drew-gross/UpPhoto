@@ -18,7 +18,7 @@ namespace FacebookApplication
 {
     class UpdateHandler
     {
-        static Queue<PhotoToUpload> photosQueue = new Queue<PhotoToUpload>(); //not thread safe
+        static Queue<PhotoToUpload> photosQueue = new Queue<PhotoToUpload>();
 
         static Thread uploadThread;
         static bool continueUploadThread = true;
@@ -60,10 +60,13 @@ namespace FacebookApplication
                 Thread.Sleep(uploadCheckTime);
                 while (photosQueue.Count > 0)
                 {
-                    PhotoToUpload curPhoto = photosQueue.Dequeue();
-                    FacebookInterfaces.ConnectToFacebook();
-                    photo UploadedPhoto = FacebookInterfaces.UploadPhoto(curPhoto);
-                    MainWindow.AddUploadedPhoto(new FacebookPhoto(UploadedPhoto, curPhoto.photoPath));
+                    lock (photosQueue)
+                    {
+                        PhotoToUpload curPhoto = photosQueue.Dequeue();
+                        FacebookInterfaces.ConnectToFacebook();
+                        photo UploadedPhoto = FacebookInterfaces.UploadPhoto(curPhoto);
+                        MainWindow.AddUploadedPhoto(new FacebookPhoto(UploadedPhoto, curPhoto.photoPath));
+                    }
                 }
             }
         }
@@ -86,15 +89,17 @@ namespace FacebookApplication
                 {
                     photo DownloadedPhoto = FacebookInterfaces.DownloadPhoto(pid);
                     int PhotoCounter = 1;
-                    String path = MainWindow.UpPhotoPath() + FacebookInterfaces.AlbumName(DownloadedPhoto.aid) + @"\" + @"photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
+                    String albumName = FacebookInterfaces.AlbumName(DownloadedPhoto.aid);
+                    String upPhotoPath = MainWindow.UpPhotoPath();
+                    String path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
                     while (File.Exists(path))
                     {
                         PhotoCounter++;
-                        path = MainWindow.UpPhotoPath() + FacebookInterfaces.AlbumName(DownloadedPhoto.aid) + @"\" + @"Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
+                        path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
                     }
                     Directory.CreateDirectory(StringUtils.GetFullFolderPathFromPath(path));
                     System.Drawing.Bitmap imageData = new System.Drawing.Bitmap((System.Drawing.Bitmap)DownloadedPhoto.picture_big.Clone());
-                    imageData.Save(path, System.Drawing.Imaging.ImageFormat.Png);
+                    imageData.Save(path, ImageFormat.Png);
                     MainWindow.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
                 }
             }
@@ -104,7 +109,6 @@ namespace FacebookApplication
         {
             //lets deal with changed photos the same way we deal with new photos. we add them to fb, but dont delete the original photo.
             FaceboxWatcher_Created(sender, e);
-
         }
 
         public void FaceboxWatcher_Created(object sender, FileSystemEventArgs e)
@@ -112,7 +116,10 @@ namespace FacebookApplication
             if (StringUtils.IsImageExtension(Path.GetExtension(e.FullPath)))
             {
                 string album = Path.GetFileName(Path.GetDirectoryName(e.FullPath));
-                photosQueue.Enqueue(new PhotoToUpload(album, e.FullPath));
+                lock (photosQueue)
+                {
+                    photosQueue.Enqueue(new PhotoToUpload(album, e.FullPath));
+                }
             }
         }
 
