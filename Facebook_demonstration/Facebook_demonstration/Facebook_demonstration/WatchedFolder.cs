@@ -64,5 +64,16 @@ namespace Facebook_demonstration
         {
             return watcher.Path;
         }
+
+        public void DisableWatching()
+        {
+            watcher.EnableRaisingEvents = false;
+        }
+
+        public void EnableWatching()
+        {
+            watcher.EnableRaisingEvents = true;
+        }
+
     }
 }
