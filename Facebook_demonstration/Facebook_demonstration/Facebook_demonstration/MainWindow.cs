@@ -45,6 +45,7 @@ namespace FacebookApplication
 
         public void WatchFolder(String path)
         {
+            Directory.CreateDirectory(path);
             WatchedFolder watcher = new WatchedFolder(path, this);
             watchList.Add(watcher);
             WatchFolderItem.DropDownItems.Add(watcher.menuItem);
