@@ -11,6 +11,7 @@ using System.IO;
 
 namespace Facebook_demonstration
 {
+    [Serializable]
     public class PID
     {
         public String pidStr = String.Empty;

@@ -23,17 +23,23 @@ namespace FacebookApplication
         {
             InitializeComponent();
             LoadData();
-            foreach (WatchedFolder watcher in watchList)
-            {
-                watcher.DisableWatching();
-            }
             UpdateHandler.SnycPhotos();
+        }
+
+        static public void ResumeWatchers()
+        {
             foreach (WatchedFolder watcher in watchList)
             {
                 watcher.EnableWatching();
             }
         }
-
+        static public void PauseWatchers()
+        {
+            foreach (WatchedFolder watcher in watchList)
+            {
+                watcher.DisableWatching();
+            }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))

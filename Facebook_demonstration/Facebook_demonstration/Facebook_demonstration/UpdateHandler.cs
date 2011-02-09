@@ -92,20 +92,30 @@ namespace FacebookApplication
                     lock (downloadQueue)
                     {
                         PID pidToDownload = downloadQueue.Dequeue();
-                        photo DownloadedPhoto = FacebookInterfaces.DownloadPhoto(pidToDownload);
-                        int PhotoCounter = 1;
-                        String albumName = FacebookInterfaces.AlbumName(DownloadedPhoto.aid);
-                        String upPhotoPath = MainWindow.UpPhotoPath();
-                        String path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
-                        while (File.Exists(path))
+                        try
                         {
-                            PhotoCounter++;
-                            path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
+                            photo DownloadedPhoto = FacebookInterfaces.DownloadPhoto(pidToDownload);
+                            int PhotoCounter = 1;
+                            String albumName = FacebookInterfaces.AlbumName(DownloadedPhoto.aid);
+                            String upPhotoPath = MainWindow.UpPhotoPath();
+                            String path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
+                            while (File.Exists(path))
+                            {
+                                PhotoCounter++;
+                                path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
+                            }
+                            Directory.CreateDirectory(StringUtils.GetFullFolderPathFromPath(path));
+                            System.Drawing.Bitmap imageData = new System.Drawing.Bitmap((System.Drawing.Bitmap)DownloadedPhoto.picture_big.Clone());
+                            MainWindow.PauseWatchers();
+                            imageData.Save(path, ImageFormat.Png);
+                            MainWindow.ResumeWatchers();
+                            MainWindow.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
                         }
-                        Directory.CreateDirectory(StringUtils.GetFullFolderPathFromPath(path));
-                        System.Drawing.Bitmap imageData = new System.Drawing.Bitmap((System.Drawing.Bitmap)DownloadedPhoto.picture_big.Clone());
-                        imageData.Save(path, ImageFormat.Png);
-                        MainWindow.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
+                        catch (System.Net.WebException ex)
+                        {
+                        	//add the photo back to the queue and try again later
+                            downloadQueue.Enqueue(pidToDownload);
+                        }
                     }
                 }
             }
