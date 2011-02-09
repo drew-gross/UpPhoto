@@ -10,9 +10,9 @@ namespace Facebook_demonstration
     class SavedData : ISerializable
     {
         List<String> WatchedFolders;
-        Dictionary<String, String> AllPhotos;
+        Dictionary<PID, String> AllPhotos;
 
-        public SavedData(List<String> newWatchList, Dictionary<String, String> newAllPhotos)
+        public SavedData(List<String> newWatchList, Dictionary<PID, String> newAllPhotos)
         {
             WatchedFolders = newWatchList;
             AllPhotos = newAllPhotos; 
@@ -21,7 +21,7 @@ namespace Facebook_demonstration
         public SavedData(SerializationInfo info, StreamingContext ctxt)
         {
             WatchedFolders = (List<String>)info.GetValue("WatchList", typeof(List<String>));
-            AllPhotos = (Dictionary<String, String>)info.GetValue("AllPhotos", typeof(Dictionary<String, String>));
+            AllPhotos = (Dictionary<PID, String>)info.GetValue("AllPhotos", typeof(Dictionary<String, String>));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -35,7 +35,7 @@ namespace Facebook_demonstration
             return WatchedFolders;
         }
 
-        public Dictionary<String, String> SavedPIDtoPhotoMap()
+        public Dictionary<PID, String> SavedPIDtoPhotoMap()
         {
             return AllPhotos;
         }

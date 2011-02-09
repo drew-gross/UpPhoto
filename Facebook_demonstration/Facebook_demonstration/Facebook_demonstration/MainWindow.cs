@@ -15,7 +15,7 @@ namespace FacebookApplication
     public partial class MainWindow : Form
     {
         private static List<WatchedFolder> watchList = new List<WatchedFolder>();
-        private static Dictionary<String, String> AllPhotos; //initialized in LoadData;
+        private static Dictionary<PID, String> AllPhotos; //initialized in LoadData;
 
         const String SavedDataPath = @"UpPhotoData.upd";
 
@@ -115,7 +115,7 @@ namespace FacebookApplication
             catch (System.IO.FileNotFoundException)
             {
                 WatchFolder(UpPhotoPath());
-                AllPhotos = new Dictionary<String, String>();
+                AllPhotos = new Dictionary<PID, String>();
             }
         }
 
@@ -141,10 +141,10 @@ namespace FacebookApplication
 
         static public void AddUploadedPhoto(FacebookPhoto UploadedPhoto)
         {
-            AllPhotos.Add(UploadedPhoto.pid, UploadedPhoto.path);
+            AllPhotos.Add(new PID(UploadedPhoto.pid), UploadedPhoto.path);
         }
 
-        static public bool HasPhoto(String pid)
+        static public bool HasPhoto(PID pid)
         {
             return AllPhotos.ContainsKey(pid);
         }

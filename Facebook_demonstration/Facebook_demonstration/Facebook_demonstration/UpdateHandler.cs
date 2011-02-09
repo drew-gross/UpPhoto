@@ -18,7 +18,8 @@ namespace FacebookApplication
 {
     class UpdateHandler
     {
-        static Queue<PhotoToUpload> photosQueue = new Queue<PhotoToUpload>();
+        static Queue<PhotoToUpload> uploadQueue = new Queue<PhotoToUpload>();
+        static Queue<String> downloadQueue = new Queue<String>();
 
         static Thread uploadThread;
         static bool continueUploadThread = true;
@@ -58,11 +59,11 @@ namespace FacebookApplication
             while (continueUploadThread)
             {
                 Thread.Sleep(uploadCheckTime);
-                while (photosQueue.Count > 0)
+                while (uploadQueue.Count > 0)
                 {
-                    lock (photosQueue)
+                    lock (uploadQueue)
                     {
-                        PhotoToUpload curPhoto = photosQueue.Dequeue();
+                        PhotoToUpload curPhoto = uploadQueue.Dequeue();
                         FacebookInterfaces.ConnectToFacebook();
                         photo UploadedPhoto = FacebookInterfaces.UploadPhoto(curPhoto);
                         MainWindow.AddUploadedPhoto(new FacebookPhoto(UploadedPhoto, curPhoto.photoPath));
@@ -82,8 +83,8 @@ namespace FacebookApplication
 
         static public void SnycPhotos()
         {
-            List<String> allPIDs = FacebookInterfaces.AllFacebookPhotos();
-            foreach (String pid in allPIDs)
+            List<PID> allPIDs = FacebookInterfaces.AllFacebookPhotos();
+            foreach (PID pid in allPIDs)
             {
                 if (!MainWindow.HasPhoto(pid))
                 {
@@ -116,9 +117,9 @@ namespace FacebookApplication
             if (StringUtils.IsImageExtension(Path.GetExtension(e.FullPath)))
             {
                 string album = Path.GetFileName(Path.GetDirectoryName(e.FullPath));
-                lock (photosQueue)
+                lock (uploadQueue)
                 {
-                    photosQueue.Enqueue(new PhotoToUpload(album, e.FullPath));
+                    uploadQueue.Enqueue(new PhotoToUpload(album, e.FullPath));
                 }
             }
         }

@@ -11,6 +11,24 @@ using System.IO;
 
 namespace Facebook_demonstration
 {
+    public class PID
+    {
+        public String pidStr;
+        public PID(String newPid)
+        {
+            pidStr = newPid;
+        }
+        public override string ToString()
+        {
+            return pidStr;
+        }
+    }
+
+    public class AID
+    {
+        public String pidStr;
+    }
+
     static class FacebookInterfaces
     {
         static readonly FacebookService fbService = new FacebookService();
@@ -71,23 +89,23 @@ namespace Facebook_demonstration
             return newPhoto;
         }
 
-        public static photo DownloadPhoto(String pid)
+        public static photo DownloadPhoto(PID pid)
         {
             //note: must do stuff if the photo doesn't exist.
-            return fbService.Photos.Get(null, null, new List<String> { pid })[0];
+            return fbService.Photos.Get(null, null, new List<String> { pid.ToString() })[0];
         }
         
-        public static List<String> AllFacebookPhotos()
+        public static List<PID> AllFacebookPhotos()
         {
             //need to handle WebException
             IList<album> albums = fbService.Photos.GetAlbums();
-            List<String> pidlist = new List<String>();
+            List<PID> pidlist = new List<PID>();
             foreach (album album in albums)
             {
                 IList<photo> photos = fbService.Photos.Get(null, album.aid, null);
                 foreach (photo photo in photos)
                 {
-                    pidlist.Add(photo.pid);
+                    pidlist.Add(new PID(photo.pid));
                 }
             }
             return pidlist;
