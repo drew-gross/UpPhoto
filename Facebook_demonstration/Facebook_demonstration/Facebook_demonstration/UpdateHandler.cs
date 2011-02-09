@@ -19,16 +19,18 @@ namespace FacebookApplication
     class UpdateHandler
     {
         static Queue<PhotoToUpload> uploadQueue = new Queue<PhotoToUpload>();
-        static Queue<String> downloadQueue = new Queue<String>();
+        static Queue<PID> downloadQueue = new Queue<PID>();
 
         static Thread uploadThread;
-        static bool continueUploadThread = true;
+        static bool abortUploadThread = false;
+        static bool pauseUploadThread = false;
 
         static Thread downloadThread;
-        static bool continueDownloadThread = true;
+        static bool abortDownloadThread = false;
+        static bool pauseDownloadThread = false;
 
         const String DownloadedPhotoExtension = @".png";
-        const int uploadCheckTime = 500; //this is the time in milliseconds between checking if there are photos to be uploaded.
+        const int threadSleepTime = 500; //this is the time in milliseconds between checking if there are photos to be uploaded.
         MainWindow parent;
 
         static UpdateHandler()
@@ -49,22 +51,25 @@ namespace FacebookApplication
 
         public static void StopThreads()
         {
-            continueUploadThread = false;
-            continueDownloadThread = false;
+            abortUploadThread = true;
+            abortDownloadThread = true;
         }
 
         //Only to be used by the uploadThread. Do not call directly.
         static private void UploadPhotos()
         {
-            while (continueUploadThread)
+            while (abortUploadThread == false)
             {
-                Thread.Sleep(uploadCheckTime);
+                Thread.Sleep(threadSleepTime);
                 while (uploadQueue.Count > 0)
                 {
+                    while (pauseUploadThread == true)
+                    {
+                        Thread.Sleep(threadSleepTime);
+                    }
                     lock (uploadQueue)
                     {
                         PhotoToUpload curPhoto = uploadQueue.Dequeue();
-                        FacebookInterfaces.ConnectToFacebook();
                         photo UploadedPhoto = FacebookInterfaces.UploadPhoto(curPhoto);
                         MainWindow.AddUploadedPhoto(new FacebookPhoto(UploadedPhoto, curPhoto.photoPath));
                     }
@@ -75,35 +80,52 @@ namespace FacebookApplication
         //Only to be used by the downloadThread. Do not call directly.
         static private void DownloadPhotos()
         {
-            while (continueDownloadThread)
+            while (abortDownloadThread == false)
             {
-
+                Thread.Sleep(threadSleepTime);
+                while (downloadQueue.Count > 0)
+                {
+                    while (pauseDownloadThread == true)
+                    {
+                        Thread.Sleep(threadSleepTime);
+                    }
+                    lock (downloadQueue)
+                    {
+                        PID pidToDownload = downloadQueue.Dequeue();
+                        photo DownloadedPhoto = FacebookInterfaces.DownloadPhoto(pidToDownload);
+                        int PhotoCounter = 1;
+                        String albumName = FacebookInterfaces.AlbumName(DownloadedPhoto.aid);
+                        String upPhotoPath = MainWindow.UpPhotoPath();
+                        String path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
+                        while (File.Exists(path))
+                        {
+                            PhotoCounter++;
+                            path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
+                        }
+                        Directory.CreateDirectory(StringUtils.GetFullFolderPathFromPath(path));
+                        System.Drawing.Bitmap imageData = new System.Drawing.Bitmap((System.Drawing.Bitmap)DownloadedPhoto.picture_big.Clone());
+                        imageData.Save(path, ImageFormat.Png);
+                        MainWindow.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
+                    }
+                }
             }
         }
 
         static public void SnycPhotos()
         {
             List<PID> allPIDs = FacebookInterfaces.AllFacebookPhotos();
+            pauseDownloadThread = true;
             foreach (PID pid in allPIDs)
             {
                 if (!MainWindow.HasPhoto(pid))
                 {
-                    photo DownloadedPhoto = FacebookInterfaces.DownloadPhoto(pid);
-                    int PhotoCounter = 1;
-                    String albumName = FacebookInterfaces.AlbumName(DownloadedPhoto.aid);
-                    String upPhotoPath = MainWindow.UpPhotoPath();
-                    String path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
-                    while (File.Exists(path))
+                    lock (downloadQueue)
                     {
-                        PhotoCounter++;
-                        path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
+                        downloadQueue.Enqueue(pid);
                     }
-                    Directory.CreateDirectory(StringUtils.GetFullFolderPathFromPath(path));
-                    System.Drawing.Bitmap imageData = new System.Drawing.Bitmap((System.Drawing.Bitmap)DownloadedPhoto.picture_big.Clone());
-                    imageData.Save(path, ImageFormat.Png);
-                    MainWindow.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
                 }
             }
+            pauseDownloadThread = false;
         }
 
         public void FaceboxWatcher_Changed(object sender, FileSystemEventArgs e)
