@@ -13,7 +13,11 @@ namespace Facebook_demonstration
 {
     public class PID
     {
-        public String pidStr;
+        public String pidStr = String.Empty;
+        public PID()
+        {
+
+        }
         public PID(String newPid)
         {
             pidStr = newPid;
@@ -26,7 +30,19 @@ namespace Facebook_demonstration
 
     public class AID
     {
-        public String pidStr;
+        public String aidStr = String.Empty;
+        public AID()
+        {
+
+        }
+        public AID(String newAID)
+        {
+            aidStr = newAID;
+        }
+        public override string ToString()
+        {
+            return aidStr;
+        }
     }
 
     static class FacebookInterfaces
@@ -70,22 +86,22 @@ namespace Facebook_demonstration
         {
             IList<album> albums = fbService.Photos.GetAlbums();
 
-            string albumAid = String.Empty;
+            AID albumAid = new AID();
             foreach (album album in albums)
             {
                 if (album.name == photo.albumName)
                 {
-                    albumAid = album.aid;
+                    albumAid = new AID(album.aid);
                     break;
                 }
             }
 
-            if (albumAid == String.Empty)
+            if (albumAid.ToString() == String.Empty)
             {
-                albumAid = fbService.Photos.CreateAlbum(photo.albumName, null, UpPhotoCaption).aid;
+                albumAid = new AID(fbService.Photos.CreateAlbum(photo.albumName, null, UpPhotoCaption).aid);
             }
 
-            photo newPhoto = fbService.Photos.Upload(albumAid, UpPhotoCaption, new FileInfo(photo.photoPath));
+            photo newPhoto = fbService.Photos.Upload(albumAid.ToString(), UpPhotoCaption, new FileInfo(photo.photoPath));
             return newPhoto;
         }
 
