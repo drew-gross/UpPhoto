@@ -115,6 +115,7 @@ namespace FacebookApplication
                         {
                         	//add the photo back to the queue and try again later
                             downloadQueue.Enqueue(pidToDownload);
+                            Thread.Sleep(threadSleepTime);
                         }
                     }
                 }
