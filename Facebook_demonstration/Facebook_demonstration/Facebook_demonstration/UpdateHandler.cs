@@ -61,7 +61,7 @@ namespace FacebookApplication
             while (abortUploadThread == false)
             {
                 Thread.Sleep(threadSleepTime);
-                while (uploadQueue.Count > 0)
+                while (uploadQueue.Count > 0 && abortUploadThread == false)
                 {
                     while (pauseUploadThread == true)
                     {
@@ -83,7 +83,7 @@ namespace FacebookApplication
             while (abortDownloadThread == false)
             {
                 Thread.Sleep(threadSleepTime);
-                while (downloadQueue.Count > 0)
+                while (downloadQueue.Count > 0 && abortDownloadThread == false)
                 {
                     while (pauseDownloadThread == true)
                     {
