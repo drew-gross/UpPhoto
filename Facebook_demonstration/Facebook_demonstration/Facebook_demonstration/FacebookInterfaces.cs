@@ -27,6 +27,15 @@ namespace Facebook_demonstration
         {
             return pidStr;
         }
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || (obj as PID == null)) return false;
+            return pidStr.Equals((obj as PID).pidStr);
+        }
+        public override int GetHashCode()
+        {
+            return pidStr.GetHashCode();
+        }
     }
 
     public class AID

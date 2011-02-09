@@ -21,7 +21,7 @@ namespace Facebook_demonstration
         public SavedData(SerializationInfo info, StreamingContext ctxt)
         {
             WatchedFolders = (List<String>)info.GetValue("WatchList", typeof(List<String>));
-            AllPhotos = (Dictionary<PID, String>)info.GetValue("AllPhotos", typeof(Dictionary<String, String>));
+            AllPhotos = (Dictionary<PID, String>)info.GetValue("AllPhotos", typeof(Dictionary<PID, String>));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
