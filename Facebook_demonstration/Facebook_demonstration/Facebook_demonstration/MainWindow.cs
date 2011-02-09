@@ -113,6 +113,7 @@ namespace FacebookApplication
             }
             catch (System.IO.FileNotFoundException)
             {
+                WatchFolder(UpPhotoPath());
                 AllPhotos = new Dictionary<String, String>();
             }
         }
