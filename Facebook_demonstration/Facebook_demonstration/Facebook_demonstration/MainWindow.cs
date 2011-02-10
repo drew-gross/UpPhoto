@@ -201,8 +201,8 @@ namespace FacebookApplication
 
         private void TrayIcon_Click(object sender, EventArgs e)
         {
-            SetForegroundWindow(new HandleRef(this, this.Handle));
-            UpPhotoTrayMenu.Show(this, this.PointToClient(Cursor.Position));
+            //SetForegroundWindow(new HandleRef(this, this.Handle));
+            //UpPhotoTrayMenu.Show(this, this.PointToClient(Cursor.Position));
         }
     }
 }
