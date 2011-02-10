@@ -10,6 +10,8 @@ using System.IO;
 using Facebook_demonstration;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace FacebookApplication
 {
@@ -191,6 +193,16 @@ namespace FacebookApplication
             {
                 watcher.UnIgnoreFile(path);
             }
+        }
+
+        //allows left click on icon to open menu
+        [DllImport("User32.dll", ExactSpelling = true, CharSet = CharSet.Auto)]
+        public static extern bool SetForegroundWindow(HandleRef hWnd);
+
+        private void TrayIcon_Click(object sender, EventArgs e)
+        {
+            SetForegroundWindow(new HandleRef(this, this.Handle));
+            UpPhotoTrayMenu.Show(this, this.PointToClient(Cursor.Position));
         }
     }
 }

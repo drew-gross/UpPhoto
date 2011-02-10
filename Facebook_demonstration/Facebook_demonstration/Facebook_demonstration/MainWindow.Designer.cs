@@ -40,7 +40,7 @@
             this.WatchFolderItem,
             this.ExitItem});
             this.UpPhotoTrayMenu.Name = "UpPhotoTrayMenu";
-            this.UpPhotoTrayMenu.Size = new System.Drawing.Size(164, 114);
+            this.UpPhotoTrayMenu.Size = new System.Drawing.Size(164, 92);
             this.UpPhotoTrayMenu.Opening += new System.ComponentModel.CancelEventHandler(this.UpPhotoTrayMenu_Opening);
             // 
             // ChangeAccountItem
@@ -86,6 +86,7 @@
             this.UpPhotoIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("UpPhotoIcon.Icon")));
             this.UpPhotoIcon.Text = "UpPhoto";
             this.UpPhotoIcon.Visible = true;
+            this.UpPhotoIcon.Click += new System.EventHandler(this.TrayIcon_Click);
             // 
             // MainWindow
             // 
