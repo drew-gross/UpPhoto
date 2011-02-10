@@ -18,7 +18,7 @@ namespace FacebookApplication
 {
     class UpdateHandler
     {
-        static Queue<PhotoToUpload> uploadQueue = new Queue<PhotoToUpload>();
+        public static Queue<PhotoToUpload> uploadQueue = new Queue<PhotoToUpload>();
         static Queue<PID> downloadQueue = new Queue<PID>();
 
         static Thread uploadThread;
@@ -106,9 +106,9 @@ namespace FacebookApplication
                             }
                             Directory.CreateDirectory(StringUtils.GetFullFolderPathFromPath(path));
                             System.Drawing.Bitmap imageData = new System.Drawing.Bitmap((System.Drawing.Bitmap)DownloadedPhoto.picture_big.Clone());
-                            MainWindow.PauseWatchers();
+                            MainWindow.WatchersIgnoreFile(path);
                             imageData.Save(path, ImageFormat.Png);
-                            MainWindow.ResumeWatchers();
+                            MainWindow.WatchersUnIgnoreFile(path);
                             MainWindow.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
                         }
                         catch (System.Net.WebException ex)
@@ -137,24 +137,6 @@ namespace FacebookApplication
                 }
             }
             pauseDownloadThread = false;
-        }
-
-        public void FaceboxWatcher_Changed(object sender, FileSystemEventArgs e)
-        {
-            //lets deal with changed photos the same way we deal with new photos. we add them to fb, but dont delete the original photo.
-            FaceboxWatcher_Created(sender, e);
-        }
-
-        public void FaceboxWatcher_Created(object sender, FileSystemEventArgs e)
-        {
-            if (StringUtils.IsImageExtension(Path.GetExtension(e.FullPath)))
-            {
-                string album = Path.GetFileName(Path.GetDirectoryName(e.FullPath));
-                lock (uploadQueue)
-                {
-                    uploadQueue.Enqueue(new PhotoToUpload(album, e.FullPath));
-                }
-            }
         }
 
         public void FaceboxWatcher_Deleted(object sender, FileSystemEventArgs e)

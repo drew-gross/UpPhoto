@@ -15,6 +15,7 @@ namespace Facebook_demonstration
         MainWindow parent;
         UpdateHandler handler;
         FileSystemWatcher watcher;
+        List<String> IgnoreList = new List<String>();
 
         public ToolStripMenuItem menuItem;
 
@@ -33,9 +34,9 @@ namespace Facebook_demonstration
 
             watcher.SynchronizingObject = parent;
 
-            watcher.Changed += new FileSystemEventHandler(handler.FaceboxWatcher_Changed);
+            watcher.Changed += new FileSystemEventHandler(FileChangedEvent);
             //watcher.Renamed += new FileSystemEventHandler(handler.FaceboxWatcher_Renamed);
-            watcher.Created += new FileSystemEventHandler(handler.FaceboxWatcher_Created);
+            watcher.Created += new FileSystemEventHandler(FileCreatedEvent);
             watcher.Deleted += new FileSystemEventHandler(handler.FaceboxWatcher_Deleted);
 
             menuItem = new ToolStripMenuItem(path);
@@ -47,6 +48,34 @@ namespace Facebook_demonstration
             ToolStripMenuItem ViewItem = new ToolStripMenuItem("View");
             ViewItem.Click += new EventHandler(this.ViewItem_Click);
             menuItem.DropDownItems.Add(ViewItem);
+        }
+
+        public void IgnoreFile(String path)
+        {
+            IgnoreList.Add(path);
+        }
+
+        public void UnIgnoreFile(String path)
+        {
+            IgnoreList.Remove(path);
+        }
+
+        public void FileCreatedEvent(object sender, FileSystemEventArgs e)
+        {
+            if (StringUtils.IsImageExtension(System.IO.Path.GetExtension(e.FullPath)) && !IgnoreList.Contains(e.FullPath))
+            {
+                string album = System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(e.FullPath));
+                lock (UpdateHandler.uploadQueue)
+                {
+                    UpdateHandler.uploadQueue.Enqueue(new PhotoToUpload(album, e.FullPath));
+                }
+            }
+        }
+
+        public void FileChangedEvent(object sender, FileSystemEventArgs e)
+        {
+            //lets deal with changed photos the same way we deal with new photos. we add them to fb, but dont delete the original photo.
+            FileCreatedEvent(sender, e);
         }
 
         public void UnwatchItem_Click(Object sender, EventArgs e)
@@ -74,6 +103,5 @@ namespace Facebook_demonstration
         {
             watcher.EnableRaisingEvents = true;
         }
-
     }
 }

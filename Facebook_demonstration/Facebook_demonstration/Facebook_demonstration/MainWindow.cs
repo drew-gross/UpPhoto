@@ -161,5 +161,21 @@ namespace FacebookApplication
             result = StringUtils.GetFullFolderPathFromPath(result);
             return result + @"\Facebook\Photos\";
         }
+
+        public static void WatchersIgnoreFile(String path)
+        {
+            foreach (WatchedFolder watcher in watchList)
+            {
+                watcher.IgnoreFile(path);
+            }
+        }
+
+        public static void WatchersUnIgnoreFile(String path)
+        {
+            foreach (WatchedFolder watcher in watchList)
+            {
+                watcher.UnIgnoreFile(path);
+            }
+        }
     }
 }
