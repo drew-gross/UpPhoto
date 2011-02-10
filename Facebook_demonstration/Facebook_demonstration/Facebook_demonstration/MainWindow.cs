@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.IO;
 using Facebook_demonstration;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading;
 
 namespace FacebookApplication
 {
@@ -23,7 +24,9 @@ namespace FacebookApplication
         {
             InitializeComponent();
             LoadData();
-            UpdateHandler.SnycPhotos();
+            Thread detectPIDthread = new Thread(UpdateHandler.SnycPhotos);
+            detectPIDthread.SetApartmentState(ApartmentState.STA);
+            detectPIDthread.Start();
         }
 
         static public void ResumeWatchers()
