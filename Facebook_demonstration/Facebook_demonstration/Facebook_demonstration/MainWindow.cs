@@ -29,6 +29,18 @@ namespace FacebookApplication
             detectPIDthread.Start();
         }
 
+        //Removes the "Form1" window from the alt-tab box
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                // Turn on WS_EX_TOOLWINDOW style bit
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x80;
+                return cp;
+            }
+        }
+
         static public void ResumeWatchers()
         {
             foreach (WatchedFolder watcher in watchList)
