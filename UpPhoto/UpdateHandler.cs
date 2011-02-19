@@ -79,8 +79,10 @@ namespace UpPhoto
             while (abortDownloadThread == false)
             {
                 Thread.Sleep(threadSleepTime);
+                parent.SetDownloadingStatus(true);
                 while (downloadQueue.Count > 0 && abortDownloadThread == false)
                 {
+                    parent.SetDownloadingStatus(true);
                     while (pauseDownloadThread == true)
                     {
                         Thread.Sleep(threadSleepTime);
@@ -100,14 +102,9 @@ namespace UpPhoto
                                 PhotoCounter++;
                                 path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
                             }
-                            Directory.CreateDirectory(StringUtils.GetFullFolderPathFromPath(path));
                             try
                             {
-                                System.Drawing.Bitmap imageData = new System.Drawing.Bitmap((System.Drawing.Bitmap)DownloadedPhoto.picture_big.Clone());
-                                parent.WatchersIgnoreFile(path);
-                                imageData.Save(path, ImageFormat.Png);
-                                parent.WatchersUnIgnoreFile(path);
-                                parent.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
+                                SaveDownloadedPhoto(DownloadedPhoto, path);
                             }
                             catch (Facebook.Utility.FacebookException)
                             {
@@ -118,12 +115,23 @@ namespace UpPhoto
                         catch (System.Net.WebException)
                         {
                             //add the photo back to the queue and try again later
+                            parent.SetConnectedStatus(false);
                             downloadQueue.Enqueue(pidToDownload);
                             Thread.Sleep(threadSleepTime);
                         }
                     }
                 }
             }
+        }
+
+        private void SaveDownloadedPhoto(photo DownloadedPhoto, String path)
+        {
+            Directory.CreateDirectory(StringUtils.GetFullFolderPathFromPath(path));
+            System.Drawing.Bitmap imageData = new System.Drawing.Bitmap((System.Drawing.Bitmap)DownloadedPhoto.picture_big.Clone());
+            parent.WatchersIgnoreFile(path);
+            imageData.Save(path, ImageFormat.Png);
+            parent.WatchersUnIgnoreFile(path);
+            parent.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
         }
 
         public void SnycPhotos()

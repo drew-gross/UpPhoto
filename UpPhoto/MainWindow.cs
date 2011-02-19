@@ -247,7 +247,7 @@ namespace UpPhoto
         {
             if (!Connected)
             {
-                UpPhotoIcon.Icon = ((System.Drawing.Icon)(trayIcons.GetObject(IdleIconPath)));
+                UpPhotoIcon.Icon = ((System.Drawing.Icon)(trayIcons.GetObject(NotConnectedIconPath)));
                 return;
             }
             if (Uploading && Downloading)
