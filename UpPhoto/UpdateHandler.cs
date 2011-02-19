@@ -62,8 +62,10 @@ namespace UpPhoto
             while (abortUploadThread == false)
             {
                 Thread.Sleep(threadSleepTime);
+                parent.SetUploadingStatus(false);
                 while (uploadQueue.Count > 0 && abortUploadThread == false)
                 {
+                    parent.SetUploadingStatus(true);
                     while (pauseUploadThread == true)
                     {
                         Thread.Sleep(threadSleepTime);
@@ -72,6 +74,9 @@ namespace UpPhoto
                     {
                         PhotoToUpload curPhoto = uploadQueue.Dequeue();
                         photo UploadedPhoto = FacebookInterfaces.UploadPhoto(curPhoto);
+                        //if we are here, the uploading worked and we can set the tray icon to connected
+                        //if the uploading failed, an exception would have been thrown
+                        parent.SetConnectedStatus(true);
                         parent.AddUploadedPhoto(new FacebookPhoto(UploadedPhoto, curPhoto.photoPath));
                     }
                 }
@@ -84,7 +89,7 @@ namespace UpPhoto
             while (abortDownloadThread == false)
             {
                 Thread.Sleep(threadSleepTime);
-                parent.SetDownloadingStatus(true);
+                parent.SetDownloadingStatus(false);
                 while (downloadQueue.Count > 0 && abortDownloadThread == false)
                 {
                     parent.SetDownloadingStatus(true);
