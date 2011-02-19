@@ -150,6 +150,18 @@
   <ItemGroup>
     <None Include="Resources\NotConnected.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Idle.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Uploading.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Downloading.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UpoadingAndDownloading.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

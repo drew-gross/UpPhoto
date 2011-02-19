@@ -60,9 +60,37 @@ namespace UpPhoto {
             }
         }
         
+        internal static System.Drawing.Icon Downloading {
+            get {
+                object obj = ResourceManager.GetObject("Downloading", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon Idle {
+            get {
+                object obj = ResourceManager.GetObject("Idle", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Icon NotConnected {
             get {
                 object obj = ResourceManager.GetObject("NotConnected", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon Uploading {
+            get {
+                object obj = ResourceManager.GetObject("Uploading", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon UpoadingAndDownloading {
+            get {
+                object obj = ResourceManager.GetObject("UpoadingAndDownloading", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
