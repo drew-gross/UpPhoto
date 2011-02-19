@@ -7,5 +7,6 @@
 *.csproj.user
 *.tmp
 *FileListAbsolute.txt
-*/Facebook/*
 *.upd
+*/bin/*
+*/obj/*

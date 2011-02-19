@@ -118,6 +118,11 @@ namespace UpPhoto
             return newPhoto;
         }
 
+        public static void UploadVideo(String FilePath)
+        {
+            fbService.Video.Upload(Path.GetFileNameWithoutExtension(FilePath), UpPhotoCaption, new FileInfo(FilePath));
+        }
+
         public static photo DownloadPhoto(PID pid)
         {
             //note: must do stuff if the photo doesn't exist.
