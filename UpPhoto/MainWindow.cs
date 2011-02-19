@@ -36,8 +36,8 @@ namespace FacebookApplication
         public MainWindow()
         {
             InitializeComponent();
-            LoadData();
             updateHandler = new UpdateHandler(this);
+            LoadData();
             Thread detectPIDthread = new Thread(updateHandler.SnycPhotos);
             detectPIDthread.SetApartmentState(ApartmentState.STA);
             detectPIDthread.Start();
