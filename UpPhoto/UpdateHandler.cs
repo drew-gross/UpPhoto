@@ -14,7 +14,7 @@ using Facebook.Winforms.Components;
 using FacebookController;
 using System.Threading;
 
-namespace FacebookApplication
+namespace UpPhoto
 {
     public class UpdateHandler
     {

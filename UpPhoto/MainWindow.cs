@@ -13,7 +13,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace FacebookApplication
+namespace UpPhoto
 {
     public partial class MainWindow : Form
     {

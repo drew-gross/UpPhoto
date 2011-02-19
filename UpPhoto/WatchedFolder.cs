@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
-using FacebookApplication;
+using UpPhoto;
 using System.Runtime.Serialization;
 
 namespace UpPhoto

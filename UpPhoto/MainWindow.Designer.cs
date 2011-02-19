@@ -1,4 +1,4 @@
-﻿namespace FacebookApplication
+﻿namespace UpPhoto
 {
     partial class MainWindow
     {
