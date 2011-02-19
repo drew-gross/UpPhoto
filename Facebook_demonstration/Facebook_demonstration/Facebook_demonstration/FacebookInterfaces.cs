@@ -92,21 +92,24 @@ namespace UpPhoto
             throw new NotImplementedException();
         }
 
-        public static photo UploadPhoto(PhotoToUpload photo)
+        public static AID GetAlbumAID(String AlbumName)
         {
             IList<album> albums = fbService.Photos.GetAlbums();
-
-            AID albumAid = new AID();
             foreach (album album in albums)
             {
-                if (album.name == photo.albumName)
+                if (album.name == AlbumName)
                 {
-                    albumAid = new AID(album.aid);
-                    break;
+                    return new AID(album.aid);
                 }
             }
+            return null;
+        }
 
-            if (albumAid.ToString() == String.Empty)
+        public static photo UploadPhoto(PhotoToUpload photo)
+        {
+            AID albumAid = GetAlbumAID(photo.albumName);
+
+            if (albumAid == null)
             {
                 albumAid = new AID(fbService.Photos.CreateAlbum(photo.albumName, null, UpPhotoCaption).aid);
             }

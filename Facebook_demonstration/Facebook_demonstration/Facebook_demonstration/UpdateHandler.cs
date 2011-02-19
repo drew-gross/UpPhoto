@@ -105,11 +105,19 @@ namespace FacebookApplication
                                 path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
                             }
                             Directory.CreateDirectory(StringUtils.GetFullFolderPathFromPath(path));
-                            System.Drawing.Bitmap imageData = new System.Drawing.Bitmap((System.Drawing.Bitmap)DownloadedPhoto.picture_big.Clone());
-                            MainWindow.WatchersIgnoreFile(path);
-                            imageData.Save(path, ImageFormat.Png);
-                            MainWindow.WatchersUnIgnoreFile(path);
-                            MainWindow.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
+                            try
+                            {
+                                System.Drawing.Bitmap imageData = new System.Drawing.Bitmap((System.Drawing.Bitmap)DownloadedPhoto.picture_big.Clone());
+                                MainWindow.WatchersIgnoreFile(path);
+                                imageData.Save(path, ImageFormat.Png);
+                                MainWindow.WatchersUnIgnoreFile(path);
+                                MainWindow.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
+                            }
+                            catch (Facebook.Utility.FacebookException)
+                            {
+                            	//Unable to connect to database
+                                throw;
+                            }
                         }
                         catch (System.Net.WebException ex)
                         {
