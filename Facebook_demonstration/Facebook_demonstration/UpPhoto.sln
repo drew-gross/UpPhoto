@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facebook_demonstration", "Facebook_demonstration\Facebook_demonstration.csproj", "{E605AC8F-F302-449D-9E5F-6D604366F07A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpPhoto", "Facebook_demonstration\UpPhoto.csproj", "{E605AC8F-F302-449D-9E5F-6D604366F07A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
