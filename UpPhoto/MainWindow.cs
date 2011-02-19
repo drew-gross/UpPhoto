@@ -19,16 +19,26 @@ namespace FacebookApplication
     {
         private static List<WatchedFolder> watchList = new List<WatchedFolder>();
         private static Dictionary<PID, String> AllPhotos; //initialized in LoadData;
+        public static bool Connected = false;
+        private static bool exiting = false;
 
         const String SavedDataPath = @"UpPhotoData.upd";
-
         public MainWindow()
         {
             InitializeComponent();
             LoadData();
             Thread detectPIDthread = new Thread(UpdateHandler.SnycPhotos);
+            Thread trayIconUpdater = new Thread(MainWindow.UpdateTrayIcon);
             detectPIDthread.SetApartmentState(ApartmentState.STA);
             detectPIDthread.Start();
+        }
+
+        void UpdateTrayIcon()
+        {
+            while (exiting == false)
+            {
+
+            }
         }
 
         //Removes the "Form1" window from the alt-tab box
@@ -106,7 +116,7 @@ namespace FacebookApplication
 
         private void LogoutItem_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            FacebookInterfaces.LogOut();
         }
 
         private void ExitItem_Click(object sender, EventArgs e)

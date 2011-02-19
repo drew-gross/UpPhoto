@@ -164,5 +164,10 @@ namespace UpPhoto
         {
 
         }
+
+        public static void LogOut()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
