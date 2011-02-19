@@ -29,5 +29,10 @@ namespace UpPhoto
         {
             return ImageExtensions.Contains(Extension.ToLower());
         }
+
+        public static bool IsVideoExtension(string Extension)
+        {
+            return VideoExtensions.Contains(Extension.ToLower());
+        }
     }
 }
