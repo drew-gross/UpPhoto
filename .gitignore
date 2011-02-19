@@ -8,7 +8,5 @@
 *.tmp
 *FileListAbsolute.txt
 *.upd
-Facebook_demonstration/Facebook_demonstration/Facebook_demonstration/Resources/
-Facebook_demonstration/Facebook_demonstration/Facebook_demonstration/bin/
-Facebook_demonstration/Facebook_demonstration/Facebook_demonstration/obj/
+*/bin/*
 */obj/*

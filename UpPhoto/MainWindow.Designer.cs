@@ -68,7 +68,7 @@
             // AddWatchedFolderItem
             // 
             this.AddWatchedFolderItem.Name = "AddWatchedFolderItem";
-            this.AddWatchedFolderItem.Size = new System.Drawing.Size(152, 22);
+            this.AddWatchedFolderItem.Size = new System.Drawing.Size(96, 22);
             this.AddWatchedFolderItem.Text = "Add";
             this.AddWatchedFolderItem.Click += new System.EventHandler(this.AddWatchedFolderItem_Click);
             // 
@@ -87,6 +87,7 @@
             this.UpPhotoIcon.Text = "UpPhoto";
             this.UpPhotoIcon.Visible = true;
             this.UpPhotoIcon.Click += new System.EventHandler(this.TrayIcon_Click);
+            this.UpPhotoIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.UpPhotoIcon_MouseDoubleClick);
             // 
             // MainWindow
             // 

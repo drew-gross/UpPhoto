@@ -17,6 +17,8 @@ namespace FacebookApplication
 {
     public partial class MainWindow : Form
     {
+        const String NotConnectedIconPath = "NotConnectedIcon.ico";
+
         List<WatchedFolder> watchList = new List<WatchedFolder>();
         Dictionary<PID, String> AllPhotos; //initialized in LoadData;
         UpdateHandler updateHandler;
@@ -31,16 +33,18 @@ namespace FacebookApplication
             LoadData();
             updateHandler = new UpdateHandler(this);
             Thread detectPIDthread = new Thread(updateHandler.SnycPhotos);
-            Thread trayIconUpdater = new Thread(UpdateTrayIcon);
             detectPIDthread.SetApartmentState(ApartmentState.STA);
             detectPIDthread.Start();
+
+            Thread trayIconUpdater = new Thread(UpdateTrayIcon);
+            trayIconUpdater.Start();
         }
 
         void UpdateTrayIcon()
         {
             while (exiting == false)
             {
-                //UpPhotoIcon.Set();
+                UpPhotoIcon.Icon = new System.Drawing.Icon(NotConnectedIconPath);
             }
         }
 
@@ -224,6 +228,11 @@ namespace FacebookApplication
         {
             //SetForegroundWindow(new HandleRef(this, this.Handle));
             //UpPhotoTrayMenu.Show(this, this.PointToClient(Cursor.Position));
+        }
+
+        private void UpPhotoIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }
