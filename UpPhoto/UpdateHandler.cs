@@ -49,6 +49,11 @@ namespace UpPhoto
         {
             abortDownloadThread = true;
             abortUploadThread = true;
+            while (uploadThread.ThreadState != ThreadState.Stopped && uploadThread.ThreadState != ThreadState.Stopped)
+            {
+                //wait for the threads to finish
+                Thread.Sleep(threadSleepTime);
+            }
         }
 
         //Only to be used by the uploadThread. Do not call directly.
@@ -93,15 +98,7 @@ namespace UpPhoto
                         try
                         {
                             photo DownloadedPhoto = FacebookInterfaces.DownloadPhoto(pidToDownload);
-                            int PhotoCounter = 1;
-                            String albumName = FacebookInterfaces.AlbumName(DownloadedPhoto.aid);
-                            String upPhotoPath = MainWindow.UpPhotoPath();
-                            String path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
-                            while (File.Exists(path))
-                            {
-                                PhotoCounter++;
-                                path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
-                            }
+                            String path = GeneratePath(DownloadedPhoto);
                             try
                             {
                                 SaveDownloadedPhoto(DownloadedPhoto, path);
@@ -124,6 +121,19 @@ namespace UpPhoto
             }
         }
 
+        private String GeneratePath(photo DownloadedPhoto)
+        {
+            int PhotoCounter = 1;
+            String albumName = FacebookInterfaces.AlbumName(DownloadedPhoto.aid);
+            String upPhotoPath = MainWindow.UpPhotoPath();
+            String path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
+            while (File.Exists(path))
+            {
+                PhotoCounter++;
+                path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
+            }
+            return path;
+        }
         private void SaveDownloadedPhoto(photo DownloadedPhoto, String path)
         {
             Directory.CreateDirectory(StringUtils.GetFullFolderPathFromPath(path));
