@@ -47,6 +47,8 @@ namespace UpPhoto
 
         public void StopThreads()
         {
+            abortDownloadThread = true;
+            abortUploadThread = true;
         }
 
         //Only to be used by the uploadThread. Do not call directly.
