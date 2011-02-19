@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-using Facebook_demonstration;
+using UpPhoto;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Diagnostics;
@@ -137,6 +137,12 @@ namespace FacebookApplication
             }
             catch (System.IO.FileNotFoundException)
             {
+                WatchFolder(UpPhotoPath());
+                AllPhotos = new Dictionary<PID, String>();
+            }
+            catch (System.Runtime.Serialization.SerializationException)
+            {
+                //Bad save file :( needs a better handling method
                 WatchFolder(UpPhotoPath());
                 AllPhotos = new Dictionary<PID, String>();
             }

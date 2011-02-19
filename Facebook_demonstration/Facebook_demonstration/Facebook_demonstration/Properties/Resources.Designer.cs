@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Facebook_demonstration.Properties {
+namespace UpPhoto.Properties {
     using System;
     
     

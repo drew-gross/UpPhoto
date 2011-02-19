@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.IO;
 using FacebookApplication;
 
-namespace Facebook_demonstration
+namespace UpPhoto
 {
     static class Program
     {

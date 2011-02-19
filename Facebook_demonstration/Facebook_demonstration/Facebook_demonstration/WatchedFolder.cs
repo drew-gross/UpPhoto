@@ -8,7 +8,7 @@ using System.Diagnostics;
 using FacebookApplication;
 using System.Runtime.Serialization;
 
-namespace Facebook_demonstration
+namespace UpPhoto
 {
     public class WatchedFolder
     {

@@ -9,7 +9,7 @@ using Facebook.Winforms.Components;
 using FacebookController;
 using System.IO;
 
-namespace Facebook_demonstration
+namespace UpPhoto
 {
     [Serializable]
     public class PID

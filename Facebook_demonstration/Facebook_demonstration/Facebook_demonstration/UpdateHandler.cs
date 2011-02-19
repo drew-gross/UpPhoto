@@ -6,7 +6,7 @@ using System.Text;
 using System.IO;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
-using Facebook_demonstration;
+using UpPhoto;
 using Facebook.Rest;
 using Facebook.Schema;
 using Facebook.Utility;

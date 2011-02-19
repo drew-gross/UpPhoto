@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
-using Facebook_demonstration;
+using UpPhoto;
 using Facebook.Rest;
 using Facebook.Schema;
 using Facebook.Utility;
 using Facebook.Winforms.Components;
 using FacebookController;
 
-namespace Facebook_demonstration
+namespace UpPhoto
 {
     [Serializable()]
     public class FacebookPhoto : ISerializable
