@@ -18,13 +18,19 @@ namespace FacebookApplication
     public partial class MainWindow : Form
     {
         ComponentResourceManager trayIcons = new ComponentResourceManager(typeof(SystemTrayIcons));
+        const String IdleIconPath = "Idle";
+        const String UploadingIconPath = "Uploading";
+        const String DownloadingIconPath = "Downloading";
+        const String UploadingAndDownloadingIconPath = "UploadingAndDownloading";
+        const String NotConnectedIconPath = "NotConnected";
 
         List<WatchedFolder> watchList = new List<WatchedFolder>();
         Dictionary<PID, String> AllPhotos; //initialized in LoadData;
-        UpdateHandler updateHandler;
+        public UpdateHandler updateHandler;
 
-        public bool Connected = false;
-        bool exiting = false;
+        bool Connected = true;
+        bool Uploading = false;
+        bool Downloading = false;
 
         const String SavedDataPath = @"UpPhotoData.upd";
         public MainWindow()
@@ -35,17 +41,24 @@ namespace FacebookApplication
             Thread detectPIDthread = new Thread(updateHandler.SnycPhotos);
             detectPIDthread.SetApartmentState(ApartmentState.STA);
             detectPIDthread.Start();
-
-            Thread trayIconUpdater = new Thread(UpdateTrayIcon);
-            trayIconUpdater.Start();
         }
 
-        void UpdateTrayIcon()
+        public void SetUploadingStatus(bool newStatus)
         {
-            while (exiting == false)
-            {
-                UpPhotoIcon.Icon = ((System.Drawing.Icon)(trayIcons.GetObject("NotConnected")));
-            }
+            Uploading = newStatus;
+            UpdateTrayIcon();
+        }
+
+        public void SetDownloadingStatus(bool newStatus)
+        {
+            Downloading = newStatus;
+            UpdateTrayIcon();
+        }
+
+        public void SetConnectedStatus(bool newStatus)
+        {
+            Connected = newStatus;
+            UpdateTrayIcon();
         }
 
         //Removes the "Form1" window from the alt-tab box
@@ -130,7 +143,6 @@ namespace FacebookApplication
         private void ExitItem_Click(object sender, EventArgs e)
         {
             updateHandler.StopThreads();
-            exiting = true;
             SaveData();
             Close();
         }
@@ -230,9 +242,29 @@ namespace FacebookApplication
             //UpPhotoTrayMenu.Show(this, this.PointToClient(Cursor.Position));
         }
 
-        private void UpPhotoIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void UpdateTrayIcon()
         {
-
+            if (!Connected)
+            {
+                UpPhotoIcon.Icon = ((System.Drawing.Icon)(trayIcons.GetObject(IdleIconPath)));
+                return;
+            }
+            if (Uploading && Downloading)
+            {
+                UpPhotoIcon.Icon = ((System.Drawing.Icon)(trayIcons.GetObject(UploadingAndDownloadingIconPath)));
+                return;
+            }
+            if (Uploading)
+            {
+                UpPhotoIcon.Icon = ((System.Drawing.Icon)(trayIcons.GetObject(UploadingIconPath)));
+                return;
+            }
+            if (Downloading)
+            {
+                UpPhotoIcon.Icon = ((System.Drawing.Icon)(trayIcons.GetObject(DownloadingIconPath)));
+                return;
+            }
+            UpPhotoIcon.Icon = ((System.Drawing.Icon)(trayIcons.GetObject(IdleIconPath)));
         }
     }
 }

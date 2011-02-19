@@ -22,7 +22,7 @@ namespace UpPhoto
         public WatchedFolder(string path, MainWindow newParent)
         {
             parent = newParent;
-            handler = new UpdateHandler(parent);
+            handler = parent.updateHandler;
 
             watcher = new FileSystemWatcher(path);
             watcher.EnableRaisingEvents = true;

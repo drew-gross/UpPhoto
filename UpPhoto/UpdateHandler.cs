@@ -16,7 +16,7 @@ using System.Threading;
 
 namespace FacebookApplication
 {
-    class UpdateHandler
+    public class UpdateHandler
     {
         public Queue<PhotoToUpload> uploadQueue = new Queue<PhotoToUpload>();
         Queue<PID> downloadQueue = new Queue<PID>();
@@ -47,8 +47,6 @@ namespace FacebookApplication
 
         public void StopThreads()
         {
-            abortUploadThread = true;
-            abortDownloadThread = true;
         }
 
         //Only to be used by the uploadThread. Do not call directly.
@@ -111,13 +109,13 @@ namespace FacebookApplication
                             }
                             catch (Facebook.Utility.FacebookException)
                             {
-                            	//Unable to connect to database
+                                //Unable to connect to database
                                 throw;
                             }
                         }
                         catch (System.Net.WebException)
                         {
-                        	//add the photo back to the queue and try again later
+                            //add the photo back to the queue and try again later
                             downloadQueue.Enqueue(pidToDownload);
                             Thread.Sleep(threadSleepTime);
                         }
@@ -128,19 +126,26 @@ namespace FacebookApplication
 
         public void SnycPhotos()
         {
-            List<PID> allPIDs = FacebookInterfaces.AllFacebookPhotos();
-            pauseDownloadThread = true;
-            foreach (PID pid in allPIDs)
+            try
             {
-                if (!parent.HasPhoto(pid))
+                List<PID> allPIDs = FacebookInterfaces.AllFacebookPhotos();
+                pauseDownloadThread = true;
+                foreach (PID pid in allPIDs)
                 {
-                    lock (downloadQueue)
+                    if (!parent.HasPhoto(pid))
                     {
-                        downloadQueue.Enqueue(pid);
+                        lock (downloadQueue)
+                        {
+                            downloadQueue.Enqueue(pid);
+                        }
                     }
                 }
+                pauseDownloadThread = false;
             }
-            pauseDownloadThread = false;
+            catch (System.Net.WebException)
+            {
+                parent.SetConnectedStatus(false);
+            }
         }
 
         public void FaceboxWatcher_Deleted(object sender, FileSystemEventArgs e)

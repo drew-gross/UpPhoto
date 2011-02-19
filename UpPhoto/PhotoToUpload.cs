@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UpPhoto
 {
-    class PhotoToUpload
+    public class PhotoToUpload
     {
         public string albumName;
         public string photoPath;

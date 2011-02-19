@@ -87,7 +87,6 @@
             this.UpPhotoIcon.Text = "UpPhoto";
             this.UpPhotoIcon.Visible = true;
             this.UpPhotoIcon.Click += new System.EventHandler(this.TrayIcon_Click);
-            this.UpPhotoIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.UpPhotoIcon_MouseDoubleClick);
             // 
             // MainWindow
             // 
