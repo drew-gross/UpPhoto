@@ -17,18 +17,21 @@ namespace FacebookApplication
 {
     public partial class MainWindow : Form
     {
-        private static List<WatchedFolder> watchList = new List<WatchedFolder>();
-        private static Dictionary<PID, String> AllPhotos; //initialized in LoadData;
-        public static bool Connected = false;
-        private static bool exiting = false;
+        List<WatchedFolder> watchList = new List<WatchedFolder>();
+        Dictionary<PID, String> AllPhotos; //initialized in LoadData;
+        UpdateHandler updateHandler;
+
+        public bool Connected = false;
+        bool exiting = false;
 
         const String SavedDataPath = @"UpPhotoData.upd";
         public MainWindow()
         {
             InitializeComponent();
             LoadData();
-            Thread detectPIDthread = new Thread(UpdateHandler.SnycPhotos);
-            Thread trayIconUpdater = new Thread(MainWindow.UpdateTrayIcon);
+            updateHandler = new UpdateHandler(this);
+            Thread detectPIDthread = new Thread(updateHandler.SnycPhotos);
+            Thread trayIconUpdater = new Thread(UpdateTrayIcon);
             detectPIDthread.SetApartmentState(ApartmentState.STA);
             detectPIDthread.Start();
         }
@@ -37,7 +40,7 @@ namespace FacebookApplication
         {
             while (exiting == false)
             {
-
+                //UpPhotoIcon.Set();
             }
         }
 
@@ -53,14 +56,15 @@ namespace FacebookApplication
             }
         }
 
-        static public void ResumeWatchers()
+        public void ResumeWatchers()
         {
             foreach (WatchedFolder watcher in watchList)
             {
                 watcher.EnableWatching();
             }
         }
-        static public void PauseWatchers()
+
+        public void PauseWatchers()
         {
             foreach (WatchedFolder watcher in watchList)
             {
@@ -121,7 +125,8 @@ namespace FacebookApplication
 
         private void ExitItem_Click(object sender, EventArgs e)
         {
-            UpdateHandler.StopThreads();
+            updateHandler.StopThreads();
+            exiting = true;
             SaveData();
             Close();
         }
@@ -178,12 +183,12 @@ namespace FacebookApplication
             }
         }
 
-        static public void AddUploadedPhoto(FacebookPhoto UploadedPhoto)
+        public void AddUploadedPhoto(FacebookPhoto UploadedPhoto)
         {
             AllPhotos.Add(new PID(UploadedPhoto.pid), UploadedPhoto.path);
         }
 
-        static public bool HasPhoto(PID pid)
+        public bool HasPhoto(PID pid)
         {
             return AllPhotos.ContainsKey(pid);
         }
@@ -195,7 +200,7 @@ namespace FacebookApplication
             return result + @"\Facebook\Photos\";
         }
 
-        public static void WatchersIgnoreFile(String path)
+        public void WatchersIgnoreFile(String path)
         {
             foreach (WatchedFolder watcher in watchList)
             {
@@ -203,7 +208,7 @@ namespace FacebookApplication
             }
         }
 
-        public static void WatchersUnIgnoreFile(String path)
+        public void WatchersUnIgnoreFile(String path)
         {
             foreach (WatchedFolder watcher in watchList)
             {

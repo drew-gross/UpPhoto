@@ -18,45 +18,41 @@ namespace FacebookApplication
 {
     class UpdateHandler
     {
-        public static Queue<PhotoToUpload> uploadQueue = new Queue<PhotoToUpload>();
-        static Queue<PID> downloadQueue = new Queue<PID>();
+        public Queue<PhotoToUpload> uploadQueue = new Queue<PhotoToUpload>();
+        Queue<PID> downloadQueue = new Queue<PID>();
 
-        static Thread uploadThread;
-        static bool abortUploadThread = false;
-        static bool pauseUploadThread = false;
+        Thread uploadThread;
+        bool abortUploadThread = false;
+        bool pauseUploadThread = false;
 
-        static Thread downloadThread;
-        static bool abortDownloadThread = false;
-        static bool pauseDownloadThread = false;
+        Thread downloadThread;
+        bool abortDownloadThread = false;
+        bool pauseDownloadThread = false;
 
         const String DownloadedPhotoExtension = @".png";
         const int threadSleepTime = 500; //this is the time in milliseconds between checking if there are photos to be uploaded.
         MainWindow parent;
 
-        static UpdateHandler()
+        public UpdateHandler(MainWindow newParent)
         {
-            uploadThread = new Thread(UpdateHandler.UploadPhotos);
+            parent = newParent;
+            uploadThread = new Thread(UploadPhotos);
             uploadThread.SetApartmentState(ApartmentState.STA);
             uploadThread.Start();
 
-            downloadThread = new Thread(UpdateHandler.DownloadPhotos);
+            downloadThread = new Thread(DownloadPhotos);
             downloadThread.SetApartmentState(ApartmentState.STA);
             downloadThread.Start();
         }
 
-        public UpdateHandler(MainWindow newParent)
-        {
-            parent = newParent;
-        }
-
-        public static void StopThreads()
+        public void StopThreads()
         {
             abortUploadThread = true;
             abortDownloadThread = true;
         }
 
         //Only to be used by the uploadThread. Do not call directly.
-        static private void UploadPhotos()
+        private void UploadPhotos()
         {
             while (abortUploadThread == false)
             {
@@ -71,14 +67,14 @@ namespace FacebookApplication
                     {
                         PhotoToUpload curPhoto = uploadQueue.Dequeue();
                         photo UploadedPhoto = FacebookInterfaces.UploadPhoto(curPhoto);
-                        MainWindow.AddUploadedPhoto(new FacebookPhoto(UploadedPhoto, curPhoto.photoPath));
+                        parent.AddUploadedPhoto(new FacebookPhoto(UploadedPhoto, curPhoto.photoPath));
                     }
                 }
             }
         }
 
         //Only to be used by the downloadThread. Do not call directly.
-        static private void DownloadPhotos()
+        private void DownloadPhotos()
         {
             while (abortDownloadThread == false)
             {
@@ -108,10 +104,10 @@ namespace FacebookApplication
                             try
                             {
                                 System.Drawing.Bitmap imageData = new System.Drawing.Bitmap((System.Drawing.Bitmap)DownloadedPhoto.picture_big.Clone());
-                                MainWindow.WatchersIgnoreFile(path);
+                                parent.WatchersIgnoreFile(path);
                                 imageData.Save(path, ImageFormat.Png);
-                                MainWindow.WatchersUnIgnoreFile(path);
-                                MainWindow.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
+                                parent.WatchersUnIgnoreFile(path);
+                                parent.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
                             }
                             catch (Facebook.Utility.FacebookException)
                             {
@@ -119,7 +115,7 @@ namespace FacebookApplication
                                 throw;
                             }
                         }
-                        catch (System.Net.WebException ex)
+                        catch (System.Net.WebException)
                         {
                         	//add the photo back to the queue and try again later
                             downloadQueue.Enqueue(pidToDownload);
@@ -130,13 +126,13 @@ namespace FacebookApplication
             }
         }
 
-        static public void SnycPhotos()
+        public void SnycPhotos()
         {
             List<PID> allPIDs = FacebookInterfaces.AllFacebookPhotos();
             pauseDownloadThread = true;
             foreach (PID pid in allPIDs)
             {
-                if (!MainWindow.HasPhoto(pid))
+                if (!parent.HasPhoto(pid))
                 {
                     lock (downloadQueue)
                     {
