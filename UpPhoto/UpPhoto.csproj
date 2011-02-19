@@ -8,8 +8,8 @@
     <ProjectGuid>{E605AC8F-F302-449D-9E5F-6D604366F07A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Facebook_demonstration</RootNamespace>
-    <AssemblyName>Facebook_demonstration</AssemblyName>
+    <RootNamespace>UpPhoto</RootNamespace>
+    <AssemblyName>UpPhoto</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -93,6 +93,11 @@
     <Compile Include="PhotoToUpload.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemTrayIcons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SystemTrayIcons.resx</DependentUpon>
+    </Compile>
     <Compile Include="SavedData.cs" />
     <Compile Include="StringUtils.cs" />
     <Compile Include="UpdateHandler.cs" />
@@ -110,6 +115,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SystemTrayIcons.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SystemTrayIcons.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -139,7 +148,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="NotConnectedIcon.ico" />
+    <None Include="Resources\NotConnected.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

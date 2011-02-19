@@ -17,7 +17,7 @@ namespace FacebookApplication
 {
     public partial class MainWindow : Form
     {
-        const String NotConnectedIconPath = "NotConnectedIcon.ico";
+        ComponentResourceManager trayIcons = new ComponentResourceManager(typeof(SystemTrayIcons));
 
         List<WatchedFolder> watchList = new List<WatchedFolder>();
         Dictionary<PID, String> AllPhotos; //initialized in LoadData;
@@ -44,7 +44,7 @@ namespace FacebookApplication
         {
             while (exiting == false)
             {
-                UpPhotoIcon.Icon = new System.Drawing.Icon(NotConnectedIconPath);
+                UpPhotoIcon.Icon = ((System.Drawing.Icon)(trayIcons.GetObject("NotConnected")));
             }
         }
 
