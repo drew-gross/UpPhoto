@@ -11,50 +11,6 @@ using System.IO;
 
 namespace UpPhoto
 {
-    [Serializable]
-    public class PID
-    {
-        public String pidStr = String.Empty;
-        public PID()
-        {
-
-        }
-        public PID(String newPid)
-        {
-            pidStr = newPid;
-        }
-        public override string ToString()
-        {
-            return pidStr;
-        }
-        public override bool Equals(object obj)
-        {
-            if ((obj == null) || (obj as PID == null)) return false;
-            return pidStr.Equals((obj as PID).pidStr);
-        }
-        public override int GetHashCode()
-        {
-            return pidStr.GetHashCode();
-        }
-    }
-
-    public class AID
-    {
-        public String aidStr = String.Empty;
-        public AID()
-        {
-
-        }
-        public AID(String newAID)
-        {
-            aidStr = newAID;
-        }
-        public override string ToString()
-        {
-            return aidStr;
-        }
-    }
-
     static class FacebookInterfaces
     {
         static readonly FacebookService fbService = new FacebookService();
