@@ -52,22 +52,31 @@ namespace UpPhoto
 
         public void IgnoreFile(String path)
         {
-            IgnoreList.Add(path);
+            lock (IgnoreList)
+            {
+                IgnoreList.Add(path);
+            }
         }
 
         public void UnIgnoreFile(String path)
         {
-            IgnoreList.Remove(path);
+            lock (IgnoreList)
+            {
+                IgnoreList.Remove(path);
+            }
         }
 
         public void FileCreatedEvent(object sender, FileSystemEventArgs e)
         {
-            if (StringUtils.IsImageExtension(System.IO.Path.GetExtension(e.FullPath)) && !IgnoreList.Contains(e.FullPath))
+            lock (IgnoreList)
             {
-                string album = System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(e.FullPath));
-                lock (handler.uploadQueue)
+                if (StringUtils.IsImageExtension(System.IO.Path.GetExtension(e.FullPath)) && !IgnoreList.Contains(e.FullPath))
                 {
-                    handler.uploadQueue.Enqueue(new PhotoToUpload(album, e.FullPath));
+                    string album = System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(e.FullPath));
+                    lock (handler.uploadQueue)
+                    {
+                        handler.uploadQueue.Enqueue(new PhotoToUpload(album, e.FullPath));
+                    }
                 }
             }
         }

@@ -49,11 +49,8 @@ namespace UpPhoto
         {
             abortDownloadThread = true;
             abortUploadThread = true;
-            while (uploadThread.ThreadState != ThreadState.Stopped && uploadThread.ThreadState != ThreadState.Stopped)
-            {
-                //wait for the threads to finish
-                Thread.Sleep(threadSleepTime);
-            }
+            uploadThread.Join();
+            downloadThread.Join();
         }
 
         //Only to be used by the uploadThread. Do not call directly.
