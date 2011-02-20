@@ -8,10 +8,6 @@ namespace UpPhoto
     public class AID
     {
         public String aidStr = String.Empty;
-        public AID()
-        {
-
-        }
         public AID(String newAID)
         {
             aidStr = newAID;
