@@ -82,6 +82,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AID.cs" />
+    <Compile Include="PID.cs" />
     <Compile Include="FacebookInterfaces.cs" />
     <Compile Include="FacebookPhoto.cs" />
     <Compile Include="MainWindow.cs">

@@ -15,8 +15,8 @@ namespace UpPhoto
     {
         static readonly FacebookService fbService = new FacebookService();
 
-        const String UpPhotoPath = @"C:\Facebox";
-        const String UpPhotoCaption = @"Uploaded from UpPhoto";
+        const String UpPhotoPath = @"~/Desktop/UpPhoto";
+        const String UpPhotoCaption = @"Uploaded using UpPhoto";
         const String DownloadedPhotoExtension = @".png";
 
         static FacebookInterfaces()
@@ -51,11 +51,11 @@ namespace UpPhoto
         public static AID GetAlbumAID(String AlbumName)
         {
             IList<album> albums = fbService.Photos.GetAlbums();
-            foreach (album album in albums)
+            foreach (album x in albums)
             {
-                if (album.name == AlbumName)
+                if (x.name == AlbumName)
                 {
-                    return new AID(album.aid);
+                    return new AID(x.aid);
                 }
             }
             return null;
