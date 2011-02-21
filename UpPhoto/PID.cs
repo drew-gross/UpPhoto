@@ -5,6 +5,7 @@ using System.Text;
 
 namespace UpPhoto
 {
+    [Serializable]
     public class PID
     {
         public String pidStr = String.Empty;
