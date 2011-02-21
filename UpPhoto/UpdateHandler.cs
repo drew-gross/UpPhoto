@@ -161,6 +161,7 @@ namespace UpPhoto
                 pauseDownloadThread = true;
                 foreach (PID pid in allPIDs)
                 {
+                    System.Windows.Forms.Application.DoEvents();//prevents ContextSwitchingDeadlocks
                     if (!parent.HasPhoto(pid))
                     {
                         lock (downloadQueue)
