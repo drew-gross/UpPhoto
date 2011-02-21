@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace UpPhoto
 {
-    public class UpPhotoGUI : Form
+    public class UpPhotoGUI : Control
     {
         private System.ComponentModel.IContainer components = new Container();
         ComponentResourceManager trayIcons = new ComponentResourceManager(typeof(SystemTrayIcons));
@@ -31,7 +31,6 @@ namespace UpPhoto
 
             UpPhotoTrayMenu = new ContextMenuStrip(components);
             UpPhotoTrayMenu.SuspendLayout();
-            SuspendLayout();
 
             UpPhotoTrayMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] 
             {
@@ -68,7 +67,6 @@ namespace UpPhoto
             //Copied from the forms designer stuff... not sure how much of this is necessary
 
             UpPhotoTrayMenu.ResumeLayout(false);
-            ResumeLayout(false);
         }
 
         protected override void Dispose(bool disposing)
