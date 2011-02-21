@@ -66,12 +66,6 @@ namespace UpPhoto
             UpPhotoIcon.Click += new System.EventHandler(TrayIcon_Click);
             
             //Copied from the forms designer stuff... not sure how much of this is necessary
-            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(284, 264);
-            Name = "MainWindow";
-            ShowInTaskbar = false;
-
 
             UpPhotoTrayMenu.ResumeLayout(false);
             ResumeLayout(false);
@@ -79,11 +73,11 @@ namespace UpPhoto
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
+             if (disposing && (components != null))
+             {
+                 components.Dispose();
+             }
+             base.Dispose(disposing);
         }
 
         public void SetTrayIcon(String iconPath)
@@ -94,19 +88,19 @@ namespace UpPhoto
 
         public void AddWatchedFolder(WatchedFolder newFolder)
         {
-            AddWatchedFolderItem.DropDownItems.Add(newFolder.menuItem);
+            WatchFolderItem.DropDownItems.Add(newFolder.menuItem);
         }
 
         public void RemoveWatchedFolder(WatchedFolder oldFolder)
         {
-            AddWatchedFolderItem.DropDownItems.Remove(oldFolder.menuItem);
+            WatchFolderItem.DropDownItems.Remove(oldFolder.menuItem);
         }
 
         private void ExitItem_Click(object sender, EventArgs e)
         {
             parent.updateHandler.StopThreads();
             parent.SaveData();
-            Close();
+            Application.Exit();
         }
 
         private void ChangeAccountItem_Click(object sender, EventArgs e)

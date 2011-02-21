@@ -46,7 +46,7 @@ namespace UpPhoto
             detectPIDthread.SetApartmentState(ApartmentState.STA);
             detectPIDthread.Start();
 
-            Application.Run(gui);
+            Application.Run();
         }
 
         public void SetUploadingStatus(bool newStatus)
