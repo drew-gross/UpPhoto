@@ -18,6 +18,11 @@ namespace UpPhoto
     public partial class MainWindow
     {
         public UpPhotoGUI gui;
+        const String IdleIconPath = "Idle";
+        const String UploadingIconPath = "Uploading";
+        const String DownloadingIconPath = "Downloading";
+        const String UploadingAndDownloadingIconPath = "UploadingAndDownloading";
+        const String NotConnectedIconPath = "NotConnected";
 
         List<WatchedFolder> watchList = new List<WatchedFolder>();
         Dictionary<PID, String> AllPhotos; //initialized in LoadData;
@@ -30,17 +35,18 @@ namespace UpPhoto
         const String SavedDataPath = @"UpPhotoData.upd";
         public MainWindow()
         {
-            gui = new UpPhotoGUI(this);
+            updateHandler = new UpdateHandler(this);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(gui);
+            gui = new UpPhotoGUI(this);
 
-            updateHandler = new UpdateHandler(this);
             LoadData();
             Thread detectPIDthread = new Thread(updateHandler.SnycPhotos);
             detectPIDthread.SetApartmentState(ApartmentState.STA);
             detectPIDthread.Start();
+
+            Application.Run(gui);
         }
 
         public void SetUploadingStatus(bool newStatus)
@@ -82,7 +88,7 @@ namespace UpPhoto
             Directory.CreateDirectory(path);
             WatchedFolder watcher = new WatchedFolder(path, this);
             watchList.Add(watcher);
-            WatchFolderItem.DropDownItems.Add(watcher.menuItem);
+            gui.AddWatchedFolder(watcher);
         }
 
         public void WatchFolders(List<String> paths)
@@ -95,7 +101,7 @@ namespace UpPhoto
 
         public void UnwatchFolder(WatchedFolder folder)
         {
-            WatchFolderItem.DropDownItems.Remove(folder.menuItem);
+            gui.RemoveWatchedFolder(folder);
             watchList.Remove(folder);
         }
 
@@ -182,25 +188,24 @@ namespace UpPhoto
         {
             if (!Connected)
             {
-                UpPhotoIcon.Icon = ((System.Drawing.Icon)(trayIcons.GetObject(NotConnectedIconPath)));
                 return;
             }
             if (Uploading && Downloading)
             {
-                UpPhotoIcon.Icon = ((System.Drawing.Icon)(trayIcons.GetObject(UploadingAndDownloadingIconPath)));
+                gui.SetTrayIcon(UploadingAndDownloadingIconPath);
                 return;
             }
             if (Uploading)
             {
-                UpPhotoIcon.Icon = ((System.Drawing.Icon)(trayIcons.GetObject(UploadingIconPath)));
+                gui.SetTrayIcon(UploadingIconPath);
                 return;
             }
             if (Downloading)
             {
-                UpPhotoIcon.Icon = ((System.Drawing.Icon)(trayIcons.GetObject(DownloadingIconPath)));
+                gui.SetTrayIcon(DownloadingIconPath);
                 return;
             }
-            UpPhotoIcon.Icon = ((System.Drawing.Icon)(trayIcons.GetObject(IdleIconPath)));
+            gui.SetTrayIcon(IdleIconPath);
         }
     }
 }

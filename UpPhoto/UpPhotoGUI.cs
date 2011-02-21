@@ -11,11 +11,6 @@ namespace UpPhoto
     {
         private System.ComponentModel.IContainer components = new Container();
         ComponentResourceManager trayIcons = new ComponentResourceManager(typeof(SystemTrayIcons));
-        const String IdleIconPath = "Idle";
-        const String UploadingIconPath = "Uploading";
-        const String DownloadingIconPath = "Downloading";
-        const String UploadingAndDownloadingIconPath = "UploadingAndDownloading";
-        const String NotConnectedIconPath = "NotConnected";
 
         MainWindow parent;
 
@@ -33,6 +28,8 @@ namespace UpPhoto
         {
             parent = newParent;
             UpPhotoIcon = new NotifyIcon(components);
+
+            UpPhotoTrayMenu = new ContextMenuStrip(components);
             UpPhotoTrayMenu.SuspendLayout();
             SuspendLayout();
 
@@ -64,10 +61,20 @@ namespace UpPhoto
 
             UpPhotoIcon.BalloonTipText = "UpPhoto";
             UpPhotoIcon.ContextMenuStrip = UpPhotoTrayMenu;
-            UpPhotoIcon.Icon = ((System.Drawing.Icon)(trayIcons.GetObject(NotConnectedIconPath)));
             UpPhotoIcon.Text = "UpPhoto";
             UpPhotoIcon.Visible = true;
             UpPhotoIcon.Click += new System.EventHandler(TrayIcon_Click);
+            
+            //Copied from the forms designer stuff... not sure how much of this is necessary
+            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(284, 264);
+            Name = "MainWindow";
+            ShowInTaskbar = false;
+
+
+            UpPhotoTrayMenu.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         protected override void Dispose(bool disposing)
@@ -77,6 +84,22 @@ namespace UpPhoto
                 components.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public void SetTrayIcon(String iconPath)
+        {
+            var newIcon = trayIcons.GetObject(iconPath);
+            UpPhotoIcon.Icon = ((System.Drawing.Icon)(newIcon));
+        }
+
+        public void AddWatchedFolder(WatchedFolder newFolder)
+        {
+            AddWatchedFolderItem.DropDownItems.Add(newFolder.menuItem);
+        }
+
+        public void RemoveWatchedFolder(WatchedFolder oldFolder)
+        {
+            AddWatchedFolderItem.DropDownItems.Remove(oldFolder.menuItem);
         }
 
         private void ExitItem_Click(object sender, EventArgs e)
@@ -103,7 +126,7 @@ namespace UpPhoto
             DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                WatchFolder(dialog.SelectedPath);
+                parent.WatchFolder(dialog.SelectedPath);
             }
         }
 
