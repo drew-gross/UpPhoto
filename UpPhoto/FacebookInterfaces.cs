@@ -24,11 +24,6 @@ namespace UpPhoto
             ConnectToFacebook();
         }
 
-        static void PublishAsyncCompleted(string result, Object state, FacebookException e)
-        {
-
-        }
-
         public static void ConnectToFacebook()
         {
             fbService.ApplicationKey = "120183071389019";
@@ -104,16 +99,6 @@ namespace UpPhoto
         public static String AlbumName(String aid)
         {
             return fbService.Photos.GetAlbums(0, new List<String> { aid })[0].name;
-        }
-
-        private static void CreateAlbumCallback(album album, object state, FacebookException e)
-        {
-
-        }
-
-        private static void UploadCallback(photo p, object state, FacebookException e)
-        {
-
         }
 
         private static void PhotoTagger(string photoPid)
