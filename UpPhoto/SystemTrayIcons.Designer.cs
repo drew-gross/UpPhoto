@@ -88,9 +88,9 @@ namespace UpPhoto {
             }
         }
         
-        internal static System.Drawing.Icon UpoadingAndDownloading {
+        internal static System.Drawing.Icon UploadingAndDownloading {
             get {
-                object obj = ResourceManager.GetObject("UpoadingAndDownloading", resourceCulture);
+                object obj = ResourceManager.GetObject("UploadingAndDownloading", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
