@@ -18,13 +18,6 @@ namespace UpPhoto
     public partial class MainWindow
     {
         public UpPhotoGUI gui;
-        ComponentResourceManager trayIcons = new ComponentResourceManager(typeof(SystemTrayIcons));
-
-        const String IdleIconPath = "Idle";
-        const String UploadingIconPath = "Uploading";
-        const String DownloadingIconPath = "Downloading";
-        const String UploadingAndDownloadingIconPath = "UploadingAndDownloading";
-        const String NotConnectedIconPath = "NotConnected";
 
         List<WatchedFolder> watchList = new List<WatchedFolder>();
         Dictionary<PID, String> AllPhotos; //initialized in LoadData;
@@ -116,17 +109,6 @@ namespace UpPhoto
             return ret;
         }
 
-        private void ChangeAccountItem_Click(object sender, EventArgs e)
-        {
-            // Logout, then show prompt again.
-            throw new NotImplementedException();
-        }
-
-        private void LogoutItem_Click(object sender, EventArgs e)
-        {
-            FacebookInterfaces.LogOut();
-        }
-
         public void SaveData()
         {
             SavedData data = new SavedData(WatchedFolderPaths(), AllPhotos);
@@ -156,26 +138,6 @@ namespace UpPhoto
                 //Bad save file :( needs a better handling method
                 WatchFolder(UpPhotoPath());
                 AllPhotos = new Dictionary<PID, String>();
-            }
-        }
-
-        private void UpPhotoTrayMenu_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void MainWindow_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AddWatchedFolderItem_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            DialogResult result = dialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                WatchFolder(dialog.SelectedPath);
             }
         }
 
@@ -215,12 +177,6 @@ namespace UpPhoto
         //allows left click on icon to open menu
         [DllImport("User32.dll", ExactSpelling = true, CharSet = CharSet.Auto)]
         public static extern bool SetForegroundWindow(HandleRef hWnd);
-
-        private void TrayIcon_Click(object sender, EventArgs e)
-        {
-            //SetForegroundWindow(new HandleRef(this, this.Handle));
-            //UpPhotoTrayMenu.Show(this, this.PointToClient(Cursor.Position));
-        }
 
         private void UpdateTrayIcon()
         {
