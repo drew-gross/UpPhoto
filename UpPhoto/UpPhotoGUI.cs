@@ -24,6 +24,8 @@ namespace UpPhoto
 
         NotifyIcon UpPhotoIcon;
 
+        Dictionary<WatchedFolder, ToolStripMenuItem> menuItemMap = new Dictionary<WatchedFolder, ToolStripMenuItem>();
+
         public UpPhotoGUI(MainWindow newParent)
         {
             Application.EnableVisualStyles();
@@ -86,12 +88,23 @@ namespace UpPhoto
 
         public void AddWatchedFolder(WatchedFolder newFolder)
         {
-            WatchFolderItem.DropDownItems.Add(newFolder.menuItem);
+            ToolStripMenuItem menuItem = new ToolStripMenuItem(newFolder.Path());
+
+            ToolStripMenuItem UnwatchItem = new ToolStripMenuItem("Unwatch");
+            UnwatchItem.Click += new EventHandler(newFolder.UnwatchItem_Click);
+            menuItem.DropDownItems.Add(UnwatchItem);
+
+            ToolStripMenuItem ViewItem = new ToolStripMenuItem("View");
+            ViewItem.Click += new EventHandler(newFolder.ViewItem_Click);
+            menuItem.DropDownItems.Add(ViewItem);
+
+            WatchFolderItem.DropDownItems.Add(menuItem);
+            menuItemMap[newFolder] = menuItem;
         }
 
         public void RemoveWatchedFolder(WatchedFolder oldFolder)
         {
-            WatchFolderItem.DropDownItems.Remove(oldFolder.menuItem);
+            WatchFolderItem.DropDownItems.Remove(menuItemMap[oldFolder]);
         }
 
         private void ExitItem_Click(object sender, EventArgs e)
