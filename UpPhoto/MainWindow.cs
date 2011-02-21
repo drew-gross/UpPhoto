@@ -40,9 +40,6 @@ namespace UpPhoto
             gui = new UpPhotoGUI(this);
 
             LoadData();
-            Thread detectPIDthread = new Thread(updateHandler.SnycPhotos);
-            detectPIDthread.SetApartmentState(ApartmentState.STA);
-            detectPIDthread.Start();
 
             Application.Run();
         }

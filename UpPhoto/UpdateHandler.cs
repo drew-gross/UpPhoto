@@ -36,6 +36,11 @@ namespace UpPhoto
         public UpdateHandler(MainWindow newParent)
         {
             parent = newParent;
+
+            Thread detectPIDthread = new Thread(SnycPhotos);
+            detectPIDthread.SetApartmentState(ApartmentState.STA);
+            detectPIDthread.Start();
+
             uploadThread = new Thread(UploadPhotos);
             uploadThread.SetApartmentState(ApartmentState.STA);
             uploadThread.Start();
