@@ -32,7 +32,7 @@ namespace UpPhoto
                                    NotifyFilters.DirectoryName |
                                    NotifyFilters.LastAccess;
 
-            watcher.SynchronizingObject = parent;
+            watcher.SynchronizingObject = parent.gui;
 
             watcher.Changed += new FileSystemEventHandler(FileChangedEvent);
             //watcher.Renamed += new FileSystemEventHandler(handler.FaceboxWatcher_Renamed);

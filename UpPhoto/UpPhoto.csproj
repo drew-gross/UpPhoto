@@ -101,7 +101,9 @@
     <Compile Include="SavedData.cs" />
     <Compile Include="StringUtils.cs" />
     <Compile Include="UpdateHandler.cs" />
-    <Compile Include="UpPhotoGUI.cs" />
+    <Compile Include="UpPhotoGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WatchedFolder.cs" />
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>

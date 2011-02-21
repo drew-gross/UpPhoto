@@ -7,13 +7,44 @@ using System.ComponentModel;
 
 namespace UpPhoto
 {
-    class UpPhotoGUI : Form
+    public class UpPhotoGUI : Form
     {
-        ComponentResourceManager trayIcons = new ComponentResourceManager(typeof(SystemTrayIcons));
+        private System.ComponentModel.IContainer components = new Container();
 
-        public UpPhotoGUI()
+        MainWindow parent;
+
+        ContextMenuStrip UpPhotoTrayMenu;
+
+        ToolStripMenuItem ChangeAccountItem = new ToolStripMenuItem();
+        ToolStripMenuItem LogoutItem = new ToolStripMenuItem();
+        ToolStripMenuItem WatchFolderItem = new ToolStripMenuItem();
+            ToolStripMenuItem AddWatchedFolderItem = new ToolStripMenuItem();
+        ToolStripMenuItem ExitItem = new ToolStripMenuItem();
+
+        NotifyIcon UpPhotoIcon;
+
+        public UpPhotoGUI(MainWindow newParent)
         {
+            parent = newParent;
+            UpPhotoIcon = new NotifyIcon(components);
+            this.UpPhotoTrayMenu.SuspendLayout();
+            this.SuspendLayout();
+        }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private void ExitItem_Click(object sender, EventArgs e)
+        {
+            parent.updateHandler.StopThreads();
+            parent.SaveData();
+            Close();
         }
     }
 }

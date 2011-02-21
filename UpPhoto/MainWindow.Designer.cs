@@ -2,10 +2,6 @@
 {
     partial class MainWindow
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -20,17 +16,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            this.UpPhotoTrayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ChangeAccountItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LogoutItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.WatchFolderItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AddWatchedFolderItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ExitItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.UpPhotoIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.UpPhotoTrayMenu.SuspendLayout();
-            this.SuspendLayout();
             // 
             // UpPhotoTrayMenu
             // 
@@ -95,8 +81,6 @@
             this.ClientSize = new System.Drawing.Size(284, 264);
             this.Name = "MainWindow";
             this.ShowInTaskbar = false;
-            this.Text = "Form1";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.UpPhotoTrayMenu.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -17,7 +17,8 @@ namespace UpPhoto
 {
     public partial class MainWindow
     {
-        UpPhotoGUI gui = new UpPhotoGUI();
+        public UpPhotoGUI gui;
+        ComponentResourceManager trayIcons = new ComponentResourceManager(typeof(SystemTrayIcons));
 
         const String IdleIconPath = "Idle";
         const String UploadingIconPath = "Uploading";
@@ -36,7 +37,12 @@ namespace UpPhoto
         const String SavedDataPath = @"UpPhotoData.upd";
         public MainWindow()
         {
-            InitializeComponent();
+            gui = new UpPhotoGUI(this);
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(gui);
+
             updateHandler = new UpdateHandler(this);
             LoadData();
             Thread detectPIDthread = new Thread(updateHandler.SnycPhotos);
@@ -62,18 +68,6 @@ namespace UpPhoto
             UpdateTrayIcon();
         }
 
-        //Removes the "Form1" window from the alt-tab box
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                // Turn on WS_EX_TOOLWINDOW style bit
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x80;
-                return cp;
-            }
-        }
-
         public void ResumeWatchers()
         {
             foreach (WatchedFolder watcher in watchList)
@@ -88,15 +82,6 @@ namespace UpPhoto
             {
                 watcher.DisableWatching();
             }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
         }
 
         public void WatchFolder(String path)
@@ -142,14 +127,7 @@ namespace UpPhoto
             FacebookInterfaces.LogOut();
         }
 
-        private void ExitItem_Click(object sender, EventArgs e)
-        {
-            updateHandler.StopThreads();
-            SaveData();
-            Close();
-        }
-
-        private void SaveData()
+        public void SaveData()
         {
             SavedData data = new SavedData(WatchedFolderPaths(), AllPhotos);
             Stream dataStream = File.Open(SavedDataPath, FileMode.Create);
