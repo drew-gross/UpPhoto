@@ -62,6 +62,7 @@ namespace UpPhoto
                 parent.SetUploadingStatus(false);
                 while (uploadQueue.Count > 0 && abortUploadThread == false)
                 {
+                    System.Windows.Forms.Application.DoEvents();//prevents ContextSwitchingDeadlocks
                     parent.SetUploadingStatus(true);
                     while (pauseUploadThread == true)
                     {
@@ -89,6 +90,7 @@ namespace UpPhoto
                 parent.SetDownloadingStatus(false);
                 while (downloadQueue.Count > 0 && abortDownloadThread == false)
                 {
+                    System.Windows.Forms.Application.DoEvents();//prevents ContextSwitchingDeadlocks
                     parent.SetDownloadingStatus(true);
                     while (pauseDownloadThread == true)
                     {
