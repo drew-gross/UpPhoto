@@ -37,8 +37,6 @@ namespace UpPhoto
         {
             updateHandler = new UpdateHandler(this);
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
             gui = new UpPhotoGUI(this);
 
             LoadData();

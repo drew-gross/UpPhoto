@@ -98,7 +98,9 @@
     <Compile Include="SavedData.cs" />
     <Compile Include="StringUtils.cs" />
     <Compile Include="UpdateHandler.cs" />
-    <Compile Include="UpPhotoGUI.cs" />
+    <Compile Include="UpPhotoGUI.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="WatchedFolder.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

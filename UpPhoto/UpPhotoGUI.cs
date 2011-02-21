@@ -26,6 +26,8 @@ namespace UpPhoto
 
         public UpPhotoGUI(MainWindow newParent)
         {
+            Application.EnableVisualStyles();
+
             parent = newParent;
             UpPhotoIcon = new NotifyIcon(components);
 
@@ -63,8 +65,6 @@ namespace UpPhoto
             UpPhotoIcon.Text = "UpPhoto";
             UpPhotoIcon.Visible = true;
             UpPhotoIcon.Click += new System.EventHandler(TrayIcon_Click);
-            
-            //Copied from the forms designer stuff... not sure how much of this is necessary
 
             UpPhotoTrayMenu.ResumeLayout(false);
         }
