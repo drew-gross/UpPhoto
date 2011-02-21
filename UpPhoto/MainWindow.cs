@@ -15,9 +15,10 @@ using System.Runtime.InteropServices;
 
 namespace UpPhoto
 {
-    public partial class MainWindow : Form
+    public partial class MainWindow
     {
-        ComponentResourceManager trayIcons = new ComponentResourceManager(typeof(SystemTrayIcons));
+        UpPhotoGUI gui = new UpPhotoGUI();
+
         const String IdleIconPath = "Idle";
         const String UploadingIconPath = "Uploading";
         const String DownloadingIconPath = "Downloading";
