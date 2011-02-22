@@ -212,9 +212,10 @@ namespace UpPhoto
 
         static public String UpPhotoPath()
         {
-            String result = Application.ExecutablePath;
-            result = StringUtils.GetFullFolderPathFromPath(result);
-            return result + @"\Facebook\Photos\";
+            String result = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\UpPhoto\";
+            if (!System.IO.Directory.Exists(result))
+                System.IO.Directory.CreateDirectory(result);
+            return result;
         }
 
         public void WatchersIgnoreFile(String path)
