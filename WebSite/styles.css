@@ -11,8 +11,6 @@
 	background-position:center top;
 	margin-left:auto;
 	margin-right:auto;
-	margin-top:auto;
-	margin-bottom:auto;
 	width:800px;
 	height:600px;
 }
@@ -25,8 +23,16 @@
 
 #Info
 {
+	text-indent:40px;
 	margin-left:20px;
 	margin-right:20px;
 	text-align:left;
 	font-size:14px;
+}
+
+#Footer
+{
+	
+	text-align:center;
+	font-size:10px;
 }
