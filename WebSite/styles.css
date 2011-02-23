@@ -2,6 +2,7 @@
 {
 	font-family:Helvitcal,Verdana,sans-serif;
 	background-image:url('bg.png');
+	height:100%;
 }
 
 #Main
@@ -32,7 +33,6 @@
 
 #Footer
 {
-	
 	text-align:center;
 	font-size:10px;
 }
