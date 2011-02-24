@@ -5,8 +5,6 @@
 <link type="text/css" rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<form action="index.php" method="post"><input type="text" name="in1" />
-<input type="submit" /></form>
 <div id="Background">
 <div id="Main">Up-Photo
 <div id="Info"><?php
