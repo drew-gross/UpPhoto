@@ -11,12 +11,14 @@
 <?php
 if (!isset($_POST["comments"]))
 {
-echo "<p>
-<form action=\"contact.php\" method=\"post\">
-Type your comments: <input type=\"text\" name=\"comments\" />
-<input type=\"submit\" value=\"Send your comments\">
+?>
+<p>
+<form action="contact.php" method="post">
+<textarea name="comments" rows="15" cols="40">Enter your comments here.</textarea><br />
+<input type="submit" value="Send your comments" />
 </form>
-</p>";
+</p>
+<?php 
 }
 else 
 {
