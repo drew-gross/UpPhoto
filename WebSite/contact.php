@@ -13,11 +13,9 @@
                     <a href="mailto:help@up-photo.net">Technical Support</a>
                 </p>
             </div>
-        </div>
-        <div id="Footer">
-            <a href="index.html">Home</a> <a href="contact.html">Contact</a> <a href="about.html">
-                About us</a> <a href="advertising.html">Advertizing</a>
-        </div>
+        </div><?php
+        require("footer.php"); 
+        ?>
     </div>
 </body>
 </html>

@@ -15,11 +15,9 @@
                     was a useful app, we decided to polish it and release it.
                 </p>
             </div>
-        </div>
-        <div id="Div1">
-            <a href="index.html">Home</a> <a href="contact.html">Contact</a> <a href="about.html">
-                About us</a> <a href="advertising.html">Advertizing</a>
-        </div>
+        </div><?php
+        require("footer.php"); 
+        ?>
     </div>
 </body>
 </html>
