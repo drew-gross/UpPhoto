@@ -6,25 +6,26 @@
 </head>
 <body>
 <div id="Background">
-<div id="Main">Up-Photo
-<div id="Info">
+<div id="Main">Up-Photo<div id="Info">
 <?php
 if (!isset($_POST["comments"]))
 {
 ?>
-<p>
+<div id="Centered">
 <form action="contact.php" method="post">
 <textarea name="comments" rows="15" cols="40">Enter your comments here.</textarea><br />
 <input type="submit" value="Send your comments" />
 </form>
-</p>
+</div>
 <?php 
 }
 else 
 {
 $comments = fopen("comments.txt", "a");
 fwrite($comments, $_POST["comments"]);
-echo "<p>Thank you for your comments.</p>";
+?>
+<p>Thank you for your comments.</p>
+<?php
 }
 ?>
 </div>
