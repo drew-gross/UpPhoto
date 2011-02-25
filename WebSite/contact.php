@@ -8,23 +8,27 @@
 <div id="Background">
 <div id="Main">Up-Photo<div id="Info">
 <?php
-if (!isset($_POST["comments"]))
+if (isset($_REQUEST["comment"]))
 {
+mail("drew.a.gross@gmail.com", "UpPhoto comment", $_REQUEST["comment"]);
 ?>
-<div id="Centered">
-<form action="contact.php" method="post">
-<textarea name="comments" rows="15" cols="40">Enter your comments here.</textarea><br />
-<input type="submit" value="Send your comments" />
-</form>
-</div>
-<?php 
+<p>Thank you for your comments!</p>
+<?php
 }
 else 
 {
-$comments = fopen("comments.txt", "a");
-fwrite($comments, $_POST["comments"]);
 ?>
-<p>Thank you for your comments.</p>
+<p>
+<div id="Centered">
+<p>
+Send us a comment about UpPhoto.
+</p>
+<form action="contact.php" method="post">
+<textarea name="comment" rows="15" cols="40">Enter your comments here.</textarea><br />
+<input type="submit" value="Send your comments" />
+</form>
+</div>
+</p>
 <?php
 }
 ?>
