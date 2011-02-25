@@ -16,8 +16,14 @@ echo "<p>UpPhoto is a fast and easy photo uploader for facebook. With UpPhoto, t
 					 all the photos from your digital camera whenever you plug it in, or from your webcam
 					 whenever you take a photo, and you don't need to do a thing.</p>";
 ?>
-<p>UpPhoto is not available yet, if you are interested, check back in a
-week or two.</p>
+</div>
+<div id="DLbuttons">
+<div id="windows">
+<img src="download_for_windows.png" />
+</div>
+<div id="mac">
+<img src="download_for_mac.png" />
+</div>
 </div>
 </div>
 <?php 

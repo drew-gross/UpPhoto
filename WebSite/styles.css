@@ -41,3 +41,19 @@ body
 {
 	text-align:center;
 }
+
+#DLbuttons
+{
+	position:relative;
+}
+
+#windows
+{
+	float:left;
+	width:400px;
+}
+
+#mac
+{
+
+}
