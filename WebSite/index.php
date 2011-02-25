@@ -30,10 +30,10 @@
 						</a>
 					</div>
 				</div>
-				<?php
-				require("footer.php");
-				?>
 			</div>
+			<?php
+			require("footer.php");
+			?>
 		</div>
 	</body>
 </html>
