@@ -111,6 +111,7 @@ namespace UpPhoto
         {
             parent.updateHandler.StopThreads();
             parent.SaveData();
+            this.Dispose(true);
             Application.Exit();
         }
 
