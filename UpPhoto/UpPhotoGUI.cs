@@ -31,7 +31,6 @@ namespace UpPhoto
             Application.EnableVisualStyles();
 
             parent = newParent;
-            UpPhotoIcon = new NotifyIcon(components);
 
             UpPhotoTrayMenu = new ContextMenuStrip(components);
             UpPhotoTrayMenu.SuspendLayout();
@@ -62,6 +61,7 @@ namespace UpPhoto
             ExitItem.Text = "Exit";
             ExitItem.Click += new System.EventHandler(ExitItem_Click);
 
+            UpPhotoIcon = new NotifyIcon(components);
             UpPhotoIcon.BalloonTipText = "UpPhoto";
             UpPhotoIcon.ContextMenuStrip = UpPhotoTrayMenu;
             UpPhotoIcon.Text = "UpPhoto";
@@ -139,7 +139,7 @@ namespace UpPhoto
 
         private void TrayIcon_Click(object sender, EventArgs e)
         {
-            UpPhotoTrayMenu.Show(this, this.PointToClient(Cursor.Position));
+            
         }
     }
 }
