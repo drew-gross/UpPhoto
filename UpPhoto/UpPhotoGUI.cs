@@ -105,6 +105,7 @@ namespace UpPhoto
         public void RemoveWatchedFolder(WatchedFolder oldFolder)
         {
             WatchFolderItem.DropDownItems.Remove(menuItemMap[oldFolder]);
+            menuItemMap.Remove(oldFolder);
         }
 
         private void ExitItem_Click(object sender, EventArgs e)
