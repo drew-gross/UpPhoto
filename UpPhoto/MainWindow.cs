@@ -177,10 +177,6 @@ namespace UpPhoto
             }
         }
 
-        //allows left click on icon to open menu
-        [DllImport("User32.dll", ExactSpelling = true, CharSet = CharSet.Auto)]
-        public static extern bool SetForegroundWindow(HandleRef hWnd);
-
         private void UpdateTrayIcon()
         {
             if (!Connected)
