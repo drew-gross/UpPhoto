@@ -32,7 +32,7 @@ namespace UpPhoto
         bool Uploading = false;
         bool Downloading = false;
 
-        const String SavedDataPath = @"UpPhotoData.upd";
+        const String SavedDataPath = @"C:\UpPhotoData.upd";
         public MainWindow()
         {
             gui = new UpPhotoGUI(this);
