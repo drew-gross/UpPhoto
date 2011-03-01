@@ -42,7 +42,7 @@ namespace UpPhoto
                 ExitItem
             });
 
-            AboutItem.Text = "About";
+            AboutItem.Text = "Aboot";
             AboutItem.Click += new System.EventHandler(AboutItem_Click);
 
             ViewItem.Text = "View";
