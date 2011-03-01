@@ -15,25 +15,19 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_1C857284192CEF3B5CF7BE490DFCD8CA"
+        "MsmKey" = "8:_2F5673736555BEE854591D41B2801C21"
         "OwnerKey" = "8:_74154C0F203849CB84C41C4C22563500"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_1C857284192CEF3B5CF7BE490DFCD8CA"
-        "OwnerKey" = "8:_24A98116B68B481BF7F2108067EF54A6"
+        "MsmKey" = "8:_2F5673736555BEE854591D41B2801C21"
+        "OwnerKey" = "8:_8C260BE76A0A653CDC948E3DA2F9E48E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_24A98116B68B481BF7F2108067EF54A6"
-        "OwnerKey" = "8:_74154C0F203849CB84C41C4C22563500"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5DD5664A9E4F4EBB85B2EB1645E7F680"
+        "MsmKey" = "8:_6B214F80673440219881ADB69DD6396C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -45,6 +39,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_8C260BE76A0A653CDC948E3DA2F9E48E"
+        "OwnerKey" = "8:_74154C0F203849CB84C41C4C22563500"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2F5673736555BEE854591D41B2801C21"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_74154C0F203849CB84C41C4C22563500"
         "MsmSig" = "8:_UNDEFINED"
@@ -52,13 +58,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_24A98116B68B481BF7F2108067EF54A6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1C857284192CEF3B5CF7BE490DFCD8CA"
+        "OwnerKey" = "8:_8C260BE76A0A653CDC948E3DA2F9E48E"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -86,6 +86,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
         "Release"
@@ -110,6 +123,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -140,14 +166,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1C857284192CEF3B5CF7BE490DFCD8CA"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2F5673736555BEE854591D41B2801C21"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Facebook, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_1C857284192CEF3B5CF7BE490DFCD8CA"
+                    "_2F5673736555BEE854591D41B2801C21"
                     {
                     "Name" = "8:Facebook.DLL"
                     "Attributes" = "3:512"
@@ -171,21 +197,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_24A98116B68B481BF7F2108067EF54A6"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6B214F80673440219881ADB69DD6396C"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Facebook.Winforms, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_24A98116B68B481BF7F2108067EF54A6"
-                    {
-                    "Name" = "8:Facebook.Winforms.DLL"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Facebook.Winforms.DLL"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\UpPhotoData.upd"
+            "TargetName" = "8:UpPhotoData.upd"
             "Tag" = "8:"
             "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
             "Condition" = "8:"
@@ -193,26 +208,6 @@
             "Vital" = "11:TRUE"
             "ReadOnly" = "11:FALSE"
             "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5DD5664A9E4F4EBB85B2EB1645E7F680"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\..\\Desktop\\UpIcons\\Idle.ico"
-            "TargetName" = "8:Idle.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:TRUE"
             "System" = "11:FALSE"
             "Permanent" = "11:FALSE"
             "SharedLegacy" = "11:FALSE"
@@ -251,6 +246,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8C260BE76A0A653CDC948E3DA2F9E48E"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Facebook.Winforms, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_8C260BE76A0A653CDC948E3DA2F9E48E"
+                    {
+                    "Name" = "8:Facebook.Winforms.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Facebook.Winforms.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
         }
@@ -332,7 +358,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UpPhoto"
         "ProductCode" = "8:{6DDC5757-9C55-47E2-AB89-833BCDD95BF8}"
-        "PackageCode" = "8:{3F94712F-CEB5-4498-9627-B0461FF2AA95}"
+        "PackageCode" = "8:{9F97221B-9435-4CF8-A2D0-6025AEE69539}"
         "UpgradeCode" = "8:{77AA1ED4-1AC4-4197-A02D-29201C8F165A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
