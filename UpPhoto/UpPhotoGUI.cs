@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.ComponentModel;
+using System.Reflection;
 
 namespace UpPhoto
 {
@@ -66,7 +67,7 @@ namespace UpPhoto
             UpPhotoIcon.ContextMenuStrip = UpPhotoTrayMenu;
             UpPhotoIcon.Text = "UpPhoto";
             UpPhotoIcon.Visible = true;
-            UpPhotoIcon.Click += new System.EventHandler(TrayIcon_Click);
+            UpPhotoIcon.MouseClick += new MouseEventHandler(TrayIcon_Click);
 
             UpPhotoTrayMenu.ResumeLayout(false);
         }
@@ -137,9 +138,14 @@ namespace UpPhoto
             }
         }
 
-        private void TrayIcon_Click(object sender, EventArgs e)
+        private void TrayIcon_Click(object sender, MouseEventArgs e)
         {
-            
+            if (e.Button == MouseButtons.Left)
+            {
+                //Allows left click to open menu
+                MethodInfo mi = typeof(NotifyIcon).GetMethod("ShowContextMenu", BindingFlags.Instance | BindingFlags.NonPublic);
+                mi.Invoke(UpPhotoIcon, null);
+            }
         }
     }
 }

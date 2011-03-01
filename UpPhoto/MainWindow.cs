@@ -35,10 +35,10 @@ namespace UpPhoto
         const String SavedDataPath = @"UpPhotoData.upd";
         public MainWindow()
         {
-            updateHandler = new UpdateHandler(this);
-
             gui = new UpPhotoGUI(this);
 
+            updateHandler = new UpdateHandler(this);
+            
             LoadData();
 
             Application.Run();
