@@ -13,6 +13,7 @@ using Facebook.Utility;
 using Facebook.Winforms.Components;
 using FacebookController;
 using System.Threading;
+using System.Drawing;
 
 namespace UpPhoto
 {
@@ -81,6 +82,26 @@ namespace UpPhoto
             }
         }
 
+        private Boolean IsPhotoDownloaded(photo DownloadedPhoto)
+        {
+            try
+            {
+                foreach (String filename in Directory.GetFiles(MainWindow.UpPhotoPath() + FacebookInterfaces.AlbumName(DownloadedPhoto.aid)))
+                {
+                    Image b = Image.FromFile(filename);
+                    if (b.Equals(DownloadedPhoto.picture_big))
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                return false;
+            }
+            return false;
+        }
+
         //Only to be used by the downloadThread. Do not call directly.
         private void DownloadPhotos()
         {
@@ -102,15 +123,18 @@ namespace UpPhoto
                         try
                         {
                             photo DownloadedPhoto = FacebookInterfaces.DownloadPhoto(pidToDownload);
-                            String path = GeneratePath(DownloadedPhoto);
-                            try
+                            if (!IsPhotoDownloaded(DownloadedPhoto))
                             {
-                                SaveDownloadedPhoto(DownloadedPhoto, path);
-                            }
-                            catch (Facebook.Utility.FacebookException)
-                            {
-                                //Unable to connect to database
-                                throw;
+                                String path = GeneratePath(DownloadedPhoto);
+                                try
+                                {
+                                    SaveDownloadedPhoto(DownloadedPhoto, path);
+                                }
+                                catch (Facebook.Utility.FacebookException)
+                                {
+                                    //Unable to connect to database
+                                    throw;
+                                }
                             }
                         }
                         catch (System.Net.WebException)

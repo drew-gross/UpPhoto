@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "UpPhotoInstaller", "UpPhotoInstaller\UpPhotoInstaller.vdproj", "{D93BFC77-7B2F-48DC-8EDF-3C0EC849F8FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D93BFC77-7B2F-48DC-8EDF-3C0EC849F8FE}.Debug|Default.ActiveCfg = Debug
+		{D93BFC77-7B2F-48DC-8EDF-3C0EC849F8FE}.Debug|Default.Build.0 = Debug
+		{D93BFC77-7B2F-48DC-8EDF-3C0EC849F8FE}.Release|Default.ActiveCfg = Release
+		{D93BFC77-7B2F-48DC-8EDF-3C0EC849F8FE}.Release|Default.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
