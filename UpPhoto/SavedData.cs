@@ -20,8 +20,11 @@ namespace UpPhoto
 
         public SavedData(SerializationInfo info, StreamingContext ctxt)
         {
-            WatchedFolders = (List<String>)info.GetValue("WatchList", typeof(List<String>));
-            AllPhotos = (Dictionary<PID, String>)info.GetValue("AllPhotos", typeof(Dictionary<PID, String>));
+            lock (this)
+            {
+                WatchedFolders = (List<String>)info.GetValue("WatchList", typeof(List<String>));
+                AllPhotos = (Dictionary<PID, String>)info.GetValue("AllPhotos", typeof(Dictionary<PID, String>));
+            }
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)

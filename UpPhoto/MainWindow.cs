@@ -145,6 +145,7 @@ namespace UpPhoto
         public void AddUploadedPhoto(FacebookPhoto UploadedPhoto)
         {
             AllPhotos.Add(new PID(UploadedPhoto.pid), UploadedPhoto.path);
+            SaveData();
         }
 
         public bool HasPhoto(PID pid)

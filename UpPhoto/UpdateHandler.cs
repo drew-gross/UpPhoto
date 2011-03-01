@@ -143,6 +143,7 @@ namespace UpPhoto
             }
             return path;
         }
+
         private void SaveDownloadedPhoto(photo DownloadedPhoto, String path)
         {
             Directory.CreateDirectory(StringUtils.GetFullFolderPathFromPath(path));
