@@ -128,7 +128,7 @@ namespace UpPhoto
                         try
                         {
                             photo DownloadedPhoto = FacebookInterfaces.DownloadPhoto(pidToDownload);
-                            if (!IsPhotoDownloaded(DownloadedPhoto))
+                            //if (!IsPhotoDownloaded(DownloadedPhoto))
                             {
                                 String path = GeneratePath(DownloadedPhoto);
                                 try
