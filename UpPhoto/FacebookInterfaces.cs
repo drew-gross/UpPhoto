@@ -82,7 +82,7 @@ namespace UpPhoto
         
         public static List<PID> AllFacebookPhotos()
         {
-            //need to handle WebException
+            //need to handle WebException and FacebookException
             IList<album> albums = fbService.Photos.GetAlbums();
             List<PID> pidlist = new List<PID>();
             foreach (album album in albums)

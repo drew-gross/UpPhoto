@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
-using System.Diagnostics;
 using UpPhoto;
 using System.Runtime.Serialization;
 
@@ -73,17 +72,6 @@ namespace UpPhoto
         {
             //lets deal with changed photos the same way we deal with new photos. we add them to fb, but dont delete the original photo.
             FileCreatedEvent(sender, e);
-        }
-
-        public void UnwatchItem_Click(Object sender, EventArgs e)
-        {
-            parent.UnwatchFolder(this);
-            watcher.Dispose();
-        }
-        
-        public void ViewItem_Click(object sender, EventArgs e)
-        {
-            Process.Start(watcher.Path);
         }
 
         public string Path()

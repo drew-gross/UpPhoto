@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.ComponentModel;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace UpPhoto
 {
@@ -17,10 +18,8 @@ namespace UpPhoto
 
         ContextMenuStrip UpPhotoTrayMenu;
 
-        ToolStripMenuItem ChangeAccountItem = new ToolStripMenuItem();
-        ToolStripMenuItem LogoutItem = new ToolStripMenuItem();
-        ToolStripMenuItem WatchFolderItem = new ToolStripMenuItem();
-            ToolStripMenuItem AddWatchedFolderItem = new ToolStripMenuItem();
+        ToolStripMenuItem AboutItem = new ToolStripMenuItem();
+        ToolStripMenuItem ViewItem = new ToolStripMenuItem();
         ToolStripMenuItem ExitItem = new ToolStripMenuItem();
 
         NotifyIcon UpPhotoIcon;
@@ -38,26 +37,16 @@ namespace UpPhoto
 
             UpPhotoTrayMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] 
             {
-                ChangeAccountItem,
-                LogoutItem,
-                WatchFolderItem,
+                AboutItem,
+                ViewItem,
                 ExitItem
             });
 
-            ChangeAccountItem.Text = "Change Account";
-            ChangeAccountItem.Click += new System.EventHandler(ChangeAccountItem_Click);
+            AboutItem.Text = "About";
+            AboutItem.Click += new System.EventHandler(AboutItem_Click);
 
-            LogoutItem.Text = "Logout";
-            LogoutItem.Click += new System.EventHandler(LogoutItem_Click);
-
-            WatchFolderItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] 
-            {
-                AddWatchedFolderItem
-            });
-            WatchFolderItem.Text = "Watch Folders";
-
-            AddWatchedFolderItem.Text = "Add";
-            AddWatchedFolderItem.Click += new System.EventHandler(AddWatchedFolderItem_Click);
+            ViewItem.Text = "View";
+            ViewItem.Click += new System.EventHandler(ViewItem_Click);
 
             ExitItem.Text = "Exit";
             ExitItem.Click += new System.EventHandler(ExitItem_Click);
@@ -85,28 +74,6 @@ namespace UpPhoto
         {
             var newIcon = trayIcons.GetObject(iconPath);
             UpPhotoIcon.Icon = ((System.Drawing.Icon)(newIcon));
-        }
-
-        public void AddWatchedFolder(WatchedFolder newFolder)
-        {
-            ToolStripMenuItem menuItem = new ToolStripMenuItem(newFolder.Path());
-
-            ToolStripMenuItem UnwatchItem = new ToolStripMenuItem("Unwatch");
-            UnwatchItem.Click += new EventHandler(newFolder.UnwatchItem_Click);
-            menuItem.DropDownItems.Add(UnwatchItem);
-
-            ToolStripMenuItem ViewItem = new ToolStripMenuItem("View");
-            ViewItem.Click += new EventHandler(newFolder.ViewItem_Click);
-            menuItem.DropDownItems.Add(ViewItem);
-
-            WatchFolderItem.DropDownItems.Add(menuItem);
-            menuItemMap[newFolder] = menuItem;
-        }
-
-        public void RemoveWatchedFolder(WatchedFolder oldFolder)
-        {
-            WatchFolderItem.DropDownItems.Remove(menuItemMap[oldFolder]);
-            menuItemMap.Remove(oldFolder);
         }
 
         private void ExitItem_Click(object sender, EventArgs e)
@@ -146,6 +113,16 @@ namespace UpPhoto
                 MethodInfo mi = typeof(NotifyIcon).GetMethod("ShowContextMenu", BindingFlags.Instance | BindingFlags.NonPublic);
                 mi.Invoke(UpPhotoIcon, null);
             }
+        }
+
+        public void ViewItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(parent.WatchedFolderPaths()[0]);
+        }
+
+        public void AboutItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("www.DrewAllynGross.com/AboutUpPhoto.html");
         }
     }
 }

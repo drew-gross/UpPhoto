@@ -83,7 +83,6 @@ namespace UpPhoto
             Directory.CreateDirectory(path);
             WatchedFolder watcher = new WatchedFolder(path, this);
             watchList.Add(watcher);
-            gui.AddWatchedFolder(watcher);
         }
 
         public void WatchFolders(List<String> paths)
@@ -96,7 +95,6 @@ namespace UpPhoto
 
         public void UnwatchFolder(WatchedFolder folder)
         {
-            gui.RemoveWatchedFolder(folder);
             watchList.Remove(folder);
         }
 
