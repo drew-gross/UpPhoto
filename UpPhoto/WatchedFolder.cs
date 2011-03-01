@@ -17,8 +17,6 @@ namespace UpPhoto
         FileSystemWatcher watcher;
         List<String> IgnoreList = new List<String>();
 
-        public ToolStripMenuItem menuItem;
-
         public WatchedFolder(string path, MainWindow newParent)
         {
             parent = newParent;
@@ -32,22 +30,12 @@ namespace UpPhoto
                                    NotifyFilters.DirectoryName |
                                    NotifyFilters.LastAccess;
 
-            watcher.SynchronizingObject = parent;
+            watcher.SynchronizingObject = parent.gui;
 
             watcher.Changed += new FileSystemEventHandler(FileChangedEvent);
             //watcher.Renamed += new FileSystemEventHandler(handler.FaceboxWatcher_Renamed);
             watcher.Created += new FileSystemEventHandler(FileCreatedEvent);
             watcher.Deleted += new FileSystemEventHandler(handler.FaceboxWatcher_Deleted);
-
-            menuItem = new ToolStripMenuItem(path);
-
-            ToolStripMenuItem UnwatchItem = new ToolStripMenuItem("Unwatch");
-            UnwatchItem.Click += new EventHandler(this.UnwatchItem_Click);
-            menuItem.DropDownItems.Add(UnwatchItem);
-
-            ToolStripMenuItem ViewItem = new ToolStripMenuItem("View");
-            ViewItem.Click += new EventHandler(this.ViewItem_Click);
-            menuItem.DropDownItems.Add(ViewItem);
         }
 
         public void IgnoreFile(String path)

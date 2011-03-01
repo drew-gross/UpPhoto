@@ -37,6 +37,11 @@ namespace UpPhoto
         public UpdateHandler(MainWindow newParent)
         {
             parent = newParent;
+
+            Thread detectPIDthread = new Thread(SnycPhotos);
+            detectPIDthread.SetApartmentState(ApartmentState.STA);
+            detectPIDthread.Start();
+
             uploadThread = new Thread(UploadPhotos);
             uploadThread.SetApartmentState(ApartmentState.STA);
             uploadThread.Start();
@@ -162,6 +167,7 @@ namespace UpPhoto
             }
             return path;
         }
+
         private void SaveDownloadedPhoto(photo DownloadedPhoto, String path)
         {
             Directory.CreateDirectory(StringUtils.GetFullFolderPathFromPath(path));
@@ -180,6 +186,7 @@ namespace UpPhoto
                 pauseDownloadThread = true;
                 foreach (PID pid in allPIDs)
                 {
+                    System.Windows.Forms.Application.DoEvents();//prevents ContextSwitchingDeadlocks
                     if (!parent.HasPhoto(pid))
                     {
                         lock (downloadQueue)
