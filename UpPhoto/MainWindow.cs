@@ -32,7 +32,7 @@ namespace UpPhoto
         bool Uploading = false;
         bool Downloading = false;
 
-        const String SavedDataPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\UpPhotoData.upd\";
+        String SavedDataPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\UpPhotoData.upd";
         public MainWindow()
         {
             gui = new UpPhotoGUI(this);

@@ -15,20 +15,20 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_2F5673736555BEE854591D41B2801C21"
+        "MsmKey" = "8:_00F28AD0B381E968E58AA0CCDCEC9653"
         "OwnerKey" = "8:_74154C0F203849CB84C41C4C22563500"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_2F5673736555BEE854591D41B2801C21"
-        "OwnerKey" = "8:_8C260BE76A0A653CDC948E3DA2F9E48E"
+        "MsmKey" = "8:_5CAA351D922E652AE7211026098F20BC"
+        "OwnerKey" = "8:_74154C0F203849CB84C41C4C22563500"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_6B214F80673440219881ADB69DD6396C"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_5CAA351D922E652AE7211026098F20BC"
+        "OwnerKey" = "8:_00F28AD0B381E968E58AA0CCDCEC9653"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -39,18 +39,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8C260BE76A0A653CDC948E3DA2F9E48E"
-        "OwnerKey" = "8:_74154C0F203849CB84C41C4C22563500"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2F5673736555BEE854591D41B2801C21"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_74154C0F203849CB84C41C4C22563500"
         "MsmSig" = "8:_UNDEFINED"
@@ -58,7 +46,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8C260BE76A0A653CDC948E3DA2F9E48E"
+        "OwnerKey" = "8:_00F28AD0B381E968E58AA0CCDCEC9653"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5CAA351D922E652AE7211026098F20BC"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -166,14 +160,45 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2F5673736555BEE854591D41B2801C21"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_00F28AD0B381E968E58AA0CCDCEC9653"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Facebook.Winforms, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_00F28AD0B381E968E58AA0CCDCEC9653"
+                    {
+                    "Name" = "8:Facebook.Winforms.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Facebook.Winforms.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5CAA351D922E652AE7211026098F20BC"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Facebook, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_2F5673736555BEE854591D41B2801C21"
+                    "_5CAA351D922E652AE7211026098F20BC"
                     {
                     "Name" = "8:Facebook.DLL"
                     "Attributes" = "3:512"
@@ -195,26 +220,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6B214F80673440219881ADB69DD6396C"
-            {
-            "SourcePath" = "8:..\\UpPhotoData.upd"
-            "TargetName" = "8:UpPhotoData.upd"
-            "Tag" = "8:"
-            "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:TRUE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_74154C0F203849CB84C41C4C22563500"
@@ -246,37 +251,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8C260BE76A0A653CDC948E3DA2F9E48E"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Facebook.Winforms, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_8C260BE76A0A653CDC948E3DA2F9E48E"
-                    {
-                    "Name" = "8:Facebook.Winforms.DLL"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Facebook.Winforms.DLL"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
         }
