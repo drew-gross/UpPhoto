@@ -78,10 +78,8 @@ namespace UpPhoto
 
         private void ExitItem_Click(object sender, EventArgs e)
         {
-            parent.updateHandler.StopThreads();
-            parent.SaveData();
-            this.Dispose(true);
-            Application.Exit();
+            Dispose(true);
+            parent.QuitUpPhoto();
         }
 
         private void ChangeAccountItem_Click(object sender, EventArgs e)

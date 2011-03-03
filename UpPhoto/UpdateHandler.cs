@@ -62,28 +62,35 @@ namespace UpPhoto
         //Only to be used by the uploadThread. Do not call directly.
         private void UploadPhotos()
         {
-            while (abortUploadThread == false)
+            try
             {
-                Thread.Sleep(threadSleepTime);
-                parent.SetUploadingStatus(false);
-                while (uploadQueue.Count > 0 && abortUploadThread == false)
+                while (abortUploadThread == false)
                 {
-                    System.Windows.Forms.Application.DoEvents();//prevents ContextSwitchingDeadlocks
-                    parent.SetUploadingStatus(true);
-                    while (pauseUploadThread == true)
+                    Thread.Sleep(threadSleepTime);
+                    parent.SetUploadingStatus(false);
+                    while (uploadQueue.Count > 0 && abortUploadThread == false)
                     {
-                        Thread.Sleep(threadSleepTime);
-                    }
-                    lock (uploadQueue)
-                    {
-                        PhotoToUpload curPhoto = uploadQueue.Dequeue();
-                        photo UploadedPhoto = FacebookInterfaces.UploadPhoto(curPhoto);
-                        //if we are here, the uploading worked and we can set the tray icon to connected
-                        //if the uploading failed, an exception would have been thrown
-                        parent.SetConnectedStatus(true);
-                        parent.AddUploadedPhoto(new FacebookPhoto(UploadedPhoto, curPhoto.photoPath));
+                        System.Windows.Forms.Application.DoEvents();//prevents ContextSwitchingDeadlocks
+                        parent.SetUploadingStatus(true);
+                        while (pauseUploadThread == true)
+                        {
+                            Thread.Sleep(threadSleepTime);
+                        }
+                        lock (uploadQueue)
+                        {
+                            PhotoToUpload curPhoto = uploadQueue.Dequeue();
+                            photo UploadedPhoto = FacebookInterfaces.UploadPhoto(curPhoto);
+                            //if we are here, the uploading worked and we can set the tray icon to connected
+                            //if the uploading failed, an exception would have been thrown
+                            parent.SetConnectedStatus(true);
+                            parent.AddUploadedPhoto(new FacebookPhoto(UploadedPhoto, curPhoto.photoPath));
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                parent.LogException(ex);
             }
         }
 
@@ -110,47 +117,54 @@ namespace UpPhoto
         //Only to be used by the downloadThread. Do not call directly.
         private void DownloadPhotos()
         {
-            while (abortDownloadThread == false)
+            try
             {
-                Thread.Sleep(threadSleepTime);
-                parent.SetDownloadingStatus(false);
-                while (downloadQueue.Count > 0 && abortDownloadThread == false)
+                while (abortDownloadThread == false)
                 {
-                    System.Windows.Forms.Application.DoEvents();//prevents ContextSwitchingDeadlocks
-                    parent.SetDownloadingStatus(true);
-                    while (pauseDownloadThread == true)
+                    Thread.Sleep(threadSleepTime);
+                    parent.SetDownloadingStatus(false);
+                    while (downloadQueue.Count > 0 && abortDownloadThread == false)
                     {
-                        Thread.Sleep(threadSleepTime);
-                    }
-                    lock (downloadQueue)
-                    {
-                        PID pidToDownload = downloadQueue.Dequeue();
-                        try
+                        System.Windows.Forms.Application.DoEvents();//prevents ContextSwitchingDeadlocks
+                        parent.SetDownloadingStatus(true);
+                        while (pauseDownloadThread == true)
                         {
-                            photo DownloadedPhoto = FacebookInterfaces.DownloadPhoto(pidToDownload);
-                            //if (!IsPhotoDownloaded(DownloadedPhoto))
+                            Thread.Sleep(threadSleepTime);
+                        }
+                        lock (downloadQueue)
+                        {
+                            PID pidToDownload = downloadQueue.Dequeue();
+                            try
                             {
-                                String path = GeneratePath(DownloadedPhoto);
-                                try
+                                photo DownloadedPhoto = FacebookInterfaces.DownloadPhoto(pidToDownload);
+                                //if (!IsPhotoDownloaded(DownloadedPhoto))
                                 {
-                                    SaveDownloadedPhoto(DownloadedPhoto, path);
-                                }
-                                catch (Facebook.Utility.FacebookException)
-                                {
-                                    //Unable to connect to database
-                                    throw;
+                                    String path = GeneratePath(DownloadedPhoto);
+                                    try
+                                    {
+                                        SaveDownloadedPhoto(DownloadedPhoto, path);
+                                    }
+                                    catch (Facebook.Utility.FacebookException)
+                                    {
+                                        //Unable to connect to database
+                                        throw;
+                                    }
                                 }
                             }
-                        }
-                        catch (System.Net.WebException)
-                        {
-                            //add the photo back to the queue and try again later
-                            parent.SetConnectedStatus(false);
-                            downloadQueue.Enqueue(pidToDownload);
-                            Thread.Sleep(threadSleepTime);
+                            catch (System.Net.WebException)
+                            {
+                                //add the photo back to the queue and try again later
+                                parent.SetConnectedStatus(false);
+                                downloadQueue.Enqueue(pidToDownload);
+                                Thread.Sleep(threadSleepTime);
+                            }
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                parent.LogException(ex);
             }
         }
 
@@ -200,6 +214,10 @@ namespace UpPhoto
             catch (System.Net.WebException)
             {
                 parent.SetConnectedStatus(false);
+            }
+            catch (Exception ex)
+            {
+                parent.LogException(ex);
             }
         }
 

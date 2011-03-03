@@ -33,12 +33,18 @@ namespace UpPhoto
         bool Downloading = false;
 
         String SavedDataPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\UpPhotoData.upd";
+        String ErrorLogFilePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\UpPhotoError.log";
+
         public MainWindow()
         {
+            Application.ThreadException += new ThreadExceptionEventHandler(GlobalThreadExceptionHandler);
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalUnhandledExceptionHandler);
+
             gui = new UpPhotoGUI(this);
 
             updateHandler = new UpdateHandler(this);
-            
+
             LoadData();
 
             Application.Run();
@@ -115,6 +121,13 @@ namespace UpPhoto
             BinaryFormatter formatter = new BinaryFormatter();
             formatter.Serialize(dataStream, data);
             dataStream.Close();
+        }
+
+        public void QuitUpPhoto()
+        {
+            updateHandler.StopThreads();
+            SaveData();
+            Application.Exit();
         }
 
         private void LoadData()
@@ -197,6 +210,33 @@ namespace UpPhoto
                 return;
             }
             gui.SetTrayIcon(IdleIconPath);
+        }
+
+        private void GlobalUnhandledExceptionHandler(Object sender, UnhandledExceptionEventArgs t)
+        {
+            LogException((System.Exception)t.ExceptionObject);
+        }
+
+        private void GlobalThreadExceptionHandler(Object sender, System.Threading.ThreadExceptionEventArgs t)
+        {
+            LogException(t.Exception);
+        }
+
+        public void LogException(System.Exception ex)
+        {
+            try
+            {
+                // Write the string to a file.
+                System.IO.StreamWriter file = new System.IO.StreamWriter(ErrorLogFilePath, true);
+                file.WriteLine(ex.ToString());
+                file.Close();
+                QuitUpPhoto();
+            }
+            catch (Exception)
+            {
+                //can't write to logfile :(
+                QuitUpPhoto();
+            }
         }
     }
 }
