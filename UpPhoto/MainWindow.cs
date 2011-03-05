@@ -215,11 +215,13 @@ namespace UpPhoto
         private void GlobalUnhandledExceptionHandler(Object sender, UnhandledExceptionEventArgs t)
         {
             LogException((System.Exception)t.ExceptionObject);
+            QuitUpPhoto();
         }
 
         private void GlobalThreadExceptionHandler(Object sender, System.Threading.ThreadExceptionEventArgs t)
         {
             LogException(t.Exception);
+            QuitUpPhoto();
         }
 
         public void LogException(System.Exception ex)
@@ -230,12 +232,10 @@ namespace UpPhoto
                 System.IO.StreamWriter file = new System.IO.StreamWriter(ErrorLogFilePath, true);
                 file.WriteLine(ex.ToString());
                 file.Close();
-                QuitUpPhoto();
             }
             catch (Exception)
             {
                 //can't write to logfile :(
-                QuitUpPhoto();
             }
         }
     }
