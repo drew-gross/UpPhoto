@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpPhoto", "UpPhoto\UpPhoto.csproj", "{E605AC8F-F302-449D-9E5F-6D604366F07A}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "UpPhotoInstaller", "UpPhotoInstaller\UpPhotoInstaller.vdproj", "{FDCC85DE-AA14-4289-916A-E8D97C24967B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{E605AC8F-F302-449D-9E5F-6D604366F07A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E605AC8F-F302-449D-9E5F-6D604366F07A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E605AC8F-F302-449D-9E5F-6D604366F07A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Debug|Any CPU.ActiveCfg = Debug
+		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Debug|Any CPU.Build.0 = Debug
+		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Release|Any CPU.ActiveCfg = Release
+		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

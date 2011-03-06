@@ -120,7 +120,7 @@ namespace UpPhoto
 
         public void AboutItem_Click(object sender, EventArgs e)
         {
-            Process.Start("www.DrewAllynGross.com/AboutUpPhoto.html");
+            Process.Start("www.upphoto.ca");
         }
     }
 }

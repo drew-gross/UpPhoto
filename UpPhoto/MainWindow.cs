@@ -17,6 +17,12 @@ namespace UpPhoto
 {
     public partial class MainWindow
     {
+        enum Status
+        {
+            Running,
+            Exiting
+        }
+
         public UpPhotoGUI gui;
         const String IdleIconPath = "Idle";
         const String UploadingIconPath = "Uploading";
@@ -31,6 +37,8 @@ namespace UpPhoto
         bool Connected = true;
         bool Uploading = false;
         bool Downloading = false;
+
+        MainWindow.Status status = MainWindow.Status.Running;
 
         String SavedDataPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\UpPhotoData.upd";
         String ErrorLogFilePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\UpPhotoError.log";
@@ -48,6 +56,9 @@ namespace UpPhoto
             LoadData();
 
             Application.Run();
+
+            updateHandler.StopThreads();
+            SaveData();
         }
 
         public void SetUploadingStatus(bool newStatus)
@@ -125,8 +136,7 @@ namespace UpPhoto
 
         public void QuitUpPhoto()
         {
-            updateHandler.StopThreads();
-            SaveData();
+            SetStatus(MainWindow.Status.Exiting);
             Application.Exit();
         }
 
@@ -215,13 +225,11 @@ namespace UpPhoto
         private void GlobalUnhandledExceptionHandler(Object sender, UnhandledExceptionEventArgs t)
         {
             LogException((System.Exception)t.ExceptionObject);
-            QuitUpPhoto();
         }
 
         private void GlobalThreadExceptionHandler(Object sender, System.Threading.ThreadExceptionEventArgs t)
         {
             LogException(t.Exception);
-            QuitUpPhoto();
         }
 
         public void LogException(System.Exception ex)
@@ -232,11 +240,17 @@ namespace UpPhoto
                 System.IO.StreamWriter file = new System.IO.StreamWriter(ErrorLogFilePath, true);
                 file.WriteLine(ex.ToString());
                 file.Close();
+                QuitUpPhoto();
             }
             catch (Exception)
             {
-                //can't write to logfile :(
+                QuitUpPhoto();
             }
+        }
+
+        private void SetStatus(MainWindow.Status newStatus)
+        {
+            status = newStatus;
         }
     }
 }
