@@ -1,12 +1,13 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-<head>
-<title>UpPhoto - About.</title>
-<link type="text/css" rel="stylesheet" href="styles.css" />
-</head>
-<body>
-<div id="Background">
-<div id="Main">Up-Photo<div id="Info">
+	<?php require("headerInfo.php");
+	      outputHeaders("Home"); ?>
+	<body>
+<div class="container_12">
+  <?php include("linkMenu.php"); ?>
+</div>
+<div class="container_12">
+<div class="grid_12">
 <?php
 if (isset($_REQUEST["comment"]))
 {
@@ -34,8 +35,5 @@ Send us a comment about UpPhoto.
 ?>
 </div>
 </div>
-<?php
-require("footer.php");
-?></div>
 </body>
 </html>
