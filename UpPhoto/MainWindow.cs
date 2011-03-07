@@ -12,6 +12,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Net;
 
 namespace UpPhoto
 {
@@ -43,8 +44,30 @@ namespace UpPhoto
         String SavedDataPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\UpPhotoData.upd";
         String ErrorLogFilePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\UpPhotoError.log";
 
+        public int UpPhotoCurrentVersion = 1;
+        public int UpPhotoMostRecentVersion;
+        private int IdleIgnoreCount = 5;
         public MainWindow()
         {
+            UpPhotoMostRecentVersion = UpPhotoCurrentVersion;
+            try
+            {
+                HttpWebRequest checkVersionRequest = (HttpWebRequest)WebRequest.Create(@"http://www.upphoto.ca/versions/windows.txt");
+                WebResponse checkVersionResponse = checkVersionRequest.GetResponse();
+
+                StreamReader checkVersionReader = new StreamReader(checkVersionResponse.GetResponseStream());
+                String currentVersion = checkVersionReader.ReadToEnd();
+                checkVersionReader.Close();
+                checkVersionResponse.Close();
+
+                UpPhotoMostRecentVersion = int.Parse(currentVersion);
+            }
+            catch (Exception)
+            {
+                //couldn't find a new version, just pretend we are the most recent version
+            }
+
+            Application.Idle += new EventHandler(OnApplicationRun);
             Application.ThreadException += new ThreadExceptionEventHandler(GlobalThreadExceptionHandler);
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalUnhandledExceptionHandler);
@@ -59,6 +82,20 @@ namespace UpPhoto
 
             updateHandler.StopThreads();
             SaveData();
+        }
+
+        void OnApplicationRun(Object sender, EventArgs e)
+        {
+            if (IdleIgnoreCount == 0)
+            {
+	            gui.Show();
+	            gui.NotifyOfNewVersion();
+	            Application.Idle -= OnApplicationRun;
+            }
+            else
+            {
+                IdleIgnoreCount--;
+            }
         }
 
         public void SetUploadingStatus(bool newStatus)

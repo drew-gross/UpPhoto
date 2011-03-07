@@ -25,7 +25,7 @@ namespace UpPhoto
         NotifyIcon UpPhotoIcon;
 
         Dictionary<WatchedFolder, ToolStripMenuItem> menuItemMap = new Dictionary<WatchedFolder, ToolStripMenuItem>();
-
+        private bool HasNotifiedOfNewVersion = false;
         public UpPhotoGUI(MainWindow newParent)
         {
             Application.EnableVisualStyles();
@@ -57,10 +57,21 @@ namespace UpPhoto
             UpPhotoIcon.Text = "UpPhoto";
             UpPhotoIcon.Visible = true;
             UpPhotoIcon.MouseClick += new MouseEventHandler(TrayIcon_Click);
+            UpPhotoIcon.BalloonTipTitle = "New UpPhoto version!";
+            UpPhotoIcon.BalloonTipText = "A new version of UpPhoto is available for Download from UpPhoto.ca";
 
-            UpPhotoTrayMenu.ResumeLayout(false);
+            UpPhotoTrayMenu.ResumeLayout(true);
         }
 
+        public void NotifyOfNewVersion()
+        {
+            if (parent.UpPhotoMostRecentVersion > parent.UpPhotoCurrentVersion)
+            {
+                UpPhotoIcon.Visible = false;
+                UpPhotoIcon.Visible = true;
+                UpPhotoIcon.ShowBalloonTip(10000);
+            }
+        }
         protected override void Dispose(bool disposing)
         {
              if (disposing && (components != null))
