@@ -217,7 +217,7 @@ namespace UpPhoto
         {
             if (!System.IO.Directory.Exists(UpPhotoPathStr))
                 System.IO.Directory.CreateDirectory(UpPhotoPathStr);
-            return UpPhotoPathStr;
+            return Path.GetFullPath(UpPhotoPathStr);
         }
 
         public void WatchersIgnoreFile(String path)
