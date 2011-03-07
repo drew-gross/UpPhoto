@@ -10,5 +10,7 @@
 *.upd
 */bin/*
 */obj/*
+*Thumbs.db
 *.vsp
 *.msi
+
