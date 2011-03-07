@@ -35,6 +35,8 @@ namespace UpPhoto
             //watcher.Renamed += new FileSystemEventHandler(handler.FaceboxWatcher_Renamed);
             watcher.Created += new FileSystemEventHandler(FileCreatedEvent);
             watcher.Deleted += new FileSystemEventHandler(handler.FaceboxWatcher_Deleted);
+
+            watcher.InternalBufferSize = 64000;
         }
 
         public void IgnoreFile(String path)

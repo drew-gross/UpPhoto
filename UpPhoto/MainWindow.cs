@@ -47,6 +47,7 @@ namespace UpPhoto
         public int UpPhotoCurrentVersion = 1;
         public int UpPhotoMostRecentVersion;
         private int IdleIgnoreCount = 5;
+
         public MainWindow()
         {
             UpPhotoMostRecentVersion = UpPhotoCurrentVersion;
