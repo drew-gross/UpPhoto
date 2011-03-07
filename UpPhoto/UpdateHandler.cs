@@ -98,7 +98,7 @@ namespace UpPhoto
         {
             try
             {
-                foreach (String filename in Directory.GetFiles(MainWindow.UpPhotoPath() + FacebookInterfaces.AlbumName(DownloadedPhoto.aid)))
+                foreach (String filename in Directory.GetFiles(parent.UpPhotoPath() + FacebookInterfaces.AlbumName(DownloadedPhoto.aid)))
                 {
                     Image b = Image.FromFile(filename);
                     if (b.Equals(DownloadedPhoto.picture_big))
@@ -172,7 +172,7 @@ namespace UpPhoto
         {
             int PhotoCounter = 1;
             String albumName = FacebookInterfaces.AlbumName(DownloadedPhoto.aid);
-            String upPhotoPath = MainWindow.UpPhotoPath();
+            String upPhotoPath = parent.UpPhotoPath();
             String path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
             while (File.Exists(path))
             {

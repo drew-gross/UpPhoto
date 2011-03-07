@@ -39,6 +39,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_CBDF09E384F344C4AFB223D33BD62976"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D4339F26EF7AA5D6BA4994B66094785A"
         "OwnerKey" = "8:_57D7E1A28FD342ADA55486A2A4E0BB70"
         "MsmSig" = "8:_UNDEFINED"
@@ -58,7 +64,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FF61BC54FB7C926F5F983D3108C1C7CC"
+        "OwnerKey" = "8:_562F4078C8D478ADC0E66DC97E9D2A1F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -70,13 +76,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_562F4078C8D478ADC0E66DC97E9D2A1F"
+        "OwnerKey" = "8:_D4339F26EF7AA5D6BA4994B66094785A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D4339F26EF7AA5D6BA4994B66094785A"
+        "OwnerKey" = "8:_FF61BC54FB7C926F5F983D3108C1C7CC"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -161,6 +167,34 @@
     {
         "CustomAction"
         {
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_4976AD731F9E444A956C56E0B5C0396F"
+            {
+            "Name" = "8:Primary output from UpPhoto (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_57D7E1A28FD342ADA55486A2A4E0BB70"
+            "FileType" = "3:2"
+            "InstallAction" = "3:2"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:2"
+            "Identifier" = "8:_9CE08CE8_98FC_4921_A544_66313851556E"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_4A07D0D42CB84A59B3577D44DB23EAC2"
+            {
+            "Name" = "8:MakeHardLink.exe"
+            "Condition" = "8:"
+            "Object" = "8:_CBDF09E384F344C4AFB223D33BD62976"
+            "FileType" = "3:2"
+            "InstallAction" = "3:2"
+            "Arguments" = "8:/Commit"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_E7586C2C_E429_40DF_BF41_4B6CEA6FE760"
+            "InstallerClass" = "11:FALSE"
+            "CustomActionData" = "8:"
+            }
         }
         "DefaultFeature"
         {
@@ -239,6 +273,26 @@
             {
             "SourcePath" = "8:..\\UpPhoto\\Resources\\Idle.ico"
             "TargetName" = "8:Idle.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CBDF09E384F344C4AFB223D33BD62976"
+            {
+            "SourcePath" = "8:MakeHardLink.exe"
+            "TargetName" = "8:MakeHardLink.exe"
             "Tag" = "8:"
             "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
             "Condition" = "8:"
@@ -380,7 +434,7 @@
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_A3E64DF56BAE4EB3A8E81C1336C013B5"
                     {
                     "Name" = "8:UpPhoto"
-                    "AlwaysCreate" = "11:FALSE"
+                    "AlwaysCreate" = "11:TRUE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_13450BEAA51F4B80A535B5B2362B52F7"
@@ -527,21 +581,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_4BFD5C90937E433FAC09F24EA8EAA45D"
-            {
-            "Name" = "8:Shortcut to UpPhoto.exe"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:"
-            "Folder" = "8:_4953B7EED123403DB64A149EC83966BE"
-            "WorkingFolder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_BDDF834FB7F84DD68F2C4C9F24B74091"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0659070913954010BF8F880BB785F997"
             {
             "Name" = "8:UpPhoto"
             "Arguments" = "8:"
@@ -549,10 +589,24 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:"
-            "Folder" = "8:_368A6817A94348E2A6EC79AB2FC3AD31"
+            "Target" = "8:_57D7E1A28FD342ADA55486A2A4E0BB70"
+            "Folder" = "8:_4953B7EED123403DB64A149EC83966BE"
             "WorkingFolder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
-            "Icon" = "8:_93D10DC8935242489C294EFE790DC400"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_CAB40ABF0DEF405D9F191B3D8311D8BF"
+            {
+            "Name" = "8:UpPhoto"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_368A6817A94348E2A6EC79AB2FC3AD31"
+            "Folder" = "8:_368A6817A94348E2A6EC79AB2FC3AD31"
+            "WorkingFolder" = "8:_40C010829E254E9FBF0042EA4BC71EDA"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
         }

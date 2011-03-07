@@ -41,8 +41,9 @@ namespace UpPhoto
 
         MainWindow.Status status = MainWindow.Status.Running;
 
-        String SavedDataPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\UpPhotoData.upd";
-        String ErrorLogFilePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\UpPhotoError.log";
+        String SavedDataPath = @"UpPhotoData.upd";
+        String ErrorLogFilePath = @"UpPhotoError.log";
+        String UpPhotoPathStr = @"UpPhoto\";
 
         public int UpPhotoCurrentVersion = 1;
         public int UpPhotoMostRecentVersion;
@@ -212,12 +213,11 @@ namespace UpPhoto
             return AllPhotos.ContainsKey(pid);
         }
 
-        static public String UpPhotoPath()
+        public String UpPhotoPath()
         {
-            String result = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\UpPhoto\";
-            if (!System.IO.Directory.Exists(result))
-                System.IO.Directory.CreateDirectory(result);
-            return result;
+            if (!System.IO.Directory.Exists(UpPhotoPathStr))
+                System.IO.Directory.CreateDirectory(UpPhotoPathStr);
+            return UpPhotoPathStr;
         }
 
         public void WatchersIgnoreFile(String path)
