@@ -5,20 +5,50 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpPhoto", "UpPhoto\UpPhoto.
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "UpPhotoInstaller", "UpPhotoInstaller\UpPhotoInstaller.vdproj", "{FDCC85DE-AA14-4289-916A-E8D97C24967B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeHardLink", "MakeHardLink\MakeHardLink.csproj", "{1C828BF3-12DA-415B-B8C9-9641B4997236}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E605AC8F-F302-449D-9E5F-6D604366F07A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E605AC8F-F302-449D-9E5F-6D604366F07A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E605AC8F-F302-449D-9E5F-6D604366F07A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E605AC8F-F302-449D-9E5F-6D604366F07A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E605AC8F-F302-449D-9E5F-6D604366F07A}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{E605AC8F-F302-449D-9E5F-6D604366F07A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E605AC8F-F302-449D-9E5F-6D604366F07A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E605AC8F-F302-449D-9E5F-6D604366F07A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E605AC8F-F302-449D-9E5F-6D604366F07A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E605AC8F-F302-449D-9E5F-6D604366F07A}.Release|x86.ActiveCfg = Release|Any CPU
 		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Debug|Any CPU.ActiveCfg = Debug
 		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Debug|Any CPU.Build.0 = Debug
+		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Debug|Mixed Platforms.Build.0 = Debug
+		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Debug|x86.ActiveCfg = Debug
+		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Debug|x86.Build.0 = Debug
 		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Release|Any CPU.ActiveCfg = Release
 		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Release|Any CPU.Build.0 = Release
+		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Release|Mixed Platforms.ActiveCfg = Release
+		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Release|Mixed Platforms.Build.0 = Release
+		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Release|x86.ActiveCfg = Release
+		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Release|x86.Build.0 = Release
+		{1C828BF3-12DA-415B-B8C9-9641B4997236}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{1C828BF3-12DA-415B-B8C9-9641B4997236}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{1C828BF3-12DA-415B-B8C9-9641B4997236}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{1C828BF3-12DA-415B-B8C9-9641B4997236}.Debug|x86.ActiveCfg = Debug|x86
+		{1C828BF3-12DA-415B-B8C9-9641B4997236}.Debug|x86.Build.0 = Debug|x86
+		{1C828BF3-12DA-415B-B8C9-9641B4997236}.Release|Any CPU.ActiveCfg = Release|x86
+		{1C828BF3-12DA-415B-B8C9-9641B4997236}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{1C828BF3-12DA-415B-B8C9-9641B4997236}.Release|Mixed Platforms.Build.0 = Release|x86
+		{1C828BF3-12DA-415B-B8C9-9641B4997236}.Release|x86.ActiveCfg = Release|x86
+		{1C828BF3-12DA-415B-B8C9-9641B4997236}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

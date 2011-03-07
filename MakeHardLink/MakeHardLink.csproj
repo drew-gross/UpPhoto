@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>42e7bfaa-c89c-45bf-bde8-d9dbfebcc28e</ProjectGuid>
+    <ProjectGuid>{1C828BF3-12DA-415B-B8C9-9641B4997236}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MakeHardLink</RootNamespace>
