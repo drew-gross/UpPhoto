@@ -15,6 +15,18 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_10D640BBBD2444A9B45EAEAF0BB2B9C2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_49723076868C404CAFC241075C67FFD7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_562F4078C8D478ADC0E66DC97E9D2A1F"
         "OwnerKey" = "8:_57D7E1A28FD342ADA55486A2A4E0BB70"
         "MsmSig" = "8:_UNDEFINED"
@@ -27,13 +39,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5B2DC2860F47ECC2E56DE83C1127EAFC"
-        "OwnerKey" = "8:_562F4078C8D478ADC0E66DC97E9D2A1F"
+        "MsmKey" = "8:_93D10DC8935242489C294EFE790DC400"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_93D10DC8935242489C294EFE790DC400"
+        "MsmKey" = "8:_C55140BAEA2E4F86A8ECA3348C37190D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -45,13 +57,31 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_FF61BC54FB7C926F5F983D3108C1C7CC"
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_562F4078C8D478ADC0E66DC97E9D2A1F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C55140BAEA2E4F86A8ECA3348C37190D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_57D7E1A28FD342ADA55486A2A4E0BB70"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_FF61BC54FB7C926F5F983D3108C1C7CC"
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D4339F26EF7AA5D6BA4994B66094785A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_D4339F26EF7AA5D6BA4994B66094785A"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -70,13 +100,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D4339F26EF7AA5D6BA4994B66094785A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FF61BC54FB7C926F5F983D3108C1C7CC"
+        "OwnerKey" = "8:_10D640BBBD2444A9B45EAEAF0BB2B9C2"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -161,6 +185,20 @@
     {
         "CustomAction"
         {
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_AEEFC1EAA9A045F786AAD08620F2B439"
+            {
+            "Name" = "8:Primary output from PostInstall (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_10D640BBBD2444A9B45EAEAF0BB2B9C2"
+            "FileType" = "3:2"
+            "InstallAction" = "3:2"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_C168A4CA_C3FD_4592_BC2B_93AC52C54096"
+            "InstallerClass" = "11:FALSE"
+            "CustomActionData" = "8:"
+            }
         }
         "DefaultFeature"
         {
@@ -184,6 +222,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_49723076868C404CAFC241075C67FFD7"
+            {
+            "SourcePath" = "8:..\\UpPhoto\\bin\\Debug\\MakeHardLink.bat"
+            "TargetName" = "8:MakeHardLink.bat"
+            "Tag" = "8:"
+            "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_562F4078C8D478ADC0E66DC97E9D2A1F"
             {
             "AssemblyRegister" = "3:1"
@@ -215,10 +273,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5B2DC2860F47ECC2E56DE83C1127EAFC"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_93D10DC8935242489C294EFE790DC400"
             {
-            "SourcePath" = "8:ieframe.dll"
-            "TargetName" = "8:ieframe.dll"
+            "SourcePath" = "8:..\\UpPhoto\\Resources\\Idle.ico"
+            "TargetName" = "8:Idle.ico"
             "Tag" = "8:"
             "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
             "Condition" = "8:"
@@ -230,15 +288,26 @@
             "Permanent" = "11:FALSE"
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
-            "Register" = "3:4"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_93D10DC8935242489C294EFE790DC400"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C55140BAEA2E4F86A8ECA3348C37190D"
             {
-            "SourcePath" = "8:..\\UpPhoto\\Resources\\Idle.ico"
-            "TargetName" = "8:Idle.ico"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Facebook, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_C55140BAEA2E4F86A8ECA3348C37190D"
+                    {
+                    "Name" = "8:facebook.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\UpPhoto\\bin\\Debug\\facebook.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
             "Condition" = "8:"
@@ -269,37 +338,6 @@
                     }
                 }
             "SourcePath" = "8:Facebook.Winforms.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FF61BC54FB7C926F5F983D3108C1C7CC"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Facebook, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_FF61BC54FB7C926F5F983D3108C1C7CC"
-                    {
-                    "Name" = "8:facebook.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:facebook.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
@@ -407,7 +445,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UpPhoto"
         "ProductCode" = "8:{6DDC5757-9C55-47E2-AB89-833BCDD95BF8}"
-        "PackageCode" = "8:{F08AFCC6-04E5-45FE-8378-C0DFA6917FA5}"
+        "PackageCode" = "8:{4BD4262D-6DFA-4973-A943-2FFEAF193A9D}"
         "UpgradeCode" = "8:{77AA1ED4-1AC4-4197-A02D-29201C8F165A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -417,20 +455,20 @@
         "ProductVersion" = "8:1.0.0"
         "Manufacturer" = "8:UpPhoto"
         "ARPHELPTELEPHONE" = "8:"
-        "ARPHELPLINK" = "8:www.upphoto.ca"
+        "ARPHELPLINK" = "8:http://www.upphoto.ca"
         "Title" = "8:UpPhotoInstaller"
         "Subject" = "8:"
         "ARPCONTACT" = "8:UpPhoto"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
-        "ARPURLINFOABOUT" = "8:www.upphoto.ca"
+        "ARPURLINFOABOUT" = "8:http://www.upphoto.ca"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
         "TargetPlatform" = "3:0"
         "PreBuildEvent" = "8:"
-        "PostBuildEvent" = "8:"
+        "PostBuildEvent" = "8:cscript.exe \"$(ProjectDir)ModifyMsiToEnableLaunchApplication.js\" \"$(BuiltOuputPath)\""
         "RunPostBuildEvent" = "3:0"
         }
         "Registry"
@@ -954,6 +992,34 @@
         }
         "ProjectOutput"
         {
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_10D640BBBD2444A9B45EAEAF0BB2B9C2"
+            {
+            "SourcePath" = "8:..\\PostInstall\\obj\\x86\\Debug\\PostInstall.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{7FF0B9CA-592A-4470-AEC4-37F3802159AC}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_57D7E1A28FD342ADA55486A2A4E0BB70"
             {
             "SourcePath" = "8:..\\UpPhoto\\obj\\Debug\\UpPhoto.exe"
