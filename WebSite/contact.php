@@ -1,17 +1,16 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 	<?php require("headerInfo.php");
-	      outputHeaders("Home"); ?>
+	      outputHeaders("Contact Us"); ?>
 	<body>
-<div class="container_12">
-  <?php include("linkMenu.php"); ?>
-</div>
+<?php require("linkMenu.php");
+      navlinks("Contact Us") ?>
 <div class="container_12">
 <div class="grid_12">
 <?php
 if (isset($_REQUEST["comment"]))
 {
-mail("drew.a.gross@gmail.com", "UpPhoto comment", $_REQUEST["comment"]);
+mail("comments@upphoto.ca", "UpPhoto comment", $_REQUEST["comment"]);
 ?>
 <p>Thank you for your comments!</p>
 <?php
