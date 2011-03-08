@@ -11,11 +11,13 @@ namespace UpPhoto
     {
         List<String> WatchedFolders;
         Dictionary<PID, String> AllPhotos;
+        Boolean HasCreatedDesktopShortcut;
 
-        public SavedData(List<String> newWatchList, Dictionary<PID, String> newAllPhotos)
+        public SavedData(List<String> newWatchList, Dictionary<PID, String> newAllPhotos, Boolean hasMadeShortcut)
         {
             WatchedFolders = newWatchList;
-            AllPhotos = newAllPhotos; 
+            AllPhotos = newAllPhotos;
+            HasCreatedDesktopShortcut = hasMadeShortcut;
         }
 
         public SavedData(SerializationInfo info, StreamingContext ctxt)
@@ -24,6 +26,7 @@ namespace UpPhoto
             {
                 WatchedFolders = (List<String>)info.GetValue("WatchList", typeof(List<String>));
                 AllPhotos = (Dictionary<PID, String>)info.GetValue("AllPhotos", typeof(Dictionary<PID, String>));
+                HasCreatedDesktopShortcut = (Boolean)info.GetValue("HasCreatedDesktopShortcut", typeof(Boolean));
             }
         }
 
@@ -31,6 +34,7 @@ namespace UpPhoto
         {
             info.AddValue("WatchList", WatchedFolders);
             info.AddValue("AllPhotos", AllPhotos);
+            info.AddValue("HasCreatedDesktopShortcut", HasCreatedDesktopShortcut);
         }
 
         public List<String> SavedWatchedFolders()
@@ -41,6 +45,11 @@ namespace UpPhoto
         public Dictionary<PID, String> SavedPIDtoPhotoMap()
         {
             return AllPhotos;
+        }
+
+        public Boolean SavedHasCreatedDesktopShortcut()
+        {
+            return HasCreatedDesktopShortcut;
         }
     }
 }

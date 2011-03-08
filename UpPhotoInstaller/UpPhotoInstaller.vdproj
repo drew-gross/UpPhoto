@@ -33,19 +33,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5FC5F3AFAAC54B3D85ECB4B2399AC549"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_93D10DC8935242489C294EFE790DC400"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CBDF09E384F344C4AFB223D33BD62976"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -71,12 +59,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_562F4078C8D478ADC0E66DC97E9D2A1F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5FC5F3AFAAC54B3D85ECB4B2399AC549"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -179,20 +161,6 @@
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_A0D4D89C1276481EAC9C3DB7FA9DC36A"
-            {
-            "Name" = "8:Primary output from PostInstallScript (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_5FC5F3AFAAC54B3D85ECB4B2399AC549"
-            "FileType" = "3:2"
-            "InstallAction" = "3:2"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_01BF3F3B_A5C8_4B3D_ABC1_5CFA8598015D"
-            "InstallerClass" = "11:FALSE"
-            "CustomActionData" = "8:"
-            }
         }
         "DefaultFeature"
         {
@@ -271,26 +239,6 @@
             {
             "SourcePath" = "8:..\\UpPhoto\\Resources\\Idle.ico"
             "TargetName" = "8:Idle.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CBDF09E384F344C4AFB223D33BD62976"
-            {
-            "SourcePath" = "8:MakeHardLink.exe"
-            "TargetName" = "8:MakeHardLink.exe"
             "Tag" = "8:"
             "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
             "Condition" = "8:"
@@ -459,7 +407,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UpPhoto"
         "ProductCode" = "8:{6DDC5757-9C55-47E2-AB89-833BCDD95BF8}"
-        "PackageCode" = "8:{31E0EA5C-1598-4737-97C1-FE209B7B8A13}"
+        "PackageCode" = "8:{F08AFCC6-04E5-45FE-8378-C0DFA6917FA5}"
         "UpgradeCode" = "8:{77AA1ED4-1AC4-4197-A02D-29201C8F165A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1029,34 +977,6 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{E605AC8F-F302-449D-9E5F-6D604366F07A}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5FC5F3AFAAC54B3D85ECB4B2399AC549"
-            {
-            "SourcePath" = "8:..\\PostInstallScript\\obj\\x86\\Debug\\PostInstallScript.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{0ED2A9F5-9BAD-4103-9937-3CA80555DD89}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
