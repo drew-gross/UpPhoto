@@ -41,9 +41,9 @@ namespace UpPhoto
 
         MainWindow.Status status = MainWindow.Status.Running;
 
-        String SavedDataPath = @"UpPhotoData.upd";
-        String ErrorLogFilePath = @"UpPhotoError.log";
-        String UpPhotoPathStr = @"UpPhoto\";
+        String SavedDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\UpPhoto\UpPhotoData.upd";
+        String ErrorLogFilePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\UpPhoto\UpPhotoError.log";
+        String UpPhotoPathStr = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\UpPhoto\UpPhoto\";
 
         public int UpPhotoCurrentVersion = 1;
         public int UpPhotoMostRecentVersion;
@@ -183,6 +183,7 @@ namespace UpPhoto
         {
             try
             {
+                Directory.CreateDirectory(Path.GetDirectoryName(SavedDataPath));
                 Stream dataStream = File.Open(SavedDataPath, FileMode.Open);
                 BinaryFormatter formatter = new BinaryFormatter();
                 SavedData data = (SavedData)formatter.Deserialize(dataStream);

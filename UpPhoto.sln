@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpPhoto", "UpPhoto\UpPhoto.
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "UpPhotoInstaller", "UpPhotoInstaller\UpPhotoInstaller.vdproj", "{FDCC85DE-AA14-4289-916A-E8D97C24967B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostInstallScript", "PostInstallScript\PostInstallScript.csproj", "{0ED2A9F5-9BAD-4103-9937-3CA80555DD89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,16 @@ Global
 		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Release|Mixed Platforms.Build.0 = Release
 		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Release|x86.ActiveCfg = Release
 		{FDCC85DE-AA14-4289-916A-E8D97C24967B}.Release|x86.Build.0 = Release
+		{0ED2A9F5-9BAD-4103-9937-3CA80555DD89}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{0ED2A9F5-9BAD-4103-9937-3CA80555DD89}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{0ED2A9F5-9BAD-4103-9937-3CA80555DD89}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{0ED2A9F5-9BAD-4103-9937-3CA80555DD89}.Debug|x86.ActiveCfg = Debug|x86
+		{0ED2A9F5-9BAD-4103-9937-3CA80555DD89}.Debug|x86.Build.0 = Debug|x86
+		{0ED2A9F5-9BAD-4103-9937-3CA80555DD89}.Release|Any CPU.ActiveCfg = Release|x86
+		{0ED2A9F5-9BAD-4103-9937-3CA80555DD89}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{0ED2A9F5-9BAD-4103-9937-3CA80555DD89}.Release|Mixed Platforms.Build.0 = Release|x86
+		{0ED2A9F5-9BAD-4103-9937-3CA80555DD89}.Release|x86.ActiveCfg = Release|x86
+		{0ED2A9F5-9BAD-4103-9937-3CA80555DD89}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

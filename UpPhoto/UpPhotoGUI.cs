@@ -25,7 +25,7 @@ namespace UpPhoto
         NotifyIcon UpPhotoIcon;
 
         Dictionary<WatchedFolder, ToolStripMenuItem> menuItemMap = new Dictionary<WatchedFolder, ToolStripMenuItem>();
-        private bool HasNotifiedOfNewVersion = false;
+
         public UpPhotoGUI(MainWindow newParent)
         {
             Application.EnableVisualStyles();
