@@ -81,7 +81,7 @@ namespace UpPhoto
             updateHandler = new UpdateHandler(this);
 
             LoadData();
-            
+
             if (HasCreatedDesktopShortcut == false)
             {
                 CreateDesktopShortcut();
@@ -302,7 +302,15 @@ namespace UpPhoto
 
         private void CreateDesktopShortcut()
         {
-            Process.Start("MakeHardLink.bat", "\"" + UpPhotoPathStr + "\"");
+            Directory.CreateDirectory(UpPhotoPathStr);
+            try
+            {
+                Process.Start("MakeHardLink.bat", "\"" + UpPhotoPathStr + "\"");
+            }
+            catch (Win32Exception ex)
+            {
+            	//file already exits... ignore
+            }
             HasCreatedDesktopShortcut = true;
         }
     }

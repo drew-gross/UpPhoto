@@ -15,12 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_10D640BBBD2444A9B45EAEAF0BB2B9C2"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_49723076868C404CAFC241075C67FFD7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -95,12 +89,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_57D7E1A28FD342ADA55486A2A4E0BB70"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_10D640BBBD2444A9B45EAEAF0BB2B9C2"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -185,20 +173,6 @@
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_AEEFC1EAA9A045F786AAD08620F2B439"
-            {
-            "Name" = "8:Primary output from PostInstall (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_10D640BBBD2444A9B45EAEAF0BB2B9C2"
-            "FileType" = "3:2"
-            "InstallAction" = "3:2"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_C168A4CA_C3FD_4592_BC2B_93AC52C54096"
-            "InstallerClass" = "11:FALSE"
-            "CustomActionData" = "8:"
-            }
         }
         "DefaultFeature"
         {
@@ -445,7 +419,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UpPhoto"
         "ProductCode" = "8:{6DDC5757-9C55-47E2-AB89-833BCDD95BF8}"
-        "PackageCode" = "8:{4BD4262D-6DFA-4973-A943-2FFEAF193A9D}"
+        "PackageCode" = "8:{8BF62962-408A-44FD-B5D5-F47AFA66902C}"
         "UpgradeCode" = "8:{77AA1ED4-1AC4-4197-A02D-29201C8F165A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -992,34 +966,6 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_10D640BBBD2444A9B45EAEAF0BB2B9C2"
-            {
-            "SourcePath" = "8:..\\PostInstall\\obj\\x86\\Debug\\PostInstall.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{7FF0B9CA-592A-4470-AEC4-37F3802159AC}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_57D7E1A28FD342ADA55486A2A4E0BB70"
             {
             "SourcePath" = "8:..\\UpPhoto\\obj\\Debug\\UpPhoto.exe"
