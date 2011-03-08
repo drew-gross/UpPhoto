@@ -41,9 +41,11 @@ namespace UpPhoto
 
         MainWindow.Status status = MainWindow.Status.Running;
 
-        String SavedDataPath = @"UpPhotoData.upd";
-        String ErrorLogFilePath = @"UpPhotoError.log";
-        String UpPhotoPathStr = @"UpPhoto\";
+        String SavedDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\UpPhoto\UpPhotoData.upd";
+        String ErrorLogFilePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\UpPhoto\UpPhotoError.log";
+        String UpPhotoPathStr = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\UpPhoto\UpPhoto\";
+
+        Boolean HasCreatedDesktopShortcut = false;
 
         public int UpPhotoCurrentVersion = 1;
         public int UpPhotoMostRecentVersion;
@@ -79,6 +81,11 @@ namespace UpPhoto
             updateHandler = new UpdateHandler(this);
 
             LoadData();
+            
+            if (HasCreatedDesktopShortcut == false)
+            {
+                CreateDesktopShortcut();
+            }
 
             Application.Run();
 
@@ -166,7 +173,7 @@ namespace UpPhoto
 
         public void SaveData()
         {
-            SavedData data = new SavedData(WatchedFolderPaths(), AllPhotos);
+            SavedData data = new SavedData(WatchedFolderPaths(), AllPhotos, HasCreatedDesktopShortcut);
             Stream dataStream = File.Open(SavedDataPath, FileMode.Create);
             BinaryFormatter formatter = new BinaryFormatter();
             formatter.Serialize(dataStream, data);
@@ -183,11 +190,13 @@ namespace UpPhoto
         {
             try
             {
+                Directory.CreateDirectory(Path.GetDirectoryName(SavedDataPath));
                 Stream dataStream = File.Open(SavedDataPath, FileMode.Open);
                 BinaryFormatter formatter = new BinaryFormatter();
                 SavedData data = (SavedData)formatter.Deserialize(dataStream);
                 WatchFolders(data.SavedWatchedFolders());
                 AllPhotos = data.SavedPIDtoPhotoMap();
+                HasCreatedDesktopShortcut = data.SavedHasCreatedDesktopShortcut();
             }
             catch (System.IO.FileNotFoundException)
             {
@@ -217,7 +226,7 @@ namespace UpPhoto
         {
             if (!System.IO.Directory.Exists(UpPhotoPathStr))
                 System.IO.Directory.CreateDirectory(UpPhotoPathStr);
-            return UpPhotoPathStr;
+            return Path.GetFullPath(UpPhotoPathStr);
         }
 
         public void WatchersIgnoreFile(String path)
@@ -289,6 +298,12 @@ namespace UpPhoto
         private void SetStatus(MainWindow.Status newStatus)
         {
             status = newStatus;
+        }
+
+        private void CreateDesktopShortcut()
+        {
+            Process.Start("MakeHardLink.bat", "\"" + UpPhotoPathStr + "\"");
+            HasCreatedDesktopShortcut = true;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace UpPhoto
         NotifyIcon UpPhotoIcon;
 
         Dictionary<WatchedFolder, ToolStripMenuItem> menuItemMap = new Dictionary<WatchedFolder, ToolStripMenuItem>();
-        private bool HasNotifiedOfNewVersion = false;
+
         public UpPhotoGUI(MainWindow newParent)
         {
             Application.EnableVisualStyles();
@@ -67,8 +67,6 @@ namespace UpPhoto
         {
             if (parent.UpPhotoMostRecentVersion > parent.UpPhotoCurrentVersion)
             {
-                UpPhotoIcon.Visible = false;
-                UpPhotoIcon.Visible = true;
                 UpPhotoIcon.ShowBalloonTip(10000);
             }
         }
@@ -126,7 +124,8 @@ namespace UpPhoto
 
         public void ViewItem_Click(object sender, EventArgs e)
         {
-            Process.Start(parent.WatchedFolderPaths()[0]);
+            String path = parent.WatchedFolderPaths()[0];
+            Process.Start(path);
         }
 
         public void AboutItem_Click(object sender, EventArgs e)

@@ -11,7 +11,6 @@ using Facebook.Rest;
 using Facebook.Schema;
 using Facebook.Utility;
 using Facebook.Winforms.Components;
-using FacebookController;
 using System.Threading;
 using System.Drawing;
 
