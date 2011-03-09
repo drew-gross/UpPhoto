@@ -1,6 +1,18 @@
-<div class="container_12">
-  <ul class="navigation"> 
-    <li class="grid_6"><a href="/">Home</a></li>
-    <li class="grid_6"><a href="contact.php">Contact Us</a></li>
-  </ul>
-</div>
+<?php
+function navlink($target, $name, $selected){
+  if($selected){
+    echo "<li><a href=\"$target\" class=\"selected\">$name</a></li>";
+  } else {
+    echo "<li><a href=\"$target\">$name</a></li>";
+  }
+}
+
+function navlinks($current){
+  $links = array("/" => "Home", "contact.php" => "Contact Us");
+  echo "<ul class=\"navigation\">";
+  foreach($links as $link => $name){
+    navlink($link, $name, $name == $current);
+  }
+  echo "</ul>";
+}
+?>
