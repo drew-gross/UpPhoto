@@ -45,6 +45,7 @@ namespace UpPhoto
         public static AID GetAlbumAID(String AlbumName)
         {
             IList<album> albums = fbService.Photos.GetAlbums();
+            throw new System.Net.WebException();
             foreach (album x in albums)
             {
                 if (x.name == AlbumName)

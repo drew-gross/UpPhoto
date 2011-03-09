@@ -74,22 +74,36 @@ namespace UpPhoto
                         while (pauseUploadThread == true)
                         {
                             Thread.Sleep(threadSleepTime);
-                        }
-                        lock (uploadQueue)
-                        {
-                            PhotoToUpload curPhoto = uploadQueue.Dequeue();
-                            photo UploadedPhoto = FacebookInterfaces.UploadPhoto(curPhoto);
-                            //if we are here, the uploading worked and we can set the tray icon to connected
-                            //if the uploading failed, an exception would have been thrown
-                            parent.SetConnectedStatus(true);
-                            parent.AddUploadedPhoto(new FacebookPhoto(UploadedPhoto, curPhoto.photoPath));
-                        }
+                        } 
+                        UploadNextQueuedPhoto();
                     }
                 }
             }
             catch (Exception ex)
             {
                 parent.LogException(ex);
+            }
+        }
+
+        private void UploadNextQueuedPhoto()
+        {
+            lock (uploadQueue)
+            {
+                PhotoToUpload curPhoto = uploadQueue.Dequeue();
+                try
+                {
+                    photo UploadedPhoto = FacebookInterfaces.UploadPhoto(curPhoto);
+                    //if we are here, the uploading worked and we can set the tray icon to connected
+                    //if the uploading failed, an exception would have been thrown
+                    parent.SetConnectedStatus(true);
+                    parent.AddUploadedPhoto(new FacebookPhoto(UploadedPhoto, curPhoto.photoPath));
+                }
+                catch (System.Net.WebException ex)
+                {
+                    //could not upload, add photo back to queue and set connected status to false
+                    uploadQueue.Enqueue(curPhoto);
+                    parent.SetConnectedStatus(false);
+                }
             }
         }
 
