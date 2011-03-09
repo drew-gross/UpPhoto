@@ -3,8 +3,8 @@
 	<?php require("headerInfo.php");
 	      outputHeaders("Home"); ?>
 	<body>
-<?php require("linkMenu.php"); 
-      navlinks("Home") ?>
+	<?php require("linkMenu.php"); 
+    	  navlinks("Home") ?>
 <div class="container">
   <div class="info_section">
     <p>UpPhoto is a fast and easy photo uploader for facebook. With UpPhoto, the time it takes to upload photos to Facebook drops from minutes to seconds. Just Put your photos in a special UpPhoto folder that is created when you install UpPhoto, and they will automatically appear on Facebook.</p>

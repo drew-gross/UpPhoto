@@ -8,7 +8,9 @@ function navlink($target, $name, $selected){
 }
 
 function navlinks($current){
-  $links = array("/" => "Home", "contact.php" => "Contact Us");
+  $links = array("/" => "Home",
+  				 "contact.php" => "Contact Us",
+  				 "instructions.php" => "How It Works");
   echo "<ul class=\"navigation\">";
   foreach($links as $link => $name){
     navlink($link, $name, $name == $current);
