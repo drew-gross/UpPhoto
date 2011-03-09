@@ -15,7 +15,7 @@
       <a href="/download/UpPhotoInstaller.msi">Download For Windows</a>
     </div>
     <div class="os_x">
-      <a href="/download/UpPhotoOSX.dmg">Download For Mac OS X</a>
+      <a href="register.php">Download For Mac OS X</a>
     </div>
   </div>
 </div>
