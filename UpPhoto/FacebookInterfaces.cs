@@ -7,8 +7,6 @@ using Facebook.Schema;
 using Facebook.Utility;
 using Facebook.Winforms.Components;
 using System.IO;
-using System.Net;
-using System.Diagnostics;
 
 namespace UpPhoto
 {
@@ -22,22 +20,7 @@ namespace UpPhoto
 
         static FacebookInterfaces()
         {
-            WaitForInternetConnection();
             ConnectToFacebook();
-        }
-
-        public static void WaitForInternetConnection()
-        {
-            HttpWebRequest facebookRequest = (HttpWebRequest)WebRequest.Create("http://www.facebook.com");
-            facebookRequest.AllowAutoRedirect = false;
-            HttpWebResponse facebookResponse = (HttpWebResponse)facebookRequest.GetResponse();
-            while (!facebookResponse.IsMutuallyAuthenticated)
-            {
-                Stopwatch timer = new Stopwatch();
-                while (timer.ElapsedMilliseconds < 60 * 2000) ;
-                facebookResponse = (HttpWebResponse)facebookRequest.GetResponse();
-            }            
-
         }
 
         public static void ConnectToFacebook()
