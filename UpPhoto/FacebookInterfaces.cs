@@ -10,6 +10,8 @@ using System.IO;
 
 namespace UpPhoto
 {
+    class AlbumDoesNotExistException : Exception { }
+
     static class FacebookInterfaces
     {
         static readonly FacebookService fbService = new FacebookService();
@@ -18,9 +20,22 @@ namespace UpPhoto
         const String UpPhotoCaption = @"Uploaded using UpPhoto";
         const String DownloadedPhotoExtension = @".png";
 
+        static Dictionary<String, AID> AIDCache = new Dictionary<String, AID>();
+
         static FacebookInterfaces()
         {
             ConnectToFacebook();
+            PopulateAIDCache();
+        }
+
+        private static void PopulateAIDCache()
+        {
+            AIDCache = new Dictionary<String, AID>();
+            IList<album> allAlbums = fbService.Photos.GetAlbums();
+            foreach (album curAlbum in allAlbums)
+            {
+                AIDCache[curAlbum.name] = new AID(curAlbum.aid);
+            }
         }
 
         public static void ConnectToFacebook()
@@ -44,34 +59,45 @@ namespace UpPhoto
 
         public static AID GetAlbumAID(String AlbumName)
         {
-            IList<album> albums = fbService.Photos.GetAlbums();
-            throw new System.Net.WebException();
-            foreach (album x in albums)
+            if (AIDCache.ContainsKey(AlbumName)) 
             {
-                if (x.name == AlbumName)
-                {
-                    return new AID(x.aid);
-                }
+                return AIDCache[AlbumName];
             }
-            return null;
+            PopulateAIDCache();
+            if (AIDCache.ContainsKey(AlbumName))
+            {
+                return AIDCache[AlbumName];
+            }
+            throw new AlbumDoesNotExistException();
         }
 
         public static photo UploadPhoto(PhotoToUpload photo)
         {
-            AID albumAid = GetAlbumAID(photo.albumName);
-
-            if (albumAid == null)
-            {
-                albumAid = new AID(fbService.Photos.CreateAlbum(photo.albumName, null, UpPhotoCaption).aid);
-            }
-
-            photo newPhoto = fbService.Photos.Upload(albumAid.ToString(), UpPhotoCaption, new FileInfo(photo.photoPath));
+            CreateAlbumIfNotExists(photo.albumName);
+            photo newPhoto = fbService.Photos.Upload(GetAlbumAID(photo.albumName).ToString(), UpPhotoCaption, new FileInfo(photo.photoPath));
             return newPhoto;
         }
 
         public static void UploadVideo(String FilePath)
         {
             fbService.Video.Upload(Path.GetFileNameWithoutExtension(FilePath), UpPhotoCaption, new FileInfo(FilePath));
+        }
+
+        public static void CreateAlbumIfNotExists(String AlbumName)
+        {
+            if (AIDCache.ContainsKey(AlbumName))
+            {
+                if (new AID(fbService.Photos.GetAlbums(new List<String> { AlbumName })[0].aid) == AIDCache[AlbumName])
+                {
+                    return;
+                }
+                throw new Exception("Multiple albums with the same name... Handle this later");
+            }
+
+            AID newAID = new AID(fbService.Photos.CreateAlbum(AlbumName, null, UpPhotoCaption).aid);
+            //this is going to cause problems if there are multiple albums with the same name. Not many people
+            //have multiple albums with the same name, so no need to worry about it for now.
+            AIDCache[AlbumName] = newAID;
         }
 
         public static photo DownloadPhoto(PID pid)
@@ -83,6 +109,8 @@ namespace UpPhoto
         public static List<PID> AllFacebookPhotos()
         {
             //need to handle WebException and FacebookException
+
+            //fine to use get all albums instead of the wrapper here
             IList<album> albums = fbService.Photos.GetAlbums();
             List<PID> pidlist = new List<PID>();
             foreach (album album in albums)
@@ -96,9 +124,10 @@ namespace UpPhoto
             return pidlist;
         }
 
-        public static String AlbumName(String aid)
+        public static String AlbumName(AID aid)
         {
-            return fbService.Photos.GetAlbums(0, new List<String> { aid })[0].name;
+            //no way to get the key from the value in AIDCache, so just get it from Facebook.
+            return fbService.Photos.GetAlbums(0, new List<String> { aid.ToString() })[0].name;
         }
 
         private static void PhotoTagger(string photoPid)
