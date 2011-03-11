@@ -13,4 +13,5 @@
 *Thumbs.db
 *.vsp
 *.msi
-
+*/Debug/*
+*/Release/*
