@@ -150,19 +150,21 @@ namespace UpPhoto
                             try
                             {
                                 photo DownloadedPhoto = FacebookInterfaces.DownloadPhoto(pidToDownload);
-                                //if (!IsPhotoDownloaded(DownloadedPhoto))
+                                String path = GeneratePath(DownloadedPhoto);
+                                try
                                 {
-                                    String path = GeneratePath(DownloadedPhoto);
-                                    try
-                                    {
-                                        SaveDownloadedPhoto(DownloadedPhoto, path);
-                                    }
-                                    catch (Facebook.Utility.FacebookException)
-                                    {
-                                        //Unable to connect to database
-                                        throw;
-                                    }
+                                    SaveDownloadedPhoto(DownloadedPhoto, path);
                                 }
+                                catch (Facebook.Utility.FacebookException)
+                                {
+                                    //Unable to connect to database
+                                    throw;
+                                }
+                            }
+                            catch (PhotoDoesNotExistException)
+                            {
+                                //photo has been deleted between detecting it and downloading it.
+                                //fine to do nothing since it has already been removed from the queue
                             }
                             catch (System.Net.WebException)
                             {

@@ -11,6 +11,7 @@ using System.IO;
 namespace UpPhoto
 {
     class AlbumDoesNotExistException : Exception { }
+    class PhotoDoesNotExistException : Exception { }
 
     static class FacebookInterfaces
     {
@@ -85,25 +86,30 @@ namespace UpPhoto
 
         public static void CreateAlbumIfNotExists(String AlbumName)
         {
-            if (AIDCache.ContainsKey(AlbumName))
+            if (!AlbumExists(AlbumName))
             {
-                if (new AID(fbService.Photos.GetAlbums(new List<String> { AlbumName })[0].aid) == AIDCache[AlbumName])
-                {
-                    return;
-                }
-                throw new Exception("Multiple albums with the same name... Handle this later");
+                AID newAID = new AID(fbService.Photos.CreateAlbum(AlbumName, null, UpPhotoCaption).aid);
+                //this is going to cause problems if there are multiple albums with the same name. Not many people
+                //have multiple albums with the same name, so no need to worry about it for now.
+                AIDCache[AlbumName] = newAID;
             }
+        }
 
-            AID newAID = new AID(fbService.Photos.CreateAlbum(AlbumName, null, UpPhotoCaption).aid);
-            //this is going to cause problems if there are multiple albums with the same name. Not many people
-            //have multiple albums with the same name, so no need to worry about it for now.
-            AIDCache[AlbumName] = newAID;
+        static bool AlbumExists(String AlbumName)
+        {
+            PopulateAIDCache();
+            return AIDCache.ContainsKey(AlbumName);
         }
 
         public static photo DownloadPhoto(PID pid)
         {
             //note: must do stuff if the photo doesn't exist.
-            return fbService.Photos.Get(null, null, new List<String> { pid.ToString() })[0];
+            IList<photo> PhotosWithAid = fbService.Photos.Get(null, null, new List<String> { pid.ToString() });
+            if (PhotosWithAid.Count() == 0)
+            {
+                throw new PhotoDoesNotExistException();
+            }
+            return PhotosWithAid[0];
         }
         
         public static List<PID> AllFacebookPhotos()
