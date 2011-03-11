@@ -36,7 +36,7 @@ namespace UpPhoto
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                while (timer.ElapsedMilliseconds < 2000)
+                while (timer.ElapsedMilliseconds < 60*2000)
                 {
 
                 }
