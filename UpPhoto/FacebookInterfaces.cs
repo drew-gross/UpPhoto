@@ -31,10 +31,16 @@ namespace UpPhoto
             HttpWebRequest facebookRequest = (HttpWebRequest)WebRequest.Create("http://www.facebook.com");
             facebookRequest.AllowAutoRedirect = false;
             HttpWebResponse facebookResponse = (HttpWebResponse)facebookRequest.GetResponse();
-            while (!facebookResponse.IsMutuallyAuthenticated)
+            Uri facebookUri = new Uri("http://www.facebook.com");
+            while (facebookResponse.ResponseUri != facebookUri)
             {
                 Stopwatch timer = new Stopwatch();
-                while (timer.ElapsedMilliseconds < 60 * 2000) ;
+                timer.Start();
+                while (timer.ElapsedMilliseconds < 2000)
+                {
+
+                }
+                timer.Stop();
                 facebookResponse = (HttpWebResponse)facebookRequest.GetResponse();
             }            
 
