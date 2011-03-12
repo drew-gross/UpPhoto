@@ -12,6 +12,9 @@ namespace UpPhoto
         List<String> WatchedFolders;
         Dictionary<PID, String> AllPhotos;
         Boolean HasCreatedDesktopShortcut;
+        //IMPORTANT!!!! Any change to the saved data format must include a method to detect the format!
+        //I forgot to add one in the first version so checking if the format is the first format will
+        // have to involve checking for something that doesn't exist and catching the exception.
 
         public SavedData(List<String> newWatchList, Dictionary<PID, String> newAllPhotos, Boolean hasMadeShortcut)
         {

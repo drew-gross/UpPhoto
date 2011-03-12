@@ -29,6 +29,8 @@ namespace UpPhoto
         bool abortDownloadThread = false;
         bool pauseDownloadThread = false;
 
+        Thread detectPIDthread;
+
         const String DownloadedPhotoExtension = @".png";
         const int threadSleepTime = 500; //this is the time in milliseconds between checking if there are photos to be uploaded.
         MainWindow parent;
@@ -37,7 +39,7 @@ namespace UpPhoto
         {
             parent = newParent;
 
-            Thread detectPIDthread = new Thread(SnycPhotos);
+            detectPIDthread = new Thread(SnycPhotos);
             detectPIDthread.SetApartmentState(ApartmentState.STA);
             detectPIDthread.Start();
 
@@ -54,8 +56,11 @@ namespace UpPhoto
         {
             abortDownloadThread = true;
             abortUploadThread = true;
+
             uploadThread.Join();
             downloadThread.Join();
+
+            detectPIDthread.Abort();
         }
 
         //Only to be used by the uploadThread. Do not call directly.
@@ -146,33 +151,7 @@ namespace UpPhoto
                         }
                         lock (downloadQueue)
                         {
-                            PID pidToDownload = downloadQueue.Dequeue();
-                            try
-                            {
-                                photo DownloadedPhoto = FacebookInterfaces.DownloadPhoto(pidToDownload);
-                                String path = GeneratePath(DownloadedPhoto);
-                                try
-                                {
-                                    SaveDownloadedPhoto(DownloadedPhoto, path);
-                                }
-                                catch (Facebook.Utility.FacebookException)
-                                {
-                                    //Unable to connect to database
-                                    throw;
-                                }
-                            }
-                            catch (PhotoDoesNotExistException)
-                            {
-                                //photo has been deleted between detecting it and downloading it.
-                                //fine to do nothing since it has already been removed from the queue
-                            }
-                            catch (System.Net.WebException)
-                            {
-                                //add the photo back to the queue and try again later
-                                parent.SetConnectedStatus(false);
-                                downloadQueue.Enqueue(pidToDownload);
-                                Thread.Sleep(threadSleepTime);
-                            }
+                            DownloadNextQueuedPhoto();
                         }
                     }
                 }
@@ -183,28 +162,35 @@ namespace UpPhoto
             }
         }
 
-        private String GeneratePath(photo DownloadedPhoto)
+        private void DownloadNextQueuedPhoto()
         {
-            int PhotoCounter = 1;
-            String albumName = FacebookInterfaces.AlbumName(new AID(DownloadedPhoto.aid));
-            String upPhotoPath = parent.UpPhotoPath();
-            String path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
-            while (File.Exists(path))
+            PID pidToDownload = downloadQueue.Dequeue();
+            try
             {
-                PhotoCounter++;
-                path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
+                photo DownloadedPhoto = FacebookInterfaces.DownloadPhoto(pidToDownload);
+                String path = GeneratePath(DownloadedPhoto);
+                try
+                {
+                    SaveDownloadedPhoto(DownloadedPhoto, path);
+                }
+                catch (Facebook.Utility.FacebookException)
+                {
+                    //Unable to connect to database
+                    throw;
+                }
             }
-            return path;
-        }
-
-        private void SaveDownloadedPhoto(photo DownloadedPhoto, String path)
-        {
-            Directory.CreateDirectory(StringUtils.GetFullFolderPathFromPath(path));
-            System.Drawing.Bitmap imageData = new System.Drawing.Bitmap((System.Drawing.Bitmap)DownloadedPhoto.picture_big.Clone());
-            parent.WatchersIgnoreFile(path);
-            imageData.Save(path, ImageFormat.Png);
-            parent.WatchersUnIgnoreFile(path);
-            parent.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
+            catch (PhotoDoesNotExistException)
+            {
+                //photo has been deleted between detecting it and downloading it.
+                //fine to do nothing since it has already been removed from the queue
+            }
+            catch (System.Net.WebException)
+            {
+                //add the photo back to the queue and try again later
+                parent.SetConnectedStatus(false);
+                downloadQueue.Enqueue(pidToDownload);
+                Thread.Sleep(threadSleepTime);
+            }
         }
 
         public void SnycPhotos()
@@ -234,6 +220,30 @@ namespace UpPhoto
             {
                 parent.LogException(ex);
             }
+        }
+
+        private String GeneratePath(photo DownloadedPhoto)
+        {
+            int PhotoCounter = 1;
+            String albumName = FacebookInterfaces.AlbumName(new AID(DownloadedPhoto.aid));
+            String upPhotoPath = parent.UpPhotoPath();
+            String path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
+            while (File.Exists(path))
+            {
+                PhotoCounter++;
+                path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
+            }
+            return path;
+        }
+
+        private void SaveDownloadedPhoto(photo DownloadedPhoto, String path)
+        {
+            Directory.CreateDirectory(StringUtils.GetFullFolderPathFromPath(path));
+            System.Drawing.Bitmap imageData = new System.Drawing.Bitmap((System.Drawing.Bitmap)DownloadedPhoto.picture_big.Clone());
+            parent.WatchersIgnoreFile(path);
+            imageData.Save(path, ImageFormat.Png);
+            parent.WatchersUnIgnoreFile(path);
+            parent.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
         }
 
         public void FaceboxWatcher_Deleted(object sender, FileSystemEventArgs e)
