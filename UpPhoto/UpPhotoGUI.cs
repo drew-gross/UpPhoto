@@ -60,6 +60,7 @@ namespace UpPhoto
             UpPhotoIcon.DoubleClick += new EventHandler(ViewItem_Click);
             UpPhotoIcon.BalloonTipTitle = "New UpPhoto version!";
             UpPhotoIcon.BalloonTipText = "A new version of UpPhoto is available for Download from UpPhoto.ca";
+            UpPhotoIcon.BalloonTipClicked += (x, y) => {System.Diagnostics.Process.Start("www.UpPhoto.ca");};
 
             UpPhotoTrayMenu.ResumeLayout(true);
         }
