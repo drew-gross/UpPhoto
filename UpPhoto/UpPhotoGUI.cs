@@ -43,7 +43,7 @@ namespace UpPhoto
             });
 
             AboutItem.Text = "Aboot";
-            AboutItem.Click += new System.EventHandler(AboutItem_Click);
+            AboutItem.Click += (x, y) => { Process.Start(@"http://www.upphoto.ca/instructions.php"); };
 
             ViewItem.Text = "View";
             ViewItem.Click += new System.EventHandler(ViewItem_Click);
@@ -52,12 +52,12 @@ namespace UpPhoto
             ExitItem.Click += new System.EventHandler(ExitItem_Click);
 
             UpPhotoIcon = new NotifyIcon(components);
-            UpPhotoIcon.BalloonTipText = "UpPhoto";
             UpPhotoIcon.ContextMenuStrip = UpPhotoTrayMenu;
             UpPhotoIcon.Text = "UpPhoto";
             UpPhotoIcon.Visible = true;
             UpPhotoIcon.MouseClick += new MouseEventHandler(TrayIcon_Click);
             UpPhotoIcon.DoubleClick += new EventHandler(ViewItem_Click);
+
             UpPhotoIcon.BalloonTipTitle = "New UpPhoto version!";
             UpPhotoIcon.BalloonTipText = "A new version of UpPhoto is available for Download from UpPhoto.ca";
             UpPhotoIcon.BalloonTipClicked += (x, y) => {System.Diagnostics.Process.Start("www.UpPhoto.ca");};
@@ -69,7 +69,7 @@ namespace UpPhoto
         {
             if (parent.UpPhotoMostRecentVersion > parent.UpPhotoCurrentVersion)
             {
-                UpPhotoIcon.ShowBalloonTip(10000);
+                UpPhotoIcon.ShowBalloonTip(30000);
             }
         }
         protected override void Dispose(bool disposing)
@@ -128,11 +128,6 @@ namespace UpPhoto
         {
             String path = parent.WatchedFolderPaths()[0];
             Process.Start(path);
-        }
-
-        public void AboutItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("www.upphoto.ca");
         }
     }
 }
