@@ -429,7 +429,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UpPhoto"
         "ProductCode" = "8:{6DDC5757-9C55-47E2-AB89-833BCDD95BF8}"
-        "PackageCode" = "8:{2BDD66F9-4677-47C2-A6AC-9C45E4AA1E94}"
+        "PackageCode" = "8:{A4B0355F-012B-415E-8DF5-3B586B19B859}"
         "UpgradeCode" = "8:{77AA1ED4-1AC4-4197-A02D-29201C8F165A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -560,7 +560,7 @@
             "Target" = "8:_57D7E1A28FD342ADA55486A2A4E0BB70"
             "Folder" = "8:_4953B7EED123403DB64A149EC83966BE"
             "WorkingFolder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
-            "Icon" = "8:"
+            "Icon" = "8:_93D10DC8935242489C294EFE790DC400"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_CAB40ABF0DEF405D9F191B3D8311D8BF"
@@ -574,7 +574,7 @@
             "Target" = "8:_368A6817A94348E2A6EC79AB2FC3AD31"
             "Folder" = "8:_368A6817A94348E2A6EC79AB2FC3AD31"
             "WorkingFolder" = "8:_40C010829E254E9FBF0042EA4BC71EDA"
-            "Icon" = "8:"
+            "Icon" = "8:_93D10DC8935242489C294EFE790DC400"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E44FEACC518640BD84B3A271FC707B42"
@@ -588,7 +588,7 @@
             "Target" = "8:_AAB58D2D6A0F4A1095738106EDAF40AC"
             "Folder" = "8:_3B4B27D43C1246D6A92AC13561D0B6F5"
             "WorkingFolder" = "8:_C117A3C0A0BA4F988E2DBD21839C614B"
-            "Icon" = "8:"
+            "Icon" = "8:_93D10DC8935242489C294EFE790DC400"
             "Feature" = "8:"
             }
         }
