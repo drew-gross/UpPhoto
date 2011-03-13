@@ -1,1 +1,0 @@
-mklink /J "%HOMEDRIVE%%HOMEPATH%\Desktop\UpPhoto" UpPhoto

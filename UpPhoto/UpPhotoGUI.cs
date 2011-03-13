@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Reflection;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace UpPhoto
 {
@@ -83,8 +84,23 @@ namespace UpPhoto
 
         public void SetTrayIcon(String iconPath)
         {
-            var newIcon = trayIcons.GetObject(iconPath);
-            UpPhotoIcon.Icon = ((System.Drawing.Icon)(newIcon));
+            try
+            {
+                if (trayIcons == null || iconPath == null)
+                {
+                    return;
+                }
+                Icon newIcon = (System.Drawing.Icon)trayIcons.GetObject(iconPath);
+                if (UpPhotoIcon == null || newIcon == null)
+                {
+                    return;
+                }
+                UpPhotoIcon.Icon = newIcon;
+            }
+            catch (System.Exception ex)
+            {
+            	
+            }
         }
 
         private void ExitItem_Click(object sender, EventArgs e)

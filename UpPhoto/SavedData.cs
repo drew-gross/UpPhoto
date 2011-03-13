@@ -11,16 +11,14 @@ namespace UpPhoto
     {
         List<String> WatchedFolders;
         Dictionary<PID, String> AllPhotos;
-        Boolean HasCreatedDesktopShortcut;
         //IMPORTANT!!!! Any change to the saved data format must include a method to detect the format!
         //I forgot to add one in the first version so checking if the format is the first format will
         // have to involve checking for something that doesn't exist and catching the exception.
 
-        public SavedData(List<String> newWatchList, Dictionary<PID, String> newAllPhotos, Boolean hasMadeShortcut)
+        public SavedData(List<String> newWatchList, Dictionary<PID, String> newAllPhotos)
         {
             WatchedFolders = newWatchList;
             AllPhotos = newAllPhotos;
-            HasCreatedDesktopShortcut = hasMadeShortcut;
         }
 
         public SavedData(SerializationInfo info, StreamingContext ctxt)
@@ -29,7 +27,6 @@ namespace UpPhoto
             {
                 WatchedFolders = (List<String>)info.GetValue("WatchList", typeof(List<String>));
                 AllPhotos = (Dictionary<PID, String>)info.GetValue("AllPhotos", typeof(Dictionary<PID, String>));
-                HasCreatedDesktopShortcut = (Boolean)info.GetValue("HasCreatedDesktopShortcut", typeof(Boolean));
             }
         }
 
@@ -37,7 +34,6 @@ namespace UpPhoto
         {
             info.AddValue("WatchList", WatchedFolders);
             info.AddValue("AllPhotos", AllPhotos);
-            info.AddValue("HasCreatedDesktopShortcut", HasCreatedDesktopShortcut);
         }
 
         public List<String> SavedWatchedFolders()
@@ -48,11 +44,6 @@ namespace UpPhoto
         public Dictionary<PID, String> SavedPIDtoPhotoMap()
         {
             return AllPhotos;
-        }
-
-        public Boolean SavedHasCreatedDesktopShortcut()
-        {
-            return HasCreatedDesktopShortcut;
         }
     }
 }

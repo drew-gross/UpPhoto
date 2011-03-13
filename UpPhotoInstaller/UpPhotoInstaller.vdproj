@@ -15,12 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_49723076868C404CAFC241075C67FFD7"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_562F4078C8D478ADC0E66DC97E9D2A1F"
         "OwnerKey" = "8:_57D7E1A28FD342ADA55486A2A4E0BB70"
         "MsmSig" = "8:_UNDEFINED"
@@ -40,12 +34,6 @@
         "Entry"
         {
         "MsmKey" = "8:_93D10DC8935242489C294EFE790DC400"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C55140BAEA2E4F86A8ECA3348C37190D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -71,12 +59,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_562F4078C8D478ADC0E66DC97E9D2A1F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C55140BAEA2E4F86A8ECA3348C37190D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -194,7 +176,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                "FrameworkVersion" = "8:.NETFramework,Version=v3.5"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=131000"
                 }
@@ -202,26 +184,6 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_49723076868C404CAFC241075C67FFD7"
-            {
-            "SourcePath" = "8:..\\UpPhoto\\bin\\Debug\\MakeHardLink.bat"
-            "TargetName" = "8:MakeHardLink.bat"
-            "Tag" = "8:"
-            "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_562F4078C8D478ADC0E66DC97E9D2A1F"
             {
             "AssemblyRegister" = "3:1"
@@ -277,37 +239,6 @@
             {
             "SourcePath" = "8:..\\UpPhoto\\Resources\\Idle.ico"
             "TargetName" = "8:Idle.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C55140BAEA2E4F86A8ECA3348C37190D"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Facebook, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_C55140BAEA2E4F86A8ECA3348C37190D"
-                    {
-                    "Name" = "8:facebook.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\UpPhoto\\bin\\Debug\\facebook.dll"
-            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_79ED71F82F4241B789D62ABC08AC0C40"
             "Condition" = "8:"
@@ -457,6 +388,28 @@
             "Property" = "8:AppDataFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_C117A3C0A0BA4F988E2DBD21839C614B"
+                    {
+                    "Name" = "8:UpPhoto"
+                    "AlwaysCreate" = "11:TRUE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_91842445FCFC4EC498F6C077ABC9C348"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_AAB58D2D6A0F4A1095738106EDAF40AC"
+                            {
+                            "Name" = "8:UpPhoto"
+                            "AlwaysCreate" = "11:TRUE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_C3F218F536DB4112A8CA0FB401C09F0B"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -476,7 +429,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UpPhoto"
         "ProductCode" = "8:{6DDC5757-9C55-47E2-AB89-833BCDD95BF8}"
-        "PackageCode" = "8:{8BF62962-408A-44FD-B5D5-F47AFA66902C}"
+        "PackageCode" = "8:{2BDD66F9-4677-47C2-A6AC-9C45E4AA1E94}"
         "UpgradeCode" = "8:{77AA1ED4-1AC4-4197-A02D-29201C8F165A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -621,6 +574,20 @@
             "Target" = "8:_368A6817A94348E2A6EC79AB2FC3AD31"
             "Folder" = "8:_368A6817A94348E2A6EC79AB2FC3AD31"
             "WorkingFolder" = "8:_40C010829E254E9FBF0042EA4BC71EDA"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E44FEACC518640BD84B3A271FC707B42"
+            {
+            "Name" = "8:UpPhoto"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_AAB58D2D6A0F4A1095738106EDAF40AC"
+            "Folder" = "8:_3B4B27D43C1246D6A92AC13561D0B6F5"
+            "WorkingFolder" = "8:_C117A3C0A0BA4F988E2DBD21839C614B"
             "Icon" = "8:"
             "Feature" = "8:"
             }

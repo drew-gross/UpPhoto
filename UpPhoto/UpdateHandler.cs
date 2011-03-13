@@ -103,7 +103,7 @@ namespace UpPhoto
                     parent.SetConnectedStatus(true);
                     parent.AddUploadedPhoto(new FacebookPhoto(UploadedPhoto, curPhoto.photoPath));
                 }
-                catch (System.Net.WebException ex)
+                catch (System.Net.WebException)
                 {
                     //could not upload, add photo back to queue and set connected status to false
                     uploadQueue.Enqueue(curPhoto);
@@ -125,7 +125,7 @@ namespace UpPhoto
                     }
                 }
             }
-            catch (DirectoryNotFoundException e)
+            catch (DirectoryNotFoundException)
             {
                 return false;
             }
@@ -215,6 +215,10 @@ namespace UpPhoto
             catch (System.Net.WebException)
             {
                 parent.SetConnectedStatus(false);
+            }
+            catch (ThreadAbortException)
+            {
+                //we are aborting the thread, no need to do anything.
             }
             catch (Exception ex)
             {

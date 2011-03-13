@@ -31,11 +31,18 @@ namespace UpPhoto
 
         private static void PopulateAIDCache()
         {
-            AIDCache = new Dictionary<String, AID>();
-            IList<album> allAlbums = fbService.Photos.GetAlbums();
-            foreach (album curAlbum in allAlbums)
+            try
             {
-                AIDCache[curAlbum.name] = new AID(curAlbum.aid);
+                AIDCache = new Dictionary<String, AID>();
+                IList<album> allAlbums = fbService.Photos.GetAlbums();
+                foreach (album curAlbum in allAlbums)
+                {
+                    AIDCache[curAlbum.name] = new AID(curAlbum.aid);
+                }	
+            }
+            catch (System.Net.WebException)
+            {
+                //failed to populate the cache, just leave it be.
             }
         }
 
