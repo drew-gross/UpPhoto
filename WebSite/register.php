@@ -10,7 +10,7 @@
 <?php
 if (isset($_REQUEST["email"]))
 {
-mail("waitlist@upphoto.ca", "UpPhoto OSX register", $_REQUEST["comment"]);
+mail("waitlist@upphoto.ca", "UpPhoto OSX register", $_REQUEST["email"]);
 ?>
 <p>We'll let you know as soon as it is released!</p>
 <?php
