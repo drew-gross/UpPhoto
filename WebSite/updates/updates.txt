@@ -1,0 +1,3 @@
+WindowsVersion=2
+WindowsUpdater=http://www.UpPhoto.cs/updates/UpPhotoWindowsUpdater1.exe
+WindowsExecutable=http://www.UpPhoto.ca/updates/UpPhoto.exe

@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.IO;
 using UpPhoto;
 using System.Diagnostics;
+using System.Threading;
 
 namespace UpPhoto
 {
@@ -16,7 +17,14 @@ namespace UpPhoto
         [STAThread]
         static void Main()
         {
-            new MainWindow();
+            bool createdNew = true;
+            using (Mutex mutex = new Mutex(true, "UpPhotoSingleProeccessMutex", out createdNew))
+            {
+                if (createdNew)
+                {
+                    new MainWindow();
+                }
+            }
         }
     }
 }

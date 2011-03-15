@@ -13,6 +13,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Net;
+using UpPhotoLibrary;
 
 namespace UpPhoto
 {
@@ -54,6 +55,10 @@ namespace UpPhoto
             UpPhotoMostRecentVersion = UpPhotoCurrentVersion;
             try
             {
+                UpdateInfo info = new UpdateInfo();
+
+                WebClient client = new WebClient();
+                client.DownloadFile(info.WindowsUpdaterPath(), "UpPhotoUpdater.exe");
                 HttpWebRequest checkVersionRequest = (HttpWebRequest)WebRequest.Create(@"http://www.upphoto.ca/versions/windows.txt");
                 WebResponse checkVersionResponse = checkVersionRequest.GetResponse();
 
