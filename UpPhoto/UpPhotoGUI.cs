@@ -66,13 +66,6 @@ namespace UpPhoto
             UpPhotoTrayMenu.ResumeLayout(true);
         }
 
-        public void NotifyOfNewVersion()
-        {
-            if (parent.UpPhotoMostRecentVersion > parent.UpPhotoCurrentVersion)
-            {
-                UpPhotoIcon.ShowBalloonTip(30000);
-            }
-        }
         protected override void Dispose(bool disposing)
         {
              if (disposing && (components != null))
@@ -97,7 +90,7 @@ namespace UpPhoto
                 }
                 UpPhotoIcon.Icon = newIcon;
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
             	
             }

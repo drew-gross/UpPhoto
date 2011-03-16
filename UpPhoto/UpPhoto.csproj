@@ -96,6 +96,7 @@
     <Compile Include="PhotoToUpload.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SilentUpdater.cs" />
     <Compile Include="SystemTrayIcons.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -42,9 +42,14 @@ namespace UpPhotoLibrary
             return ParsedUpdateFile["WindowsExecutable"];
         }
 
-        public String WindowsUpdaterPath()
+        public String WindowsUpdater()
         {
             return ParsedUpdateFile["WindowsUpdater"];
+        }
+
+        public int WindowsVersion()
+        {
+            return int.Parse(ParsedUpdateFile["WindowsVersion"]);
         }
     }
 }

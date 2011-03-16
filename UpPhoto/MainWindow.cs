@@ -46,34 +46,31 @@ namespace UpPhoto
         String ErrorLogFilePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\UpPhoto\UpPhotoError.log";
         String UpPhotoPathStr = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\UpPhoto\UpPhoto\";
         
-        public int UpPhotoCurrentVersion = 1;
-        public int UpPhotoMostRecentVersion;
         private int IdleIgnoreCount = 5;
 
         public MainWindow()
         {
-            UpPhotoMostRecentVersion = UpPhotoCurrentVersion;
             try
             {
-                UpdateInfo info = new UpdateInfo();
-
-                WebClient client = new WebClient();
-                client.DownloadFile(info.WindowsUpdaterPath(), "UpPhotoUpdater.exe");
-                HttpWebRequest checkVersionRequest = (HttpWebRequest)WebRequest.Create(@"http://www.upphoto.ca/versions/windows.txt");
-                WebResponse checkVersionResponse = checkVersionRequest.GetResponse();
-
-                StreamReader checkVersionReader = new StreamReader(checkVersionResponse.GetResponseStream());
-                String currentVersion = checkVersionReader.ReadToEnd();
-                checkVersionReader.Close();
-                checkVersionResponse.Close();
-
-                UpPhotoMostRecentVersion = int.Parse(currentVersion);
+                SilentUpdater updater = new SilentUpdater();
+                if (updater.NeedsUpdate())
+                {
+                    updater.DownloadUpdater();
+                    Process.Start("UpPhotoUpdater.exe");
+                }
+                else
+                {
+                    SetUpAndRunUpPhoto();
+                }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
-                //couldn't find a new version, just pretend we are the most recent version
+                SetUpAndRunUpPhoto();
             }
+        }
 
+        void SetUpAndRunUpPhoto()
+        {
             Application.Idle += new EventHandler(OnApplicationRun);
             Application.ThreadException += new ThreadExceptionEventHandler(GlobalThreadExceptionHandler);
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
@@ -96,7 +93,6 @@ namespace UpPhoto
             if (IdleIgnoreCount == 0)
             {
 	            gui.Show();
-                gui.NotifyOfNewVersion();
                 Application.Idle -= OnApplicationRun;
             }
             else

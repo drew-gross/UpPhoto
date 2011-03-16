@@ -18,6 +18,7 @@ namespace UpPhoto
         static void Main()
         {
             bool createdNew = true;
+            //prevents 2 instances of UpPhoto running at once.
             using (Mutex mutex = new Mutex(true, "UpPhotoSingleProeccessMutex", out createdNew))
             {
                 if (createdNew)
