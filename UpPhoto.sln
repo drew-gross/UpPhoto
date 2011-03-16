@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpPhoto", "UpPhoto\UpPhoto.csproj", "{E605AC8F-F302-449D-9E5F-6D604366F07A}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "UpPhotoInstaller", "UpPhotoInstaller\UpPhotoInstaller.vdproj", "{FDCC85DE-AA14-4289-916A-E8D97C24967B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{171BAEA0-0D53-409A-B072-2CC8755815AF} = {171BAEA0-0D53-409A-B072-2CC8755815AF}
+		{718C8ED0-DB94-4521-A8E7-AA2B061EAC09} = {718C8ED0-DB94-4521-A8E7-AA2B061EAC09}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpPhotoUpdater", "UpPhotoUpdater\UpPhotoUpdater.csproj", "{171BAEA0-0D53-409A-B072-2CC8755815AF}"
 EndProject

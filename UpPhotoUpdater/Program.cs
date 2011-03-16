@@ -5,6 +5,7 @@ using System.Text;
 using System.Net;
 using System.Diagnostics;
 using UpPhotoLibrary;
+using System.Threading;
 
 namespace UpPhotoUpdater
 {
@@ -15,6 +16,8 @@ namespace UpPhotoUpdater
             UpdateInfo info = new UpdateInfo();
 
             WebClient downloader = new WebClient();
+            Mutex waitForExit = new Mutex(false, "UpPhotoSingleProeccessMutex");
+            waitForExit.WaitOne();
             downloader.DownloadFile(info.WindowExecutablePath(), "UpPhoto.exe");
             Process.Start("UpPhoto.exe");
         }
