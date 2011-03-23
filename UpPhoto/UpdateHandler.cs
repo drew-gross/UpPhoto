@@ -228,6 +228,10 @@ namespace UpPhoto
             {
                 parent.SetConnectedStatus(false);
             }
+            catch (System.TypeInitializationException)
+            {
+                parent.SetConnectedStatus(false);
+            }
             catch (Exception ex)
             {
                 parent.LogException(ex);

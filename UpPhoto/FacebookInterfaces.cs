@@ -22,26 +22,29 @@ namespace UpPhoto
 
         static FacebookInterfaces()
         {
-            WaitForInternetConnection();
-            ConnectToFacebook();
+            if(IsInternetConnection())
+                ConnectToFacebook();
         }
 
-        public static void WaitForInternetConnection()
+        public static bool IsInternetConnection()
         {
             HttpWebRequest facebookRequest = (HttpWebRequest)WebRequest.Create("http://www.facebook.com");
             facebookRequest.AllowAutoRedirect = false;
-            HttpWebResponse facebookResponse = (HttpWebResponse)facebookRequest.GetResponse();
+            HttpWebResponse facebookResponse;
             Uri facebookUri = new Uri("http://www.facebook.com");
-            while (facebookResponse.ResponseUri != facebookUri)
+            while (true)
             {
-                Stopwatch timer = new Stopwatch();
-                timer.Start();
-                while (timer.ElapsedMilliseconds < 60*2000)
+                try
                 {
-
+                    facebookResponse = (HttpWebResponse)facebookRequest.GetResponse();
+                    if (facebookResponse.ResponseUri == facebookUri)
+                        return true;
+                    return false;
                 }
-                timer.Stop();
-                facebookResponse = (HttpWebResponse)facebookRequest.GetResponse();
+                catch (System.Net.WebException e)
+                {
+                    throw e;
+                }
             }            
 
         }
