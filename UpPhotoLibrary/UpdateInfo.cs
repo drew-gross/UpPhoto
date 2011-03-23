@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using System.Net;
@@ -30,7 +29,7 @@ namespace UpPhotoLibrary
             String[] vars = data.Split('\n');
             foreach (String var in vars)
             {
-                if (var.Length != 0 && var.Contains('='))
+                if (var.Length != 0 && var.Contains("="))
                 {
                     ParsedUpdateFile[var.Split('=')[0]] = var.Split('=')[1];
                 }

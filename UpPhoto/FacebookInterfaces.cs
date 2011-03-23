@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using Facebook.Rest;
 using Facebook.Schema;
@@ -112,7 +111,7 @@ namespace UpPhoto
         {
             //note: must do stuff if the photo doesn't exist.
             IList<photo> PhotosWithAid = fbService.Photos.Get(null, null, new List<String> { pid.ToString() });
-            if (PhotosWithAid.Count() == 0)
+            if (PhotosWithAid.Count == 0)
             {
                 throw new PhotoDoesNotExistException();
             }
