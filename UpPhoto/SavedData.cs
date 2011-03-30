@@ -36,7 +36,7 @@ namespace UpPhoto
                     SaveDataVersion = (int)info.GetValue("SaveDataVersion", typeof(int));
                 }
                 //change this to the right kind of exception
-                catch (Exception)
+                catch (SerializationException)
                 {
                     SaveDataVersion = 1;
                 }
@@ -57,7 +57,7 @@ namespace UpPhoto
                     {
                         case 1:
                             ConvertSaveData1ToSaveData2();
-                            continue;
+                            break;
                         case 2:
                             break;
                         default:
