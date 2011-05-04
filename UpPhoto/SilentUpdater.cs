@@ -29,8 +29,9 @@ namespace UpPhoto
                     return false;
                 }
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
+                ErrorHandler.LogException(ex);
                 return false;
             }
         }

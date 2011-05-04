@@ -85,7 +85,12 @@ namespace UpPhoto
             }
             catch (Exception ex)
             {
-                parent.LogException(ex);
+                //On error, restart thread. If something is causing exceptions indefinitely, we should catch that specific type of exception and handle/ignore it.
+                ErrorHandler.LogException(ex);
+
+                uploadThread = new Thread(UploadPhotos);
+                uploadThread.SetApartmentState(ApartmentState.STA);
+                uploadThread.Start();
             }
         }
 
@@ -157,7 +162,12 @@ namespace UpPhoto
             }
             catch (Exception ex)
             {
-                parent.LogException(ex);
+                //On error, restart thread. If something is causing exceptions indefinitely, we should catch that specific type of exception and handle/ignore it.
+                ErrorHandler.LogException(ex);
+
+                downloadThread = new Thread(DownloadPhotos);
+                downloadThread.SetApartmentState(ApartmentState.STA);
+                downloadThread.Start();
             }
         }
 
@@ -221,7 +231,12 @@ namespace UpPhoto
             }
             catch (Exception ex)
             {
-                parent.LogException(ex);
+                //On error, restart thread. If something is causing exceptions indefinitely, we should catch that specific type of exception and handle/ignore it.
+                ErrorHandler.LogException(ex);
+
+                detectPIDthread = new Thread(SnycPhotos);
+                detectPIDthread.SetApartmentState(ApartmentState.STA);
+                detectPIDthread.Start();
             }
         }
 

@@ -98,7 +98,7 @@ namespace UpPhoto
         private void ExitItem_Click(object sender, EventArgs e)
         {
             Dispose(true);
-            parent.QuitUpPhoto();
+            MainWindow.QuitUpPhoto();
         }
 
         private void ChangeAccountItem_Click(object sender, EventArgs e)

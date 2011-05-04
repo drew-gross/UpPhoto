@@ -19,12 +19,6 @@ namespace UpPhoto
 {
     public partial class MainWindow
     {
-        enum Status
-        {
-            Running,
-            Exiting
-        }
-
         public UpPhotoGUI gui;
         const String IdleIconPath = "Idle";
         const String UploadingIconPath = "Uploading";
@@ -34,16 +28,14 @@ namespace UpPhoto
 
         List<WatchedFolder> watchList = new List<WatchedFolder>();
         Dictionary<PID, String> AllPhotos; //initialized in LoadData;
+
         public UpdateHandler updateHandler;
 
         bool Connected = true;
         bool Uploading = false;
         bool Downloading = false;
 
-        MainWindow.Status status = MainWindow.Status.Running;
-
         String SavedDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\UpPhoto\UpPhotoData.upd";
-        String ErrorLogFilePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\UpPhoto\UpPhotoError.log";
         String UpPhotoPathStr = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\UpPhoto\UpPhoto\";
         
         private int IdleIgnoreCount = 5;
@@ -63,8 +55,13 @@ namespace UpPhoto
                     SetUpAndRunUpPhoto();
                 }
             }
-            catch (System.Exception)
+            catch (System.Net.WebException)
             {
+                SetUpAndRunUpPhoto();
+            }
+            catch (System.Exception ex)
+            {
+                ErrorHandler.LogException(ex);
                 SetUpAndRunUpPhoto();
             }
         }
@@ -174,9 +171,8 @@ namespace UpPhoto
             dataStream.Close();
         }
 
-        public void QuitUpPhoto()
+        public static void QuitUpPhoto()
         {
-            SetStatus(MainWindow.Status.Exiting);
             Application.Exit();
         }
 
@@ -269,33 +265,12 @@ namespace UpPhoto
 
         private void GlobalUnhandledExceptionHandler(Object sender, UnhandledExceptionEventArgs t)
         {
-            LogException((System.Exception)t.ExceptionObject);
+            ErrorHandler.LogException((System.Exception)t.ExceptionObject);
         }
 
         private void GlobalThreadExceptionHandler(Object sender, System.Threading.ThreadExceptionEventArgs t)
         {
-            LogException(t.Exception);
-        }
-
-        public void LogException(System.Exception ex)
-        {
-            try
-            {
-                // Write the string to a file.
-                System.IO.StreamWriter file = new System.IO.StreamWriter(ErrorLogFilePath, true);
-                file.WriteLine(ex.ToString());
-                file.Close();
-                QuitUpPhoto();
-            }
-            catch (Exception)
-            {
-                QuitUpPhoto();
-            }
-        }
-
-        private void SetStatus(MainWindow.Status newStatus)
-        {
-            status = newStatus;
+            ErrorHandler.LogException(t.Exception);
         }
     }
 }
