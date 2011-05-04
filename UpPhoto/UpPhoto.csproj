@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AID.cs" />
+    <Compile Include="AutoStartThread.cs" />
     <Compile Include="ErrorHandler.cs" />
     <Compile Include="PID.cs" />
     <Compile Include="FacebookInterfaces.cs" />

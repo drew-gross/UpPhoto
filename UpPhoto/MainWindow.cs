@@ -30,6 +30,7 @@ namespace UpPhoto
         Dictionary<PID, String> AllPhotos; //initialized in LoadData;
 
         public UpdateHandler updateHandler;
+        public int WaitForInternetConnectionTime = 2000;// * 60; //2000 milliseconds * 60 = 2 minutes remember to change back to minutes after.
 
         bool Connected = true;
         bool Uploading = false;

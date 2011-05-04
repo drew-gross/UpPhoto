@@ -20,15 +20,16 @@ namespace UpPhoto
         public Queue<PhotoToUpload> uploadQueue = new Queue<PhotoToUpload>();
         Queue<PID> downloadQueue = new Queue<PID>();
 
-        Thread uploadThread;
+        AutoStartThread uploadThread;
         bool abortUploadThread = false;
         bool pauseUploadThread = false;
 
-        Thread downloadThread;
+        AutoStartThread downloadThread;
         bool abortDownloadThread = false;
         bool pauseDownloadThread = false;
 
-        Thread detectPIDthread;
+        AutoStartThread detectPIDthread;
+        bool abortDetectPIDthread = false;
 
         const String DownloadedPhotoExtension = @".png";
         const int threadSleepTime = 500; //this is the time in milliseconds between checking if there are photos to be uploaded.
@@ -38,23 +39,16 @@ namespace UpPhoto
         {
             parent = newParent;
 
-            detectPIDthread = new Thread(SnycPhotos);
-            detectPIDthread.SetApartmentState(ApartmentState.STA);
-            detectPIDthread.Start();
-
-            uploadThread = new Thread(UploadPhotos);
-            uploadThread.SetApartmentState(ApartmentState.STA);
-            uploadThread.Start();
-
-            downloadThread = new Thread(DownloadPhotos);
-            downloadThread.SetApartmentState(ApartmentState.STA);
-            downloadThread.Start();
+            detectPIDthread = new AutoStartThread(SyncPhotos, ApartmentState.STA);
+            uploadThread = new AutoStartThread(UploadPhotos, ApartmentState.STA);
+            downloadThread = new AutoStartThread(DownloadPhotos, ApartmentState.STA);
         }
 
         public void StopThreads()
         {
             abortDownloadThread = true;
             abortUploadThread = true;
+            abortDetectPIDthread = true;
 
             uploadThread.Join();
             downloadThread.Join();
@@ -88,9 +82,7 @@ namespace UpPhoto
                 //On error, restart thread. If something is causing exceptions indefinitely, we should catch that specific type of exception and handle/ignore it.
                 ErrorHandler.LogException(ex);
 
-                uploadThread = new Thread(UploadPhotos);
-                uploadThread.SetApartmentState(ApartmentState.STA);
-                uploadThread.Start();
+                uploadThread = new AutoStartThread(UploadPhotos, ApartmentState.STA);
             }
         }
 
@@ -160,14 +152,17 @@ namespace UpPhoto
                     }
                 }
             }
+            catch (System.Net.WebException)
+            {
+                parent.SetConnectedStatus(false);
+                System.Threading.Thread.Sleep(parent.WaitForInternetConnectionTime);
+                downloadThread = new AutoStartThread(DownloadPhotos, ApartmentState.STA);
+            }
             catch (Exception ex)
             {
                 //On error, restart thread. If something is causing exceptions indefinitely, we should catch that specific type of exception and handle/ignore it.
                 ErrorHandler.LogException(ex);
-
-                downloadThread = new Thread(DownloadPhotos);
-                downloadThread.SetApartmentState(ApartmentState.STA);
-                downloadThread.Start();
+                downloadThread = new AutoStartThread(DownloadPhotos, ApartmentState.STA);
             }
         }
 
@@ -195,14 +190,13 @@ namespace UpPhoto
             }
             catch (System.Net.WebException)
             {
-                //add the photo back to the queue and try again later
-                parent.SetConnectedStatus(false);
+                //add the photo back to the queue
                 downloadQueue.Enqueue(pidToDownload);
-                Thread.Sleep(threadSleepTime);
+                throw;
             }
         }
 
-        public void SnycPhotos()
+        public void SyncPhotos()
         {
             try
             {
@@ -224,6 +218,11 @@ namespace UpPhoto
             catch (System.Net.WebException)
             {
                 parent.SetConnectedStatus(false);
+                System.Threading.Thread.Sleep(parent.WaitForInternetConnectionTime);
+                if (abortDetectPIDthread == false)
+                {
+                    detectPIDthread = new AutoStartThread(SyncPhotos, ApartmentState.STA);
+                }
             }
             catch (ThreadAbortException)
             {
@@ -234,9 +233,7 @@ namespace UpPhoto
                 //On error, restart thread. If something is causing exceptions indefinitely, we should catch that specific type of exception and handle/ignore it.
                 ErrorHandler.LogException(ex);
 
-                detectPIDthread = new Thread(SnycPhotos);
-                detectPIDthread.SetApartmentState(ApartmentState.STA);
-                detectPIDthread.Start();
+                detectPIDthread = new AutoStartThread(SyncPhotos, ApartmentState.STA);
             }
         }
 
