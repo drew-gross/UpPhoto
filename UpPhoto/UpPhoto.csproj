@@ -77,12 +77,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Facebook\AID.cs" />
+    <Compile Include="AID.cs" />
     <Compile Include="AutoStartThread.cs" />
     <Compile Include="ErrorHandler.cs" />
-    <Compile Include="Facebook\PID.cs" />
-    <Compile Include="Facebook\FacebookInterfaces.cs" />
-    <Compile Include="Facebook\FacebookPhoto.cs" />
+    <Compile Include="PID.cs" />
+    <Compile Include="FacebookInterfaces.cs" />
+    <Compile Include="FacebookPhoto.cs" />
     <Compile Include="MainWindow.cs" />
     <Compile Include="PhotoToUpload.cs" />
     <Compile Include="Program.cs" />
