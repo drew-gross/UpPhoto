@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace UpPhoto
+namespace UpPhotoLibrary
 {
-    class AutoStartThread
+    public class AutoStartThread
     {
         Thread thread;
         public AutoStartThread(ThreadStart newThreadStart, ApartmentState newApartmentState = ApartmentState.MTA)

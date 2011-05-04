@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Drawing.Imaging;
-using UpPhoto;
-using Facebook.Rest;
-using Facebook.Schema;
-using Facebook.Utility;
-using Facebook.Winforms.Components;
-using System.Threading;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Threading;
+using Facebook.Schema;
+using UpPhotoLibrary;
 
 namespace UpPhoto
 {
