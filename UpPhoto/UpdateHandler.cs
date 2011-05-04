@@ -71,6 +71,12 @@ namespace UpPhoto
                     }
                 }
             }
+            catch (System.Net.WebException)
+            {
+                parent.SetConnectedStatus(false);
+                System.Threading.Thread.Sleep(parent.WaitForInternetConnectionTime);
+                uploadThread = new AutoStartThread(DownloadPhotos, ApartmentState.STA);
+            }
             catch (Exception ex)
             {
                 //On error, restart thread. If something is causing exceptions indefinitely, we should catch that specific type of exception and handle/ignore it.
@@ -95,9 +101,9 @@ namespace UpPhoto
                 }
                 catch (System.Net.WebException)
                 {
-                    //could not upload, add photo back to queue and set connected status to false
+                    //could not upload, add photo back to queue and rethrow
                     uploadQueue.Enqueue(curPhoto);
-                    parent.SetConnectedStatus(false);
+                    throw;
                 }
             }
         }

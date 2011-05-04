@@ -41,6 +41,8 @@ namespace UpPhoto
         
         private int IdleIgnoreCount = 5;
 
+        public bool IsFirstRun = true;
+
         public MainWindow()
         {
             try
@@ -79,6 +81,12 @@ namespace UpPhoto
             updateHandler = new UpdateHandler(this);
 
             LoadData();
+
+            if (IsFirstRun)
+            {
+                Must show information Icon!!!!!
+                gui.Show();
+            }
 
             Application.Run();
 
@@ -187,6 +195,7 @@ namespace UpPhoto
                 SavedData data = (SavedData)formatter.Deserialize(dataStream);
                 WatchFolders(data.SavedWatchedFolders());
                 AllPhotos = data.SavedPIDtoPhotoMap();
+                IsFirstRun = data.SavedIsFirstTimeRun();
             }
             catch (System.IO.FileNotFoundException)
             {
@@ -215,7 +224,9 @@ namespace UpPhoto
         public String UpPhotoPath()
         {
             if (!System.IO.Directory.Exists(UpPhotoPathStr))
+            {
                 System.IO.Directory.CreateDirectory(UpPhotoPathStr);
+            }
             return Path.GetFullPath(UpPhotoPathStr);
         }
 

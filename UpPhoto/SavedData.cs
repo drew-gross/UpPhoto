@@ -85,6 +85,11 @@ namespace UpPhoto
             return AllPhotos;
         }
 
+        public bool SavedIsFirstTimeRun()
+        {
+            return IsFirstTimeRun;
+        }
+
         private void LoadSaveDataVersion1(SerializationInfo info)
         {
             WatchedFolders = (List<String>)info.GetValue("WatchList", typeof(List<String>));

@@ -42,7 +42,7 @@ namespace UpPhoto
                 ExitItem
             });
 
-            AboutItem.Text = "Aboot";
+            AboutItem.Text = "About";
             AboutItem.Click += (x, y) => { Process.Start(@"http://www.upphoto.ca/instructions.php"); };
 
             ViewItem.Text = "View";
@@ -58,9 +58,8 @@ namespace UpPhoto
             UpPhotoIcon.MouseClick += new MouseEventHandler(TrayIcon_Click);
             UpPhotoIcon.DoubleClick += new EventHandler(ViewItem_Click);
 
-            UpPhotoIcon.BalloonTipTitle = "New UpPhoto version!";
-            UpPhotoIcon.BalloonTipText = "A new version of UpPhoto is available for Download from UpPhoto.ca";
-            UpPhotoIcon.BalloonTipClicked += (x, y) => {System.Diagnostics.Process.Start("www.UpPhoto.ca");};
+            UpPhotoIcon.BalloonTipTitle = "Thank you for using UpPhoto!";
+            UpPhotoIcon.BalloonTipText = "Click on this Icon to view your UpPhoto folder. Put photos in the folder, and they will be uploaded to Facebook!";
 
             UpPhotoTrayMenu.ResumeLayout(true);
         }
