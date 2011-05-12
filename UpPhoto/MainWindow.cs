@@ -182,7 +182,6 @@ namespace UpPhoto
 
         public static void QuitUpPhoto()
         {
-            FacebookInterfaces.LogOut();
             Application.Exit();
         }
 
