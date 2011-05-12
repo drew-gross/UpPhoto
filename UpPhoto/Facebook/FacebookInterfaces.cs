@@ -54,6 +54,7 @@ namespace UpPhoto
                 Enums.ExtendedPermissions.offline_access,
                 Enums.ExtendedPermissions.user_photos
             };
+
             fbService.ConnectToFacebook(perms);
         }
 

@@ -22,7 +22,7 @@ namespace UpPhoto
         ToolStripMenuItem ViewItem = new ToolStripMenuItem();
         ToolStripMenuItem ExitItem = new ToolStripMenuItem();
 
-        NotifyIcon UpPhotoIcon;
+        public NotifyIcon UpPhotoIcon;
 
         Dictionary<WatchedFolder, ToolStripMenuItem> menuItemMap = new Dictionary<WatchedFolder, ToolStripMenuItem>();
 

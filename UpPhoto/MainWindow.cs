@@ -84,7 +84,7 @@ namespace UpPhoto
 
             if (IsFirstRun)
             {
-                Must show information Icon!!!!!
+                gui.UpPhotoIcon.ShowBalloonTip(30000);
                 gui.Show();
             }
 
