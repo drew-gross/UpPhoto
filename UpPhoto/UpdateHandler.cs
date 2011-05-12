@@ -105,6 +105,10 @@ namespace UpPhoto
                     uploadQueue.Enqueue(curPhoto);
                     throw;
                 }
+                catch (System.IO.FileNotFoundException)
+                {
+                    //photo deleted before uploading. leave it off the queue and continue uploading the next photos.
+                }
             }
         }
 
