@@ -108,7 +108,7 @@ namespace UpPhoto
 
         private void LogoutItem_Click(object sender, EventArgs e)
         {
-            FacebookInterfaces.LogOut();
+            throw new NotImplementedException();
         }
 
         private void AddWatchedFolderItem_Click(object sender, EventArgs e)
