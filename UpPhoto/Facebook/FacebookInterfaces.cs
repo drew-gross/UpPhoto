@@ -25,7 +25,6 @@ namespace UpPhoto
         static FacebookInterfaces()
         {
             ConnectToFacebook();
-            PopulateAIDCache();
         }
 
         private static void PopulateAIDCache()
@@ -150,7 +149,7 @@ namespace UpPhoto
 
         public static void LogOut()
         {
-            throw new NotImplementedException();
+            fbService.LogOff();
         }
     }
 }
