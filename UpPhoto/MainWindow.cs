@@ -45,6 +45,11 @@ namespace UpPhoto
 
         public MainWindow()
         {
+            Application.Idle += new EventHandler(OnApplicationRun);
+            Application.ThreadException += new ThreadExceptionEventHandler(GlobalThreadExceptionHandler);
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalUnhandledExceptionHandler);
+
             try
             {
                 SilentUpdater updater = new SilentUpdater();
@@ -71,14 +76,9 @@ namespace UpPhoto
 
         void SetUpAndRunUpPhoto()
         {
-            Application.Idle += new EventHandler(OnApplicationRun);
-            Application.ThreadException += new ThreadExceptionEventHandler(GlobalThreadExceptionHandler);
-            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
-            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalUnhandledExceptionHandler);
-
             gui = new UpPhotoGUI(this);
 
-            updateHandler = new UpdateHandler(this);
+            //updateHandler = new UpdateHandler(this);
 
             LoadData();
 

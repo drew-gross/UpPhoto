@@ -57,13 +57,6 @@ namespace UpPhoto
             fbService.ConnectToFacebook(perms);
         }
 
-        public static void DeletePhotos(String AlbumName, String FileName)
-        {
-            //this may need to change dramatically to account for things like multiple
-            //albums with the same name
-            //throw new NotImplementedException(); do nothing for now
-        }
-
         public static AID GetAlbumAID(String AlbumName)
         {
             if (AIDCache.ContainsKey(AlbumName)) 

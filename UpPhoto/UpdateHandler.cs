@@ -265,15 +265,6 @@ namespace UpPhoto
             parent.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
         }
 
-        public void FaceboxWatcher_Deleted(object sender, FileSystemEventArgs e)
-        {
-            if (StringUtils.IsImageExtension(Path.GetExtension(e.FullPath)))
-            {
-                string album = Path.GetFileName(Path.GetDirectoryName(e.FullPath));
-                FacebookInterfaces.DeletePhotos(album, e.FullPath);
-            }
-        }
-
         public void FaceboxWatcher_Renamed(object sender, RenamedEventArgs e)
         {
         }
