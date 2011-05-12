@@ -59,7 +59,7 @@ namespace UpPhoto
             UpPhotoIcon.DoubleClick += new EventHandler(ViewItem_Click);
 
             UpPhotoIcon.BalloonTipTitle = "Thank you for using UpPhoto!";
-            UpPhotoIcon.BalloonTipText = "Click on this Icon to view your UpPhoto folder. Put photos in the folder, and they will be uploaded to Facebook!";
+            UpPhotoIcon.BalloonTipText = "Click on this icon to view your UpPhoto folder. Put photos in the folder, and they will be uploaded to Facebook.";
 
             UpPhotoTrayMenu.ResumeLayout(true);
         }
@@ -90,7 +90,7 @@ namespace UpPhoto
             }
             catch (System.Exception)
             {
-            	
+            	//wtf? why is this empty. should at least have a comment if its supposed to be empty
             }
         }
 

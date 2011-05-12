@@ -78,15 +78,14 @@ namespace UpPhoto
         {
             gui = new UpPhotoGUI(this);
 
-            //updateHandler = new UpdateHandler(this);
-
             LoadData();
 
             if (IsFirstRun)
             {
-                gui.UpPhotoIcon.ShowBalloonTip(30000);
                 gui.Show();
             }
+
+            updateHandler = new UpdateHandler(this);
 
             Application.Run();
 
@@ -98,7 +97,11 @@ namespace UpPhoto
         {
             if (IdleIgnoreCount == 0)
             {
-	            gui.Show();
+                gui.Show();
+                if (IsFirstRun)
+                {
+                    gui.UpPhotoIcon.ShowBalloonTip(30000);
+                }
                 Application.Idle -= OnApplicationRun;
             }
             else
