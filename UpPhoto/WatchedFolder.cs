@@ -31,8 +31,8 @@ namespace UpPhoto
 
             watcher.SynchronizingObject = parent.gui;
 
-            watcher.Changed += new FileSystemEventHandler(FileChangedEvent);
-            watcher.Created += new FileSystemEventHandler(FileCreatedEvent);
+            watcher.Changed += FileChangedEvent;
+            watcher.Created += FileCreatedEvent;
 
             watcher.InternalBufferSize = 64000;
         }
