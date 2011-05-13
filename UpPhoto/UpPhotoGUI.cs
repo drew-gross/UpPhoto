@@ -46,17 +46,17 @@ namespace UpPhoto
             AboutItem.Click += (x, y) => { Process.Start(@"http://www.upphoto.ca/instructions.php"); };
 
             ViewItem.Text = "View";
-            ViewItem.Click += new System.EventHandler(ViewItem_Click);
+            ViewItem.Click += ViewItem_Click;
 
             ExitItem.Text = "Exit";
-            ExitItem.Click += new System.EventHandler(ExitItem_Click);
+            ExitItem.Click += ExitItem_Click;
 
             UpPhotoIcon = new NotifyIcon(components);
             UpPhotoIcon.ContextMenuStrip = UpPhotoTrayMenu;
             UpPhotoIcon.Text = "UpPhoto";
             UpPhotoIcon.Visible = true;
-            UpPhotoIcon.MouseClick += new MouseEventHandler(TrayIcon_Click);
-            UpPhotoIcon.DoubleClick += new EventHandler(ViewItem_Click);
+            UpPhotoIcon.MouseClick += TrayIcon_Click;
+            UpPhotoIcon.DoubleClick += ViewItem_Click;
 
             UpPhotoIcon.BalloonTipTitle = "Thank you for using UpPhoto!";
             UpPhotoIcon.BalloonTipText = "Click on this icon to view your UpPhoto folder. Put photos in the folder, and they will be uploaded to Facebook.";
@@ -98,17 +98,6 @@ namespace UpPhoto
         {
             Dispose(true);
             MainWindow.QuitUpPhoto();
-        }
-
-        private void ChangeAccountItem_Click(object sender, EventArgs e)
-        {
-            // Logout, then show prompt again.
-            throw new NotImplementedException();
-        }
-
-        private void LogoutItem_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         private void AddWatchedFolderItem_Click(object sender, EventArgs e)

@@ -22,11 +22,6 @@ namespace UpPhoto
 
         static Dictionary<String, AID> AIDCache = new Dictionary<String, AID>();
 
-        static FacebookInterfaces()
-        {
-            ConnectToFacebook();
-        }
-
         private static void PopulateAIDCache()
         {
             try

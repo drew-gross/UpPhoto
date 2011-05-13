@@ -45,7 +45,7 @@ namespace UpPhoto
 
         public MainWindow()
         {
-            Application.Idle += new EventHandler(OnApplicationRun);
+            Application.Idle += OnApplicationRun;
             Application.ThreadException += new ThreadExceptionEventHandler(GlobalThreadExceptionHandler);
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalUnhandledExceptionHandler);
@@ -80,10 +80,9 @@ namespace UpPhoto
 
             LoadData();
 
-            if (IsFirstRun)
-            {
-                gui.Show();
-            }
+            gui.Show();
+
+            FacebookInterfaces.ConnectToFacebook();
 
             updateHandler = new UpdateHandler(this);
 
@@ -97,7 +96,6 @@ namespace UpPhoto
         {
             if (IdleIgnoreCount == 0)
             {
-                gui.Show();
                 if (IsFirstRun)
                 {
                     gui.UpPhotoIcon.ShowBalloonTip(30000);
@@ -176,7 +174,7 @@ namespace UpPhoto
 
         public void SaveData()
         {
-            SavedData data = new SavedData(WatchedFolderPaths(), AllPhotos);
+            SavedData data = new SavedData(WatchedFolderPaths(), AllPhotos, false);
             Stream dataStream = File.Open(SavedDataPath, FileMode.Create);
             BinaryFormatter formatter = new BinaryFormatter();
             formatter.Serialize(dataStream, data);

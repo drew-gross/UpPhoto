@@ -20,10 +20,11 @@ namespace UpPhoto
 
         bool IsFirstTimeRun = true;
 
-        public SavedData(List<String> newWatchList, Dictionary<PID, String> newAllPhotos)
+        public SavedData(List<String> newWatchList, Dictionary<PID, String> newAllPhotos, Boolean newIsFirstTimeRun)
         {
             WatchedFolders = newWatchList;
             AllPhotos = newAllPhotos;
+            IsFirstTimeRun = newIsFirstTimeRun;
             SaveDataVersion = 2;
         }
 
