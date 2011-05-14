@@ -45,7 +45,6 @@ namespace UpPhoto
 
         public MainWindow()
         {
-            Application.Idle += OnApplicationRun;
             Application.ThreadException += new ThreadExceptionEventHandler(GlobalThreadExceptionHandler);
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalUnhandledExceptionHandler);
@@ -80,32 +79,23 @@ namespace UpPhoto
 
             LoadData();
 
-            gui.Show();
-
             FacebookInterfaces.ConnectToFacebook();
 
             updateHandler = new UpdateHandler(this);
+
+            Application.DoEvents();
+
+            Thread.Sleep(5000); //sleep a few seconds to allow the notifyicon to appear so that the tooltip can appear
+
+            if (IsFirstRun)
+            {
+                gui.UpPhotoIcon.ShowBalloonTip(30000);
+            }
 
             Application.Run();
 
             updateHandler.StopThreads();
             SaveData();
-        }
-
-        void OnApplicationRun(Object sender, EventArgs e)
-        {
-            if (IdleIgnoreCount == 0)
-            {
-                if (IsFirstRun)
-                {
-                    gui.UpPhotoIcon.ShowBalloonTip(30000);
-                }
-                Application.Idle -= OnApplicationRun;
-            }
-            else
-            {
-                IdleIgnoreCount--;
-            }
         }
 
         public void SetUploadingStatus(bool newStatus)
