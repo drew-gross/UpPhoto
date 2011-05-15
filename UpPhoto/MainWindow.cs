@@ -38,8 +38,6 @@ namespace UpPhoto
 
         String SavedDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\UpPhoto\UpPhotoData.upd";
         String UpPhotoPathStr = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\UpPhoto\UpPhoto\";
-        
-        private int IdleIgnoreCount = 5;
 
         public bool IsFirstRun = true;
 
