@@ -232,7 +232,7 @@ namespace UpPhoto
             {
                 //we are aborting the thread, no need to do anything.
             }
-            catch (Exception ex)
+            catch (System.TypeInitializationException ex)
             {
                 //On error, restart thread. If something is causing exceptions indefinitely, we should catch that specific type of exception and handle/ignore it.
                 ErrorHandler.LogException(ex);
@@ -251,6 +251,7 @@ namespace UpPhoto
             {
                 PhotoCounter++;
                 path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
+                parent.SetConnectedStatus(false);
             }
             return path;
         }
@@ -263,10 +264,6 @@ namespace UpPhoto
             imageData.Save(path, ImageFormat.Png);
             parent.WatchersUnIgnoreFile(path);
             parent.AddUploadedPhoto(new FacebookPhoto(DownloadedPhoto, path));
-        }
-
-        public void FaceboxWatcher_Renamed(object sender, RenamedEventArgs e)
-        {
         }
     }
 }
