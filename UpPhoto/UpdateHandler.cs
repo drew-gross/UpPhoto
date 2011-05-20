@@ -98,7 +98,7 @@ namespace UpPhoto
                     parent.SetConnectedStatus(true);
                     parent.AddUploadedPhoto(new FacebookPhoto(UploadedPhoto, curPhoto.photoPath));
                 }
-                catch (System.Net.WebException ex)
+                catch (System.Net.WebException)
                 {
                     //could not upload, add photo back to queue and set connected status to false
                     uploadQueue.Enqueue(curPhoto);
@@ -120,7 +120,7 @@ namespace UpPhoto
                     }
                 }
             }
-            catch (DirectoryNotFoundException e)
+            catch (DirectoryNotFoundException)
             {
                 return false;
             }
@@ -228,23 +228,14 @@ namespace UpPhoto
             {
                 parent.SetConnectedStatus(false);
             }
+            catch (System.TypeInitializationException)
+            {
+                parent.SetConnectedStatus(false);
+            }
             catch (Exception ex)
             {
                 parent.LogException(ex);
             }
-        }
-
-        public void FaceboxWatcher_Deleted(object sender, FileSystemEventArgs e)
-        {
-            if (StringUtils.IsImageExtension(Path.GetExtension(e.FullPath)))
-            {
-                string album = Path.GetFileName(Path.GetDirectoryName(e.FullPath));
-                FacebookInterfaces.DeletePhotos(album, e.FullPath);
-            }
-        }
-
-        public void FaceboxWatcher_Renamed(object sender, RenamedEventArgs e)
-        {
         }
     }
 }

@@ -307,7 +307,7 @@ namespace UpPhoto
             {
                 Process.Start("MakeHardLink.bat", "\"" + UpPhotoPathStr + "\"");
             }
-            catch (Win32Exception ex)
+            catch (Win32Exception)
             {
             	//file already exits... ignore
             }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +7,8 @@ using Facebook.Schema;
 using Facebook.Utility;
 using Facebook.Winforms.Components;
 using System.IO;
+using System.Net;
+using System.Diagnostics;
 
 namespace UpPhoto
 {
@@ -20,7 +22,10 @@ namespace UpPhoto
 
         static FacebookInterfaces()
         {
-            ConnectToFacebook();
+            if(IsInternetConnection())
+            {
+                ConnectToFacebook();
+            }
         }
 
         public static void ConnectToFacebook()
@@ -35,11 +40,27 @@ namespace UpPhoto
             fbService.ConnectToFacebook(perms);
         }
 
-        public static void DeletePhotos(String AlbumName, String FileName)
+        public static bool IsInternetConnection()
         {
-            //this may need to change dramatically to account for things like multiple
-            //albums with the same name
-            //throw new NotImplementedException(); do nothing for now
+            HttpWebRequest facebookRequest = (HttpWebRequest)WebRequest.Create("http://www.facebook.com");
+            facebookRequest.AllowAutoRedirect = false;
+            HttpWebResponse facebookResponse;
+            Uri facebookUri = new Uri("http://www.facebook.com");
+            while (true)
+            {
+                try
+                {
+                    facebookResponse = (HttpWebResponse)facebookRequest.GetResponse();
+                    if (facebookResponse.ResponseUri == facebookUri)
+                        return true;
+                    return false;
+                }
+                catch (System.Net.WebException e)
+                {
+                    throw e;
+                }
+            }            
+
         }
 
         public static AID GetAlbumAID(String AlbumName)
