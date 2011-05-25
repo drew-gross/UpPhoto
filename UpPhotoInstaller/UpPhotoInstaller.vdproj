@@ -137,10 +137,10 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5.SP1"
                     {
-                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    "Name" = "8:.NET Framework 3.5 SP1"
+                    "ProductCode" = "8:Microsoft.Net.Framework.3.5.SP1"
                     }
                     "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
                     {
@@ -403,7 +403,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UpPhoto"
         "ProductCode" = "8:{6DDC5757-9C55-47E2-AB89-833BCDD95BF8}"
-        "PackageCode" = "8:{83879176-DF45-4E68-8E90-86044A7F7839}"
+        "PackageCode" = "8:{85002497-EC4D-4ACA-8B84-88417C6AD2E4}"
         "UpgradeCode" = "8:{77AA1ED4-1AC4-4197-A02D-29201C8F165A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
