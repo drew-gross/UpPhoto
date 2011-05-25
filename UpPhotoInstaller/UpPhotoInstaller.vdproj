@@ -39,7 +39,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F0408CE671B01CC079255FF09F5E4688"
+        "MsmKey" = "8:_CC6B840C677CDBD76A823A890A2C9EC5"
         "OwnerKey" = "8:_57D7E1A28FD342ADA55486A2A4E0BB70"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -58,7 +58,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F0408CE671B01CC079255FF09F5E4688"
+        "OwnerKey" = "8:_FD46A44EDABC6A72D5E2AD4DFC52012E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -70,7 +70,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FD46A44EDABC6A72D5E2AD4DFC52012E"
+        "OwnerKey" = "8:_CC6B840C677CDBD76A823A890A2C9EC5"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -194,7 +194,7 @@
             "SourcePath" = "8:Facebook.DLL"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_C117A3C0A0BA4F988E2DBD21839C614B"
+            "Folder" = "8:_3EAE0CFFD0094C24AA36F0B60C3AD075"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -214,7 +214,7 @@
             "SourcePath" = "8:..\\UpPhoto\\Resources\\Idle.ico"
             "TargetName" = "8:Idle.ico"
             "Tag" = "8:"
-            "Folder" = "8:_C117A3C0A0BA4F988E2DBD21839C614B"
+            "Folder" = "8:_3EAE0CFFD0094C24AA36F0B60C3AD075"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -229,18 +229,23 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F0408CE671B01CC079255FF09F5E4688"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CC6B840C677CDBD76A823A890A2C9EC5"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:UpPhotoLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_CC6B840C677CDBD76A823A890A2C9EC5"
+                    {
+                    "Name" = "8:UpPhotoLibrary.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:UpPhotoLibrary.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_C117A3C0A0BA4F988E2DBD21839C614B"
+            "Folder" = "8:_3EAE0CFFD0094C24AA36F0B60C3AD075"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -271,7 +276,7 @@
             "SourcePath" = "8:Facebook.Winforms.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_C117A3C0A0BA4F988E2DBD21839C614B"
+            "Folder" = "8:_3EAE0CFFD0094C24AA36F0B60C3AD075"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -299,6 +304,17 @@
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:DesktopFolder"
+                "Folders"
+                {
+                }
+            }
+            "{1525181F-901A-416C-8A58-119130FE478E}:_3EAE0CFFD0094C24AA36F0B60C3AD075"
+            {
+            "Name" = "8:#1912"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:ProgramFilesFolder"
                 "Folders"
                 {
                 }
@@ -387,7 +403,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UpPhoto"
         "ProductCode" = "8:{6DDC5757-9C55-47E2-AB89-833BCDD95BF8}"
-        "PackageCode" = "8:{254F006D-31D9-4750-9B5F-0A446A111378}"
+        "PackageCode" = "8:{83879176-DF45-4E68-8E90-86044A7F7839}"
         "UpgradeCode" = "8:{77AA1ED4-1AC4-4197-A02D-29201C8F165A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -532,7 +548,7 @@
             "Target" = "8:_AAB58D2D6A0F4A1095738106EDAF40AC"
             "Folder" = "8:_3B4B27D43C1246D6A92AC13561D0B6F5"
             "WorkingFolder" = "8:_C117A3C0A0BA4F988E2DBD21839C614B"
-            "Icon" = "8:"
+            "Icon" = "8:_93D10DC8935242489C294EFE790DC400"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_85A99BC1CF584E2D8F2303DF4C012FBB"
