@@ -58,7 +58,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FD46A44EDABC6A72D5E2AD4DFC52012E"
+        "OwnerKey" = "8:_F0408CE671B01CC079255FF09F5E4688"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -70,7 +70,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F0408CE671B01CC079255FF09F5E4688"
+        "OwnerKey" = "8:_FD46A44EDABC6A72D5E2AD4DFC52012E"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -236,11 +236,6 @@
             "AssemblyAsmDisplayName" = "8:UpPhotoLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_F0408CE671B01CC079255FF09F5E4688"
-                    {
-                    "Name" = "8:UpPhotoLibrary.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:UpPhotoLibrary.dll"
             "TargetName" = "8:"
@@ -524,6 +519,20 @@
             "Folder" = "8:_4953B7EED123403DB64A149EC83966BE"
             "WorkingFolder" = "8:_C117A3C0A0BA4F988E2DBD21839C614B"
             "Icon" = "8:_93D10DC8935242489C294EFE790DC400"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_4C9E60AB735247BE88C955F416860300"
+            {
+            "Name" = "8:UpPhoto"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_AAB58D2D6A0F4A1095738106EDAF40AC"
+            "Folder" = "8:_3B4B27D43C1246D6A92AC13561D0B6F5"
+            "WorkingFolder" = "8:_C117A3C0A0BA4F988E2DBD21839C614B"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_85A99BC1CF584E2D8F2303DF4C012FBB"
@@ -941,7 +950,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_57D7E1A28FD342ADA55486A2A4E0BB70"
             {
-            "SourcePath" = "8:..\\UpPhoto\\obj\\Debug\\UpPhoto.exe"
+            "SourcePath" = "8:..\\UpPhoto\\obj\\Release\\UpPhoto.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C117A3C0A0BA4F988E2DBD21839C614B"
