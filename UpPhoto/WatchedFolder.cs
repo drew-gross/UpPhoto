@@ -22,7 +22,6 @@ namespace UpPhoto
             handler = parent.updateHandler;
 
             watcher = new FileSystemWatcher(path);
-            watcher.EnableRaisingEvents = true;
             watcher.Filter = "*.*";
             watcher.IncludeSubdirectories = true;
             watcher.NotifyFilter = NotifyFilters.FileName |
@@ -35,6 +34,7 @@ namespace UpPhoto
             watcher.Created += FileCreatedEvent;
 
             watcher.InternalBufferSize = 64000;
+            watcher.EnableRaisingEvents = true;
         }
 
         public void IgnoreFile(String path)

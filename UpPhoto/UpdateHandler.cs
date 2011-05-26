@@ -97,6 +97,7 @@ namespace UpPhoto
                     //if we are here, the uploading worked and we can set the tray icon to connected
                     //if the uploading failed, an exception would have been thrown
                     parent.SetConnectedStatus(true);
+                    parent.SetUploadingStatus(true);
                     parent.AddUploadedPhoto(new FacebookPhoto(UploadedPhoto, curPhoto.photoPath));
                 }
                 catch (System.Net.WebException)
@@ -176,6 +177,8 @@ namespace UpPhoto
             try
             {
                 photo DownloadedPhoto = FacebookInterfaces.DownloadPhoto(pidToDownload);
+                parent.SetDownloadingStatus(true);
+                parent.SetConnectedStatus(true);
                 String path = GeneratePath(DownloadedPhoto);
                 try
                 {
@@ -251,7 +254,6 @@ namespace UpPhoto
             {
                 PhotoCounter++;
                 path = upPhotoPath + albumName + @"\Photo " + PhotoCounter.ToString() + DownloadedPhotoExtension;
-                parent.SetConnectedStatus(false);
             }
             return path;
         }

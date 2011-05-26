@@ -194,7 +194,7 @@
             "SourcePath" = "8:Facebook.DLL"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_3EAE0CFFD0094C24AA36F0B60C3AD075"
+            "Folder" = "8:_C117A3C0A0BA4F988E2DBD21839C614B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -214,7 +214,7 @@
             "SourcePath" = "8:..\\UpPhoto\\Resources\\Idle.ico"
             "TargetName" = "8:Idle.ico"
             "Tag" = "8:"
-            "Folder" = "8:_3EAE0CFFD0094C24AA36F0B60C3AD075"
+            "Folder" = "8:_C117A3C0A0BA4F988E2DBD21839C614B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -245,7 +245,7 @@
             "SourcePath" = "8:UpPhotoLibrary.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_3EAE0CFFD0094C24AA36F0B60C3AD075"
+            "Folder" = "8:_C117A3C0A0BA4F988E2DBD21839C614B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -276,7 +276,7 @@
             "SourcePath" = "8:Facebook.Winforms.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_3EAE0CFFD0094C24AA36F0B60C3AD075"
+            "Folder" = "8:_C117A3C0A0BA4F988E2DBD21839C614B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -304,17 +304,6 @@
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:DesktopFolder"
-                "Folders"
-                {
-                }
-            }
-            "{1525181F-901A-416C-8A58-119130FE478E}:_3EAE0CFFD0094C24AA36F0B60C3AD075"
-            {
-            "Name" = "8:#1912"
-            "AlwaysCreate" = "11:FALSE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Property" = "8:ProgramFilesFolder"
                 "Folders"
                 {
                 }
@@ -371,7 +360,7 @@
                     "Property" = "8:_91842445FCFC4EC498F6C077ABC9C348"
                         "Folders"
                         {
-                            "{9EF0B969-E518-4E46-987F-47570745A589}:_AAB58D2D6A0F4A1095738106EDAF40AC"
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_E6F1D5A05DE249679990BFDED950D047"
                             {
                             "Name" = "8:UpPhoto"
                             "AlwaysCreate" = "11:TRUE"
@@ -403,7 +392,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UpPhoto"
         "ProductCode" = "8:{6DDC5757-9C55-47E2-AB89-833BCDD95BF8}"
-        "PackageCode" = "8:{85002497-EC4D-4ACA-8B84-88417C6AD2E4}"
+        "PackageCode" = "8:{7644DE10-9B50-49E9-96F2-791F750E1BA7}"
         "UpgradeCode" = "8:{77AA1ED4-1AC4-4197-A02D-29201C8F165A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -545,7 +534,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_AAB58D2D6A0F4A1095738106EDAF40AC"
+            "Target" = "8:_E6F1D5A05DE249679990BFDED950D047"
             "Folder" = "8:_3B4B27D43C1246D6A92AC13561D0B6F5"
             "WorkingFolder" = "8:_C117A3C0A0BA4F988E2DBD21839C614B"
             "Icon" = "8:_93D10DC8935242489C294EFE790DC400"
