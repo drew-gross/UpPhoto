@@ -43,6 +43,7 @@ namespace UpPhoto
 
         public MainWindow()
         {
+            updateHandler = new UpdateHandler(this);
             Application.ThreadException += new ThreadExceptionEventHandler(GlobalThreadExceptionHandler);
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalUnhandledExceptionHandler);
@@ -79,7 +80,7 @@ namespace UpPhoto
 
             FacebookInterfaces.ConnectToFacebook();
 
-            updateHandler = new UpdateHandler(this);
+            updateHandler.Start();
 
             Application.DoEvents();
 
@@ -92,7 +93,7 @@ namespace UpPhoto
 
             Application.Run();
 
-            updateHandler.StopThreads();
+            updateHandler.Stop();
             SaveData();
         }
 

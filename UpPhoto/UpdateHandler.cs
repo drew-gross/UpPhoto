@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading;
 using Facebook.Schema;
 using UpPhotoLibrary;
+using System.Threading;
 
 namespace UpPhoto
 {
@@ -14,15 +15,15 @@ namespace UpPhoto
         public Queue<PhotoToUpload> uploadQueue = new Queue<PhotoToUpload>();
         Queue<PID> downloadQueue = new Queue<PID>();
 
-        AutoStartThread uploadThread;
+        Thread uploadThread;
         bool abortUploadThread = false;
         bool pauseUploadThread = false;
 
-        AutoStartThread downloadThread;
+        Thread downloadThread;
         bool abortDownloadThread = false;
         bool pauseDownloadThread = false;
 
-        AutoStartThread detectPIDthread;
+        Thread detectPIDthread;
         bool abortDetectPIDthread = false;
 
         const String DownloadedPhotoExtension = @".png";
@@ -33,12 +34,22 @@ namespace UpPhoto
         {
             parent = newParent;
 
-            detectPIDthread = new AutoStartThread(SyncPhotos, ApartmentState.STA);
-            uploadThread = new AutoStartThread(UploadPhotos, ApartmentState.STA);
-            downloadThread = new AutoStartThread(DownloadPhotos, ApartmentState.STA);
+            detectPIDthread = new Thread(SyncPhotos);
+            detectPIDthread.SetApartmentState(ApartmentState.STA);
+            uploadThread = new Thread(UploadPhotos);
+            uploadThread.SetApartmentState(ApartmentState.STA);
+            downloadThread = new Thread(DownloadPhotos);
+            downloadThread.SetApartmentState(ApartmentState.STA);
         }
 
-        public void StopThreads()
+        public void Start()
+        {
+            detectPIDthread.Start();
+            uploadThread.Start();
+            downloadThread.Start();
+        }
+
+        public void Stop()
         {
             abortDownloadThread = true;
             abortUploadThread = true;
@@ -75,14 +86,14 @@ namespace UpPhoto
             {
                 parent.SetConnectedStatus(false);
                 System.Threading.Thread.Sleep(parent.WaitForInternetConnectionTime);
-                uploadThread = new AutoStartThread(DownloadPhotos, ApartmentState.STA);
+                uploadThread = new Thread(DownloadPhotos);
             }
             catch (Exception ex)
             {
                 //On error, restart thread. If something is causing exceptions indefinitely, we should catch that specific type of exception and handle/ignore it.
                 ErrorHandler.LogException(ex);
 
-                uploadThread = new AutoStartThread(UploadPhotos, ApartmentState.STA);
+                uploadThread = new Thread(UploadPhotos);
             }
         }
 
@@ -161,13 +172,13 @@ namespace UpPhoto
             {
                 parent.SetConnectedStatus(false);
                 System.Threading.Thread.Sleep(parent.WaitForInternetConnectionTime);
-                downloadThread = new AutoStartThread(DownloadPhotos, ApartmentState.STA);
+                downloadThread = new Thread(DownloadPhotos);
             }
             catch (Exception ex)
             {
                 //On error, restart thread. If something is causing exceptions indefinitely, we should catch that specific type of exception and handle/ignore it.
                 ErrorHandler.LogException(ex);
-                downloadThread = new AutoStartThread(DownloadPhotos, ApartmentState.STA);
+                downloadThread = new Thread(DownloadPhotos);
             }
         }
 
@@ -228,7 +239,7 @@ namespace UpPhoto
                 System.Threading.Thread.Sleep(parent.WaitForInternetConnectionTime);
                 if (abortDetectPIDthread == false)
                 {
-                    detectPIDthread = new AutoStartThread(SyncPhotos, ApartmentState.STA);
+                    detectPIDthread = new Thread(SyncPhotos);
                 }
             }
             catch (ThreadAbortException)
@@ -240,7 +251,7 @@ namespace UpPhoto
                 //On error, restart thread. If something is causing exceptions indefinitely, we should catch that specific type of exception and handle/ignore it.
                 ErrorHandler.LogException(ex);
 
-                detectPIDthread = new AutoStartThread(SyncPhotos, ApartmentState.STA);
+                detectPIDthread = new Thread(SyncPhotos);
             }
         }
 
