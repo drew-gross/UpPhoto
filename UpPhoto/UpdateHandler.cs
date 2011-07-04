@@ -87,6 +87,8 @@ namespace UpPhoto
                 parent.SetConnectedStatus(false);
                 System.Threading.Thread.Sleep(parent.WaitForInternetConnectionTime);
                 uploadThread = new Thread(DownloadPhotos);
+                uploadThread.SetApartmentState(ApartmentState.MTA);
+                uploadThread.Start();
             }
             catch (Exception ex)
             {
@@ -173,6 +175,8 @@ namespace UpPhoto
                 parent.SetConnectedStatus(false);
                 System.Threading.Thread.Sleep(parent.WaitForInternetConnectionTime);
                 downloadThread = new Thread(DownloadPhotos);
+                downloadThread.SetApartmentState(ApartmentState.MTA);
+                downloadThread.Start();
             }
             catch (Exception ex)
             {
@@ -252,6 +256,8 @@ namespace UpPhoto
                 ErrorHandler.LogException(ex);
 
                 detectPIDthread = new Thread(SyncPhotos);
+                detectPIDthread.SetApartmentState(ApartmentState.MTA);
+                detectPIDthread.Start();
             }
         }
 
