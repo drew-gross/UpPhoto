@@ -59,11 +59,7 @@ namespace UpPhoto
             {
                 if (StringUtils.IsImageExtension(System.IO.Path.GetExtension(e.FullPath)) && !IgnoreList.Contains(e.FullPath))
                 {
-                    string album = System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(e.FullPath));
-                    lock (handler.uploadQueue)
-                    {
-                        handler.uploadQueue.Enqueue(new PhotoToUpload(album, e.FullPath));
-                    }
+                    handler.EnquePhotoFromPath(e.FullPath);
                 }
             }
         }

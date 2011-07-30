@@ -6,7 +6,6 @@ using System.IO;
 using System.Threading;
 using Facebook.Schema;
 using UpPhotoLibrary;
-using System.Threading;
 
 namespace UpPhoto
 {
@@ -123,6 +122,15 @@ namespace UpPhoto
                 {
                     //photo deleted before uploading. leave it off the queue and continue uploading the next photos.
                 }
+            }
+        }
+
+        public void EnquePhotoFromPath(String path)
+        {
+            String album = System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(path));
+            lock (uploadQueue)
+            {
+                uploadQueue.Enqueue(new PhotoToUpload(album, path));
             }
         }
 
