@@ -21,6 +21,7 @@ namespace UpPhoto
         ToolStripMenuItem AboutItem = new ToolStripMenuItem();
         ToolStripMenuItem ViewItem = new ToolStripMenuItem();
         ToolStripMenuItem ExitItem = new ToolStripMenuItem();
+        public ToolStripMenuItem DownloadPhotosItem = new ToolStripMenuItem();
 
         public NotifyIcon UpPhotoIcon;
 
@@ -39,17 +40,22 @@ namespace UpPhoto
             {
                 AboutItem,
                 ViewItem,
-                ExitItem
+                ExitItem,
+                DownloadPhotosItem
             });
 
-            AboutItem.Text = "About";
+            AboutItem.Text = "About UpPhoto";
             AboutItem.Click += (x, y) => { Process.Start(@"http://www.upphoto.ca/instructions.php"); };
 
-            ViewItem.Text = "View";
+            ViewItem.Text = "View UpPhoto folder";
             ViewItem.Click += ViewItem_Click;
 
             ExitItem.Text = "Exit";
             ExitItem.Click += ExitItem_Click;
+
+            DownloadPhotosItem.Text = "Download my photos from Facebook";
+            DownloadPhotosItem.CheckOnClick = true;
+            DownloadPhotosItem.Checked = false;
 
             UpPhotoIcon = new NotifyIcon(components);
             UpPhotoIcon.ContextMenuStrip = UpPhotoTrayMenu;

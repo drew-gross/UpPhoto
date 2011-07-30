@@ -163,17 +163,20 @@ namespace UpPhoto
                 {
                     Thread.Sleep(threadSleepTime);
                     parent.SetDownloadingStatus(false);
-                    while (downloadQueue.Count > 0 && abortDownloadThread == false)
+                    if (parent.DownloadPhotosEnabled())
                     {
-                        System.Windows.Forms.Application.DoEvents();//prevents ContextSwitchingDeadlocks
-                        parent.SetDownloadingStatus(true);
-                        while (pauseDownloadThread == true)
+                        while (downloadQueue.Count > 0 && abortDownloadThread == false && parent.DownloadPhotosEnabled())
                         {
-                            Thread.Sleep(threadSleepTime);
-                        }
-                        lock (downloadQueue)
-                        {
-                            DownloadNextQueuedPhoto();
+                            System.Windows.Forms.Application.DoEvents();//prevents ContextSwitchingDeadlocks
+                            parent.SetDownloadingStatus(true);
+                            while (pauseDownloadThread == true)
+                            {
+                                Thread.Sleep(threadSleepTime);
+                            }
+                            lock (downloadQueue)
+                            {
+                                DownloadNextQueuedPhoto();
+                            }
                         }
                     }
                 }

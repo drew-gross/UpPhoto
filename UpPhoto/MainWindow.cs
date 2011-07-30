@@ -274,5 +274,10 @@ namespace UpPhoto
         {
             ErrorHandler.LogException(t.Exception);
         }
+
+        public Boolean DownloadPhotosEnabled()
+        {
+            return gui.DownloadPhotosItem.Checked;
+        }
     }
 }
